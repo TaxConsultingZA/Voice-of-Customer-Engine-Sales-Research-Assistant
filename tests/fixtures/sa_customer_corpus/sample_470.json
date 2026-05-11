@@ -1,0 +1,10 @@
+{
+  "id": "sample_470",
+  "text": "The support agent was patient, knowledgeable, and solved the problem on the first call.",
+  "label": "positive",
+  "channel": "call",
+  "taxonomy_path": "Onboarding.Training.Onboarding",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

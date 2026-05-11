@@ -1,0 +1,10 @@
+{
+  "id": "sample_492",
+  "text": "Yoh, the new billing portal is hectic good! Our whole team is impressed.",
+  "label": "positive",
+  "channel": "email",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

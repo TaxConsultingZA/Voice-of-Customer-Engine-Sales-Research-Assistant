@@ -1,0 +1,10 @@
+{
+  "id": "sample_154",
+  "text": "Hello, What are the data retention policies for our account data?. Please advise.",
+  "label": "neutral",
+  "channel": "whatsapp",
+  "taxonomy_path": "Onboarding.Setup.ProfileConfiguration",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

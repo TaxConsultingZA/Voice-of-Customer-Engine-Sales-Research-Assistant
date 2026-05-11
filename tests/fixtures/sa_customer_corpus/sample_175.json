@@ -1,0 +1,10 @@
+{
+  "id": "sample_175",
+  "text": "Eish, the login is not working nè. I've tried everything. This is really hectic for us. Please fix this urgently.",
+  "label": "negative",
+  "channel": "email",
+  "taxonomy_path": "Authentication.Login.AccountLocked",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

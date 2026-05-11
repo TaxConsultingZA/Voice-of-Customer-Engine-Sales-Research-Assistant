@@ -1,0 +1,10 @@
+{
+  "id": "sample_114",
+  "text": "I cannot believe this, I cancelled my subscription 26 days ago and I'm still being billed. This needs to stop.",
+  "label": "negative",
+  "channel": "chat",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

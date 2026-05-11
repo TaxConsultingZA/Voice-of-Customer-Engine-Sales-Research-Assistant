@@ -1,0 +1,10 @@
+{
+  "id": "sample_038",
+  "text": "This is unacceptable, The CSV export downloads an empty file every single time. I need this data urgently. I expect better.",
+  "label": "negative",
+  "channel": "call",
+  "taxonomy_path": "Authentication.Mfa.VerificationFailure",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

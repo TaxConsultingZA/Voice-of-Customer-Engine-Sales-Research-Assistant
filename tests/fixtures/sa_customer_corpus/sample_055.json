@@ -1,0 +1,10 @@
+{
+  "id": "sample_055",
+  "text": "The MFA verification code keeps saying it's expired before I can even type it in. Authentication is completely broken.",
+  "label": "negative",
+  "channel": "email",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "st",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

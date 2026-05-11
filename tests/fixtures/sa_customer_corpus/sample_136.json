@@ -1,0 +1,10 @@
+{
+  "id": "sample_136",
+  "text": "This is unacceptable, My dashboard keeps showing data from 2 months ago instead of today's figures.",
+  "label": "negative",
+  "channel": "whatsapp",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

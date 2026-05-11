@@ -1,0 +1,10 @@
+{
+  "id": "sample_435",
+  "text": "My password reset is broken — eish, I've tried 8 times now. Can someone please help?",
+  "label": "negative",
+  "channel": "call",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "zu",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

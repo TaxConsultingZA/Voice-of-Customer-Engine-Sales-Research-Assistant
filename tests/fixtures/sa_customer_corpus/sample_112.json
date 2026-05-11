@@ -1,0 +1,10 @@
+{
+  "id": "sample_112",
+  "text": "The getting-started guide is excellent. Clear, well-structured, and easy to follow.",
+  "label": "positive",
+  "channel": "email",
+  "taxonomy_path": "Onboarding.Registration.Setup",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

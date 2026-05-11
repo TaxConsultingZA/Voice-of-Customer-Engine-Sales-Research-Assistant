@@ -1,0 +1,10 @@
+{
+  "id": "sample_221",
+  "text": "What is the cancellation policy? How much notice do I need to give?",
+  "label": "neutral",
+  "channel": "mobile_app",
+  "taxonomy_path": "Billing.Subscription.Cancellation",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

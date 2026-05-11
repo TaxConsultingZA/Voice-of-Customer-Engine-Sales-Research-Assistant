@@ -1,0 +1,10 @@
+{
+  "id": "sample_206",
+  "text": "The new data import tool is a massive improvement over the previous version. Well done!. Well done!",
+  "label": "positive",
+  "channel": "whatsapp",
+  "taxonomy_path": "Onboarding.Registration.Setup",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

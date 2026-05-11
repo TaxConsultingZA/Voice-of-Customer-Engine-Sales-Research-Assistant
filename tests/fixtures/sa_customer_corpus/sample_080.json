@@ -1,0 +1,10 @@
+{
+  "id": "sample_080",
+  "text": "The Zapier integration throws authentication errors every 4 hours and requires manual re-authorisation.",
+  "label": "negative",
+  "channel": "chat",
+  "taxonomy_path": "Authentication.Login.AccountLocked",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

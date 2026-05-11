@@ -1,0 +1,10 @@
+{
+  "id": "sample_254",
+  "text": "Howzit! Just wanted to say the new login flow is lekker smooth. Yebo!",
+  "label": "positive",
+  "channel": "email",
+  "taxonomy_path": "Onboarding.Training.Onboarding",
+  "language": "st",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

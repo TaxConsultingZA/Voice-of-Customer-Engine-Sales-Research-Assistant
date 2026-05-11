@@ -1,0 +1,10 @@
+{
+  "id": "sample_336",
+  "text": "Hoe gaan dit? I need some help understanding the pricing for additional users.",
+  "label": "neutral",
+  "channel": "email",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "af",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

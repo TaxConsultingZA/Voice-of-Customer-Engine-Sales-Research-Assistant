@@ -1,0 +1,10 @@
+{
+  "id": "sample_053",
+  "text": "The new data import tool is a massive improvement over the previous version. Well done!",
+  "label": "positive",
+  "channel": "email",
+  "taxonomy_path": "Onboarding.Registration.Setup",
+  "language": "zu",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

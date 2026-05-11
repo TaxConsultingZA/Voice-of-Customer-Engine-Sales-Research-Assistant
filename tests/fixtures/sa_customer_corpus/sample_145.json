@@ -1,0 +1,10 @@
+{
+  "id": "sample_145",
+  "text": "I've been locked out 3 times today because the system keeps logging me out mid-session. Please fix this urgently.",
+  "label": "negative",
+  "channel": "email",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

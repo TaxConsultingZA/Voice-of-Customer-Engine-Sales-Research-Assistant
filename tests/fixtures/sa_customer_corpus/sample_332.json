@@ -1,0 +1,10 @@
+{
+  "id": "sample_332",
+  "text": "Baie dankie! The onboarding process was really smooth and easy to follow. Got set up in under 10 minutes. Baie dankie!",
+  "label": "positive",
+  "channel": "chat",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "af",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

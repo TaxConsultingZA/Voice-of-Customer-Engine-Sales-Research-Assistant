@@ -1,0 +1,10 @@
+{
+  "id": "sample_113",
+  "text": "I cancelled my subscription 23 days ago and I'm still being billed. This needs to stop.",
+  "label": "negative",
+  "channel": "whatsapp",
+  "taxonomy_path": "Billing.Payment.ProcessingError",
+  "language": "xh",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

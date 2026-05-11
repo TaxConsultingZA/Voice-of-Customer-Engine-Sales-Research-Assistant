@@ -1,0 +1,10 @@
+{
+  "id": "sample_099",
+  "text": "The onboarding process was really smooth and easy to follow. Got set up in under 30 minutes.",
+  "label": "positive",
+  "channel": "chat",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "af",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

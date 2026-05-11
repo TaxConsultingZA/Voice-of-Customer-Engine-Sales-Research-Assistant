@@ -1,0 +1,10 @@
+{
+  "id": "sample_213",
+  "text": "Really impressed with how stable the system has been this quarter. Zero downtime for us.",
+  "label": "positive",
+  "channel": "chat",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

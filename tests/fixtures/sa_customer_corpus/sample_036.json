@@ -1,0 +1,10 @@
+{
+  "id": "sample_036",
+  "text": "Akukholeki lokhu, I cancelled my subscription 20 days ago and I'm still being billed. This needs to stop.",
+  "label": "negative",
+  "channel": "email",
+  "taxonomy_path": "Authentication.Mfa.VerificationFailure",
+  "language": "zu",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

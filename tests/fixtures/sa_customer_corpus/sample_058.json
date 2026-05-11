@@ -1,0 +1,10 @@
+{
+  "id": "sample_058",
+  "text": "The API integration we built stopped working after your update. Our entire workflow is now broken.",
+  "label": "negative",
+  "channel": "chat",
+  "taxonomy_path": "Onboarding.Registration.EmailVerification",
+  "language": "zu",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

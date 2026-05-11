@@ -1,0 +1,10 @@
+{
+  "id": "sample_234",
+  "text": "We've been customers for 1 years and the product keeps getting better. Sharp sharp!",
+  "label": "positive",
+  "channel": "email",
+  "taxonomy_path": "Onboarding.Registration.Setup",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

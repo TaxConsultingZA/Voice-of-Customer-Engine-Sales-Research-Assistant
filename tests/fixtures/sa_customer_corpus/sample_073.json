@@ -1,0 +1,10 @@
+{
+  "id": "sample_073",
+  "text": "Does your platform integrate with Salesforce or HubSpot?. Ndicela impendulo.",
+  "label": "neutral",
+  "channel": "call",
+  "taxonomy_path": "Onboarding.Training.Onboarding",
+  "language": "xh",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sample_481",
+  "text": "Ag, dit is onaanvaarbaar, Yoh, the app is lank slow today. Everything is timing out. Please sort this out urgently. Geen probleem nie — dit moet reggemaak word.",
+  "label": "negative",
+  "channel": "chat",
+  "taxonomy_path": "Onboarding.Registration.AccountCreation",
+  "language": "af",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sample_329",
+  "text": "Ke a leboha, Verification email arrived immediately and registration was straightforward. Lekker experience!. Mosebetsi o motle!",
+  "label": "positive",
+  "channel": "call",
+  "taxonomy_path": "Onboarding.Registration.Setup",
+  "language": "st",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

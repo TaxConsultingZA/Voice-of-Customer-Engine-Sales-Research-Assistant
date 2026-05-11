@@ -1,0 +1,10 @@
+{
+  "id": "sample_162",
+  "text": "Can I set up role-based access control for different team members?. Ngiyabonga.",
+  "label": "neutral",
+  "channel": "call",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "ss",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

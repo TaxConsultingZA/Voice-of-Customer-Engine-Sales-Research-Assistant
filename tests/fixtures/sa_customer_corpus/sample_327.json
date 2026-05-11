@@ -1,0 +1,10 @@
+{
+  "id": "sample_327",
+  "text": "Can I downgrade my plan mid-cycle? Will I receive a prorated refund?",
+  "label": "neutral",
+  "channel": "whatsapp",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "zu",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

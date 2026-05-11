@@ -1,0 +1,10 @@
+{
+  "id": "sample_156",
+  "text": "Performance has improved significantly since the last release. Pages load in under 3 seconds now. Much appreciated.",
+  "label": "positive",
+  "channel": "email",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sample_434",
+  "text": "I cannot believe this, The setup wizard crashes at step 4 every single time. I've tried on 3 different devices.",
+  "label": "negative",
+  "channel": "web_form",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

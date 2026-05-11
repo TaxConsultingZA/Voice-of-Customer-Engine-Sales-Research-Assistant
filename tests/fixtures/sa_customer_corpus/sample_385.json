@@ -1,0 +1,10 @@
+{
+  "id": "sample_385",
+  "text": "I've been locked out 3 times today because the system keeps logging me out mid-session.",
+  "label": "negative",
+  "channel": "whatsapp",
+  "taxonomy_path": "Billing.Payment.ProcessingError",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

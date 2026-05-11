@@ -1,0 +1,10 @@
+{
+  "id": "sample_233",
+  "text": "What are the uptime SLAs for the Enterprise plan?",
+  "label": "neutral",
+  "channel": "email",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

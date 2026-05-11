@@ -1,0 +1,10 @@
+{
+  "id": "sample_484",
+  "text": "What are your support hours? I'm in Johannesburg (SAST) and need to know when I can reach someone.",
+  "label": "neutral",
+  "channel": "mobile_app",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "af",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sample_334",
+  "text": "I am frustrated, SSO login with my company account stopped working after your update on Friday. Now nobody in our team can log in. Please fix this urgently.",
+  "label": "negative",
+  "channel": "email",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

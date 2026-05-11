@@ -1,0 +1,10 @@
+{
+  "id": "sample_280",
+  "text": "Hi there, What file formats does the export feature support for imports?",
+  "label": "neutral",
+  "channel": "email",
+  "taxonomy_path": "Compliance.Popia.DataAccessRequest",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

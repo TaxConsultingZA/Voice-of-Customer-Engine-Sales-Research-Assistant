@@ -1,0 +1,10 @@
+{
+  "id": "sample_356",
+  "text": "Dumela! We've been customers for 2 years and the product keeps getting better. Sharp sharp!",
+  "label": "positive",
+  "channel": "call",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "st",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

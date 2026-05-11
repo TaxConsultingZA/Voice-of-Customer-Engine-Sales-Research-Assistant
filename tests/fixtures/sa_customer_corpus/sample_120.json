@@ -1,0 +1,10 @@
+{
+  "id": "sample_120",
+  "text": "Hoe gaan dit, Is there an onboarding webinar I can join to learn the platform?. Groete.",
+  "label": "neutral",
+  "channel": "whatsapp",
+  "taxonomy_path": "Billing.Payment.ProcessingError",
+  "language": "af",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sample_272",
+  "text": "Is there a way to set up SSO for our organisation? We use Microsoft Azure AD. Ke kopa le nthuse.",
+  "label": "neutral",
+  "channel": "email",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "st",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

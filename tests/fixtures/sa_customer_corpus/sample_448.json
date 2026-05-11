@@ -1,0 +1,10 @@
+{
+  "id": "sample_448",
+  "text": "The dashboard is showing incorrect totals — they don't match the underlying transaction data at all. I expect better.",
+  "label": "negative",
+  "channel": "chat",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

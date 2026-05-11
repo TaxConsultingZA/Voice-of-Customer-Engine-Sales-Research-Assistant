@@ -1,0 +1,10 @@
+{
+  "id": "sample_437",
+  "text": "Can I import my existing data during the onboarding process? We have about 4143 records.",
+  "label": "neutral",
+  "channel": "mobile_app",
+  "taxonomy_path": "Billing.Payment.ProcessingError",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

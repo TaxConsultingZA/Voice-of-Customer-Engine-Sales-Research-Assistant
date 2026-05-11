@@ -1,0 +1,10 @@
+{
+  "id": "sample_483",
+  "text": "Jislaaik, I've submitted the same request 7 times and nobody has helped me. Aikona!",
+  "label": "negative",
+  "channel": "whatsapp",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "st",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

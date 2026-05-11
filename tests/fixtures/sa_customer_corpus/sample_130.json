@@ -1,0 +1,10 @@
+{
+  "id": "sample_130",
+  "text": "Howzit, just checking — is there scheduled maintenance planned for this weekend?",
+  "label": "neutral",
+  "channel": "whatsapp",
+  "taxonomy_path": "Billing.Payment.ProcessingError",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sample_449",
+  "text": "The setup wizard is intuitive and clear. I appreciated the helpful tooltips at each step. Thank you!",
+  "label": "positive",
+  "channel": "chat",
+  "taxonomy_path": "Onboarding.Registration.Setup",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

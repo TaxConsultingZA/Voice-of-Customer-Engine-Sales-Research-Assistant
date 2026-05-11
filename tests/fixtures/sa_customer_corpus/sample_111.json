@@ -1,0 +1,10 @@
+{
+  "id": "sample_111",
+  "text": "Dis nie reg nie — I've been locked out 5 times today because the system keeps logging me out mid-session. Geen probleem nie — dit moet reggemaak word.",
+  "label": "negative",
+  "channel": "chat",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "af",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

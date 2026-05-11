@@ -1,0 +1,10 @@
+{
+  "id": "sample_064",
+  "text": "This is unacceptable, The login button just spins forever and never actually logs me in. I've cleared cache and cookies. Very disappointed.",
+  "label": "negative",
+  "channel": "email",
+  "taxonomy_path": "Onboarding.Setup.ProfileConfiguration",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

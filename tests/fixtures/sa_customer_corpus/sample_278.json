@@ -1,0 +1,10 @@
+{
+  "id": "sample_278",
+  "text": "Ke na le potso, What is the typical response time for Starter plan support tickets?",
+  "label": "neutral",
+  "channel": "whatsapp",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "tn",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

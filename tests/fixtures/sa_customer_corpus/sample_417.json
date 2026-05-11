@@ -1,0 +1,10 @@
+{
+  "id": "sample_417",
+  "text": "Sharp sharp — the issue was fixed faster than expected. Baie dankie to the support team!. Much appreciated.",
+  "label": "positive",
+  "channel": "whatsapp",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

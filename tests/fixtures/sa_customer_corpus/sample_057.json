@@ -1,0 +1,10 @@
+{
+  "id": "sample_057",
+  "text": "Where can I find the getting-started documentation for new users?",
+  "label": "neutral",
+  "channel": "whatsapp",
+  "taxonomy_path": "Onboarding.Registration.AccountCreation",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

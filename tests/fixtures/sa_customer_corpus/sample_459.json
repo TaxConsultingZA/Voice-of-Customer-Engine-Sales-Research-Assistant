@@ -1,0 +1,10 @@
+{
+  "id": "sample_459",
+  "text": "My payment keeps failing at checkout even though my card details are correct. I've tried 3 times.",
+  "label": "negative",
+  "channel": "call",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

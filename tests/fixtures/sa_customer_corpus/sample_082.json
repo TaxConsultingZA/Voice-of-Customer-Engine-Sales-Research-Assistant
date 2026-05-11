@@ -1,0 +1,10 @@
+{
+  "id": "sample_082",
+  "text": "My account was suspended without any warning or email explaining why. I cannot log in at all. Ngiyaphoxeka kakhulu.",
+  "label": "negative",
+  "channel": "whatsapp",
+  "taxonomy_path": "Billing.Payment.ProcessingError",
+  "language": "nr",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

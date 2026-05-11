@@ -1,0 +1,10 @@
+{
+  "id": "sample_439",
+  "text": "I just signed up for a Team plan. What are the next steps to get started?. Groete.",
+  "label": "neutral",
+  "channel": "call",
+  "taxonomy_path": "Onboarding.Setup.ProfileConfiguration",
+  "language": "af",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

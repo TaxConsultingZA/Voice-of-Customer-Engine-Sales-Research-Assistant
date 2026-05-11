@@ -1,0 +1,10 @@
+{
+  "id": "sample_195",
+  "text": "The API integration won't load at all during peak hours. I've been waiting 38 minutes. Ke nyaka karabelo ka pela.",
+  "label": "negative",
+  "channel": "web_form",
+  "taxonomy_path": "Billing.Payment.ProcessingError",
+  "language": "nso",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sample_296",
+  "text": "I cannot believe this, The 'Forgot Password' link does nothing when I click it. It just reloads the same page. I expect better.",
+  "label": "negative",
+  "channel": "whatsapp",
+  "taxonomy_path": "Billing.Subscription.Cancellation",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sample_339",
+  "text": "Can I log in to the same account from multiple devices simultaneously?",
+  "label": "neutral",
+  "channel": "mobile_app",
+  "taxonomy_path": "Onboarding.Training.Onboarding",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

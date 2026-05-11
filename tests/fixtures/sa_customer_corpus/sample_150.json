@@ -1,0 +1,10 @@
+{
+  "id": "sample_150",
+  "text": "Happy to share, The new mobile app is a massive improvement over the previous version. Well done!. Thank you!",
+  "label": "positive",
+  "channel": "web_form",
+  "taxonomy_path": "Onboarding.Registration.EmailVerification",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

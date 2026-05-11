@@ -1,0 +1,10 @@
+{
+  "id": "sample_030",
+  "text": "Does the Team plan include API access? If so, what are the rate limits?",
+  "label": "neutral",
+  "channel": "email",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "xh",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sample_163",
+  "text": "Hello, Can I set up role-based access control for different team members?",
+  "label": "neutral",
+  "channel": "chat",
+  "taxonomy_path": "Onboarding.Training.Onboarding",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

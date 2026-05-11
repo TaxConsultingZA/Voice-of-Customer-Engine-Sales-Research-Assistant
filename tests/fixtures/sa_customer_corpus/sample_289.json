@@ -1,0 +1,10 @@
+{
+  "id": "sample_289",
+  "text": "Is there a way to customise the analytics tab to show only certain columns?",
+  "label": "neutral",
+  "channel": "call",
+  "taxonomy_path": "Billing.Subscription.Cancellation",
+  "language": "nso",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

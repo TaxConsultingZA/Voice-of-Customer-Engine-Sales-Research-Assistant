@@ -1,0 +1,10 @@
+{
+  "id": "sample_181",
+  "text": "What are the data retention policies for our account data?",
+  "label": "neutral",
+  "channel": "survey",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

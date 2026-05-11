@@ -1,0 +1,10 @@
+{
+  "id": "sample_109",
+  "text": "Webhook notifications stopped firing 6 days ago. We're missing critical data in our system. Ek verwag 'n reaksie.",
+  "label": "negative",
+  "channel": "chat",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "af",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sample_196",
+  "text": "Can you explain what happens to our data if we cancel our subscription?",
+  "label": "neutral",
+  "channel": "web_form",
+  "taxonomy_path": "Billing.Payment.ProcessingError",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

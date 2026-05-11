@@ -1,0 +1,10 @@
+{
+  "id": "sample_158",
+  "text": "Everything times out after 25 seconds. I cannot get anything done. The system is unusable. I expect better.",
+  "label": "negative",
+  "channel": "call",
+  "taxonomy_path": "Billing.Payment.ProcessingError",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

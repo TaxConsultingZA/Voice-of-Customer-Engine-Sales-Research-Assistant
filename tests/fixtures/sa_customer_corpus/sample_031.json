@@ -1,0 +1,10 @@
+{
+  "id": "sample_031",
+  "text": "I cannot believe this, Data I exported yesterday is different from what the user management shows today. Completely inconsistent. Please fix this urgently.",
+  "label": "negative",
+  "channel": "email",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sample_138",
+  "text": "Is it possible to schedule automated exports from the billing portal?",
+  "label": "neutral",
+  "channel": "call",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "st",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

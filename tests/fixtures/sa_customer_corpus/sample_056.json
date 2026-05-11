@@ -1,0 +1,10 @@
+{
+  "id": "sample_056",
+  "text": "Your API rate limits are too low for our volume. We're hitting limits within 5 minutes of opening.",
+  "label": "negative",
+  "channel": "email",
+  "taxonomy_path": "Authentication.Mfa.VerificationFailure",
+  "language": "xh",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

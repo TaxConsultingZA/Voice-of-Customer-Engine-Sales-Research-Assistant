@@ -1,0 +1,10 @@
+{
+  "id": "sample_276",
+  "text": "Hello, When is the new billing portal feature expected to be released?",
+  "label": "neutral",
+  "channel": "survey",
+  "taxonomy_path": "Compliance.Popia.DataAccessRequest",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

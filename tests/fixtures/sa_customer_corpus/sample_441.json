@@ -1,0 +1,10 @@
+{
+  "id": "sample_441",
+  "text": "The product roadmap update you shared is really exciting. Looking forward to the new features.",
+  "label": "positive",
+  "channel": "mobile_app",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "xh",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

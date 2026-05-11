@@ -1,0 +1,10 @@
+{
+  "id": "sample_069",
+  "text": "I submitted a ticket 4 days ago. Can you provide a status update on the progress?",
+  "label": "neutral",
+  "channel": "chat",
+  "taxonomy_path": "Onboarding.Registration.AccountCreation",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

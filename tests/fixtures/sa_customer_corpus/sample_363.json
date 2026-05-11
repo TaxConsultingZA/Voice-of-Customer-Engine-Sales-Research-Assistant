@@ -1,0 +1,10 @@
+{
+  "id": "sample_363",
+  "text": "Performance has improved significantly since the last release. Pages load in under 1 seconds now. Much appreciated.",
+  "label": "positive",
+  "channel": "mobile_app",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

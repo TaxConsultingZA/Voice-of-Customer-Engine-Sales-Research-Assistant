@@ -1,0 +1,10 @@
+{
+  "id": "sample_137",
+  "text": "Is there a way to set up SSO for our organisation? We use Microsoft Azure AD.",
+  "label": "neutral",
+  "channel": "email",
+  "taxonomy_path": "Billing.Subscription.Cancellation",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

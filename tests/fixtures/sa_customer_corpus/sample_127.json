@@ -1,0 +1,10 @@
+{
+  "id": "sample_127",
+  "text": "Hi there, Can I log in to the same account from multiple devices simultaneously?",
+  "label": "neutral",
+  "channel": "chat",
+  "taxonomy_path": "Billing.Subscription.Cancellation",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

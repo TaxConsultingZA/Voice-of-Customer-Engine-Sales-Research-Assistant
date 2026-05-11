@@ -1,0 +1,10 @@
+{
+  "id": "sample_142",
+  "text": "Lekker work on the update! The billing portal is now exactly what we needed. Much appreciated.",
+  "label": "positive",
+  "channel": "email",
+  "taxonomy_path": "Onboarding.Registration.Setup",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

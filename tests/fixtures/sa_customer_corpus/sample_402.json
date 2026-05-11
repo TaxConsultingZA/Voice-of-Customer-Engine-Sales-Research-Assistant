@@ -1,0 +1,10 @@
+{
+  "id": "sample_402",
+  "text": "Hello, What is the maximum file size for data imports?",
+  "label": "neutral",
+  "channel": "whatsapp",
+  "taxonomy_path": "Billing.Payment.ProcessingError",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

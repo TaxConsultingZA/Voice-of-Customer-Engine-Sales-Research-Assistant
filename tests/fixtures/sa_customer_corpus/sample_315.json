@@ -1,0 +1,10 @@
+{
+  "id": "sample_315",
+  "text": "Just wanted to say, Sharp sharp — the issue was fixed faster than expected. Baie dankie to the support team!. Well done!",
+  "label": "positive",
+  "channel": "chat",
+  "taxonomy_path": "Onboarding.Registration.EmailVerification",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

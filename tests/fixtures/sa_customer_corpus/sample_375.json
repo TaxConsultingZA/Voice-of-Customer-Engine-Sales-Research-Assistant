@@ -1,0 +1,10 @@
+{
+  "id": "sample_375",
+  "text": "Hi there, I just signed up for a SMB plan. What are the next steps to get started?. Looking forward to your reply.",
+  "label": "neutral",
+  "channel": "call",
+  "taxonomy_path": "Billing.Payment.ProcessingError",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

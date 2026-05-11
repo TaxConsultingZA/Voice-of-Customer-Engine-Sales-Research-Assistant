@@ -1,0 +1,10 @@
+{
+  "id": "sample_003",
+  "text": "My password reset is broken — eish, I've tried 10 times now. Can someone please help?",
+  "label": "negative",
+  "channel": "chat",
+  "taxonomy_path": "Authentication.Login.AccountLocked",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

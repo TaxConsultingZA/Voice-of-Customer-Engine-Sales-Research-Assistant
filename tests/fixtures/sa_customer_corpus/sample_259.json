@@ -1,0 +1,10 @@
+{
+  "id": "sample_259",
+  "text": "Login works on desktop but completely fails on mobile. The app just crashes on the login screen.",
+  "label": "negative",
+  "channel": "call",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

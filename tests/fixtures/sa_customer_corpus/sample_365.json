@@ -1,0 +1,10 @@
+{
+  "id": "sample_365",
+  "text": "The platform has transformed how our team works. Can't imagine going back to spreadsheets.",
+  "label": "positive",
+  "channel": "email",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

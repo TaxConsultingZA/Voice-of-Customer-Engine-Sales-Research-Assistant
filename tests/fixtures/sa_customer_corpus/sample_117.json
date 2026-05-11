@@ -1,0 +1,10 @@
+{
+  "id": "sample_117",
+  "text": "Dumela! The bulk import feature works perfectly. Uploaded 3375 records without a single error.",
+  "label": "positive",
+  "channel": "email",
+  "taxonomy_path": "Onboarding.Training.Onboarding",
+  "language": "st",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sample_324",
+  "text": "Dis nie reg nie — I lost 2 hours of work because your autosave feature stopped working.",
+  "label": "negative",
+  "channel": "web_form",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "st",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

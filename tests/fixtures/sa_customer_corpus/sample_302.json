@@ -1,0 +1,10 @@
+{
+  "id": "sample_302",
+  "text": "Molo, My password reset email never arrives. I've checked my spam folder 8 times. Nothing.",
+  "label": "negative",
+  "channel": "whatsapp",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "xh",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

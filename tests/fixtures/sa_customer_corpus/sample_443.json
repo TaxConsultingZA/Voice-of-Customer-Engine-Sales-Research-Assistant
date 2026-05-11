@@ -1,0 +1,10 @@
+{
+  "id": "sample_443",
+  "text": "Molo, How do I enable MFA for my account? I want to improve security.",
+  "label": "neutral",
+  "channel": "web_form",
+  "taxonomy_path": "Billing.Subscription.Cancellation",
+  "language": "xh",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

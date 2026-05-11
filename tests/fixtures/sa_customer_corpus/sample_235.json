@@ -1,0 +1,10 @@
+{
+  "id": "sample_235",
+  "text": "I signed up 7 days ago and still haven't received my verification email. I've resent it 4 times. Ngiyakhathazeka kakhulu.",
+  "label": "negative",
+  "channel": "whatsapp",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "zu",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

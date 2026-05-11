@@ -1,0 +1,10 @@
+{
+  "id": "sample_357",
+  "text": "How do I enable MFA for my account? I want to improve security.",
+  "label": "neutral",
+  "channel": "email",
+  "taxonomy_path": "Billing.Subscription.Cancellation",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

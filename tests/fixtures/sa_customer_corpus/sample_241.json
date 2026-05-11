@@ -1,0 +1,10 @@
+{
+  "id": "sample_241",
+  "text": "Onboarding call with your team was very helpful. They walked us through everything patiently.",
+  "label": "positive",
+  "channel": "web_form",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sample_299",
+  "text": "Akukho lunge — I cancelled my subscription 25 days ago and I'm still being billed. This needs to stop.",
+  "label": "negative",
+  "channel": "web_form",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "nr",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

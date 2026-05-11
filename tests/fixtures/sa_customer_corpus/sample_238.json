@@ -1,0 +1,10 @@
+{
+  "id": "sample_238",
+  "text": "I'm genuinely impressed with the level of support. Best experience I've had with any SaaS platform.",
+  "label": "positive",
+  "channel": "call",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

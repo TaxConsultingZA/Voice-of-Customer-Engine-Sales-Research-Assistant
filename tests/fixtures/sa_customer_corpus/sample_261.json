@@ -1,0 +1,10 @@
+{
+  "id": "sample_261",
+  "text": "Akukholeki lokhu, Ag shame, I'm trying to help a client and your system is down again. Dis nie reg nie.",
+  "label": "negative",
+  "channel": "web_form",
+  "taxonomy_path": "Authentication.Login.AccountLocked",
+  "language": "zu",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

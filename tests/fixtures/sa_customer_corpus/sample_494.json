@@ -1,0 +1,10 @@
+{
+  "id": "sample_494",
+  "text": "My account has been locked for 3 days and I still cannot get access. I am a paying Professional customer. Ek verwag 'n reaksie.",
+  "label": "negative",
+  "channel": "web_form",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "af",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

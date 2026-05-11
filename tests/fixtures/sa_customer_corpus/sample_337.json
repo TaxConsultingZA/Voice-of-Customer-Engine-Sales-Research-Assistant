@@ -1,0 +1,10 @@
+{
+  "id": "sample_337",
+  "text": "Everything times out after 48 seconds. I cannot get anything done. The system is unusable. Very disappointed.",
+  "label": "negative",
+  "channel": "email",
+  "taxonomy_path": "Authentication.Login.AccountLocked",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

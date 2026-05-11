@@ -1,0 +1,10 @@
+{
+  "id": "sample_240",
+  "text": "Does the Team plan include API access? If so, what are the rate limits?",
+  "label": "neutral",
+  "channel": "whatsapp",
+  "taxonomy_path": "Onboarding.Registration.AccountCreation",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

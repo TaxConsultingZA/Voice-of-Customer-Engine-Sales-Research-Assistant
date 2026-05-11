@@ -1,0 +1,10 @@
+{
+  "id": "sample_101",
+  "text": "How long does the verification process usually take after signing up?. Ngiyabonga.",
+  "label": "neutral",
+  "channel": "whatsapp",
+  "taxonomy_path": "Billing.Subscription.Cancellation",
+  "language": "zu",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

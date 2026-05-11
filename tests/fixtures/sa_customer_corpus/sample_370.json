@@ -1,0 +1,10 @@
+{
+  "id": "sample_370",
+  "text": "What training resources are available for new team members joining our account?. Ngiyabonga.",
+  "label": "neutral",
+  "channel": "chat",
+  "taxonomy_path": "Billing.Subscription.Cancellation",
+  "language": "zu",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

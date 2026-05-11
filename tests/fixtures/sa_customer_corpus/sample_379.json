@@ -1,0 +1,10 @@
+{
+  "id": "sample_379",
+  "text": "I cannot complete my registration. The form keeps saying my business email is invalid but it's perfectly fine.",
+  "label": "negative",
+  "channel": "call",
+  "taxonomy_path": "Billing.Payment.ProcessingError",
+  "language": "af",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

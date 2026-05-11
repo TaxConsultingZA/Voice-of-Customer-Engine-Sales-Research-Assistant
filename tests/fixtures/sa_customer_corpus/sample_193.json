@@ -1,0 +1,10 @@
+{
+  "id": "sample_193",
+  "text": "Is there an onboarding webinar I can join to learn the platform?",
+  "label": "neutral",
+  "channel": "email",
+  "taxonomy_path": "Onboarding.Registration.AccountCreation",
+  "language": "zu",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

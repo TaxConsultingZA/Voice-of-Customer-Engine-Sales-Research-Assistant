@@ -1,0 +1,10 @@
+{
+  "id": "sample_478",
+  "text": "I need to update the billing contact on our account. How do I do that?",
+  "label": "neutral",
+  "channel": "call",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "xh",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

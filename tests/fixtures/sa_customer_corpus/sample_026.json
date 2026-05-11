@@ -1,0 +1,10 @@
+{
+  "id": "sample_026",
+  "text": "Ndivuya ukuxelela, Your API is well-documented and the integration took less than 2 hours to build.",
+  "label": "positive",
+  "channel": "email",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "xh",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

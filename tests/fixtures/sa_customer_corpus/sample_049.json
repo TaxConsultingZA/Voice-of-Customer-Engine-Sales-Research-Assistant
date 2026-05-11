@@ -1,0 +1,10 @@
+{
+  "id": "sample_049",
+  "text": "I am frustrated, Haibo, I've been paying for this service for 12 months and this is the third major outage. Very disappointed.",
+  "label": "negative",
+  "channel": "email",
+  "taxonomy_path": "Billing.Payment.ProcessingError",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

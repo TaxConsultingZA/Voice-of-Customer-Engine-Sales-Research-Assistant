@@ -1,0 +1,10 @@
+{
+  "id": "sample_218",
+  "text": "Happy to share, Howzit! Just wanted to say the new login flow is lekker smooth. Yebo!. Well done!",
+  "label": "positive",
+  "channel": "call",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

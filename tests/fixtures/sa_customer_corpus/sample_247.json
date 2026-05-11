@@ -1,0 +1,10 @@
+{
+  "id": "sample_247",
+  "text": "Your mobile app crashes every time I try to open the dashboard. Happens consistently.",
+  "label": "negative",
+  "channel": "call",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

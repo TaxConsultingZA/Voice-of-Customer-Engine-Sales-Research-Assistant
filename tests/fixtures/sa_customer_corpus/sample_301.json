@@ -1,0 +1,10 @@
+{
+  "id": "sample_301",
+  "text": "I reset my password successfully but the new password still doesn't work. This is going in circles. Please fix this urgently.",
+  "label": "negative",
+  "channel": "call",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

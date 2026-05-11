@@ -1,0 +1,10 @@
+{
+  "id": "sample_371",
+  "text": "How do I enable MFA for my account? I want to improve security.",
+  "label": "neutral",
+  "channel": "chat",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "af",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

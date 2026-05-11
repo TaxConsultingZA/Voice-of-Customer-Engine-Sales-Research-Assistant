@@ -1,0 +1,10 @@
+{
+  "id": "sample_295",
+  "text": "Hi there, I'm looking at migrating from a competitor — is there a migration assistance programme?",
+  "label": "neutral",
+  "channel": "whatsapp",
+  "taxonomy_path": "Onboarding.Setup.ProfileConfiguration",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

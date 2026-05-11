@@ -1,0 +1,10 @@
+{
+  "id": "sample_214",
+  "text": "When is the new reporting module feature expected to be released?. Ke kopa thuso ya lona.",
+  "label": "neutral",
+  "channel": "mobile_app",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "tn",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

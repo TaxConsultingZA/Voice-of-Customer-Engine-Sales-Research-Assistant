@@ -1,0 +1,10 @@
+{
+  "id": "sample_088",
+  "text": "Ke a kgalemela — My scheduled report hasn't run in 5 days. The automation is completely broken.",
+  "label": "negative",
+  "channel": "web_form",
+  "taxonomy_path": "Authentication.Mfa.VerificationFailure",
+  "language": "st",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sample_187",
+  "text": "I cannot believe this, Your live chat says agents are available but I've been waiting 33 minutes with no reply.",
+  "label": "negative",
+  "channel": "email",
+  "taxonomy_path": "Authentication.Mfa.VerificationFailure",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sample_070",
+  "text": "We've been customers for 3 years and the product keeps getting better. Sharp sharp!",
+  "label": "positive",
+  "channel": "survey",
+  "taxonomy_path": "Onboarding.Training.Onboarding",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

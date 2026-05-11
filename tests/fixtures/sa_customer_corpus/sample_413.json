@@ -1,0 +1,10 @@
+{
+  "id": "sample_413",
+  "text": "Good morning, Dumela, I'd like to know when the new export feature feature will be available.",
+  "label": "neutral",
+  "channel": "chat",
+  "taxonomy_path": "Onboarding.Training.Onboarding",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

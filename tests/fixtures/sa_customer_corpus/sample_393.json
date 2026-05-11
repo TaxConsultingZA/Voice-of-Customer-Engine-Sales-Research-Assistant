@@ -1,0 +1,10 @@
+{
+  "id": "sample_393",
+  "text": "Is there a dedicated account manager for Team plan customers?",
+  "label": "neutral",
+  "channel": "whatsapp",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

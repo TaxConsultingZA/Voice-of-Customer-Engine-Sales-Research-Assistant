@@ -1,0 +1,10 @@
+{
+  "id": "sample_291",
+  "text": "The support agent I spoke to said the issue was escalated but it's now been 7 days and nothing.",
+  "label": "negative",
+  "channel": "whatsapp",
+  "taxonomy_path": "Billing.Payment.ProcessingError",
+  "language": "nr",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

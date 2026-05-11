@@ -1,0 +1,10 @@
+{
+  "id": "sample_445",
+  "text": "Just wanted to say, The login issue I reported has been fixed. Everything works perfectly now. Sharp sharp!",
+  "label": "positive",
+  "channel": "call",
+  "taxonomy_path": "Onboarding.Registration.Setup",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

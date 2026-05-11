@@ -1,0 +1,10 @@
+{
+  "id": "sample_328",
+  "text": "The support agent was patient, knowledgeable, and solved the problem on the first call. Ke leboha thuso ya lona!",
+  "label": "positive",
+  "channel": "whatsapp",
+  "taxonomy_path": "Onboarding.Registration.EmailVerification",
+  "language": "st",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

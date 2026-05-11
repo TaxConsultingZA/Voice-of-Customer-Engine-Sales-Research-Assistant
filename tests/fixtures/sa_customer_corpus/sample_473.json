@@ -1,0 +1,10 @@
+{
+  "id": "sample_473",
+  "text": "What is the password policy? How often do passwords expire and what are the requirements?",
+  "label": "neutral",
+  "channel": "whatsapp",
+  "taxonomy_path": "Onboarding.Registration.AccountCreation",
+  "language": "af",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

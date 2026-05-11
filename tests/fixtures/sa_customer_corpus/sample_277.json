@@ -1,0 +1,10 @@
+{
+  "id": "sample_277",
+  "text": "Ke nyaka thušo, Is there a way to customise the user management to show only certain columns?",
+  "label": "neutral",
+  "channel": "email",
+  "taxonomy_path": "Billing.Payment.ProcessingError",
+  "language": "nso",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

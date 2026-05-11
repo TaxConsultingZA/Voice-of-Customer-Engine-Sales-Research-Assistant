@@ -1,0 +1,10 @@
+{
+  "id": "sample_496",
+  "text": "My password reset is broken — eish, I've tried 10 times now. Can someone please help?",
+  "label": "negative",
+  "channel": "survey",
+  "taxonomy_path": "Onboarding.Registration.EmailVerification",
+  "language": "af",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

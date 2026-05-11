@@ -1,0 +1,10 @@
+{
+  "id": "sample_129",
+  "text": "I am frustrated, Jislaaik, I've submitted the same request 5 times and nobody has helped me. Aikona!. Very disappointed.",
+  "label": "negative",
+  "channel": "call",
+  "taxonomy_path": "Billing.Subscription.Cancellation",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

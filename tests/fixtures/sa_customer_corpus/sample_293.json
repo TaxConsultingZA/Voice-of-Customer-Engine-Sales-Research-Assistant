@@ -1,0 +1,10 @@
+{
+  "id": "sample_293",
+  "text": "Goeie dag, Does your platform integrate with Salesforce or HubSpot?. Groete.",
+  "label": "neutral",
+  "channel": "chat",
+  "taxonomy_path": "Authentication.Mfa.SetupFailure",
+  "language": "af",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

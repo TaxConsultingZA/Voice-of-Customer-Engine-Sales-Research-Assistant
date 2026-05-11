@@ -1,0 +1,10 @@
+{
+  "id": "sample_077",
+  "text": "Dumela, The onboarding video tutorial links are all broken — they all give me a 404 error. Ke kgathetse haholo.",
+  "label": "negative",
+  "channel": "email",
+  "taxonomy_path": "Onboarding.Registration.EmailVerification",
+  "language": "st",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

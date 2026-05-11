@@ -1,0 +1,10 @@
+{
+  "id": "sample_039",
+  "text": "Is it possible to schedule automated exports from the mobile app?",
+  "label": "neutral",
+  "channel": "chat",
+  "taxonomy_path": "Billing.Subscription.Cancellation",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

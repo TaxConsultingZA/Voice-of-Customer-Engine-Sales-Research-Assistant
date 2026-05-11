@@ -1,0 +1,10 @@
+{
+  "id": "sample_246",
+  "text": "Is there an annual payment option that offers a discount compared to monthly billing?",
+  "label": "neutral",
+  "channel": "whatsapp",
+  "taxonomy_path": "Authentication.Login.AccountLocked",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

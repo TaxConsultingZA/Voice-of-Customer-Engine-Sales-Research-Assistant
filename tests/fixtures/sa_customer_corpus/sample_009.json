@@ -1,0 +1,10 @@
+{
+  "id": "sample_009",
+  "text": "I am frustrated, Haibo, I've been paying for this service for 15 months and this is the third major outage. Very disappointed.",
+  "label": "negative",
+  "channel": "whatsapp",
+  "taxonomy_path": "Authentication.Mfa.VerificationFailure",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

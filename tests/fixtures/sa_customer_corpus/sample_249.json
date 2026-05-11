@@ -1,0 +1,10 @@
+{
+  "id": "sample_249",
+  "text": "Hayi, akufanelanga — The onboarding video tutorial links are all broken — they all give me a 404 error.",
+  "label": "negative",
+  "channel": "survey",
+  "taxonomy_path": "Billing.Payment.ProcessingError",
+  "language": "xh",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

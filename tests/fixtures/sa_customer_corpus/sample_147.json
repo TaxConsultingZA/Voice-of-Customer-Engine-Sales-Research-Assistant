@@ -1,0 +1,10 @@
+{
+  "id": "sample_147",
+  "text": "Baie dankie for the quick fix. The notification system is working perfectly again. Sharp!",
+  "label": "positive",
+  "channel": "chat",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "ss",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

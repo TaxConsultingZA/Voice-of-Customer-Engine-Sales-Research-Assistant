@@ -1,0 +1,10 @@
+{
+  "id": "sample_444",
+  "text": "This is unacceptable, The reporting module won't load at all during peak hours. I've been waiting 44 minutes.",
+  "label": "negative",
+  "channel": "whatsapp",
+  "taxonomy_path": "Authentication.Login.AccountLocked",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

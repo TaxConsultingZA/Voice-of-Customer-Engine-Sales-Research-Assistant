@@ -1,0 +1,10 @@
+{
+  "id": "sample_131",
+  "text": "Howzit, quick question — how do I change the language settings on my account?",
+  "label": "neutral",
+  "channel": "whatsapp",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

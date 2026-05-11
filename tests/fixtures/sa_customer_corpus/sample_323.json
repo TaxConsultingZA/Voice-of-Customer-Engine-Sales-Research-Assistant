@@ -1,0 +1,10 @@
+{
+  "id": "sample_323",
+  "text": "The platform has transformed how our team works. Can't imagine going back to spreadsheets. Much appreciated.",
+  "label": "positive",
+  "channel": "email",
+  "taxonomy_path": "Onboarding.Training.Onboarding",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

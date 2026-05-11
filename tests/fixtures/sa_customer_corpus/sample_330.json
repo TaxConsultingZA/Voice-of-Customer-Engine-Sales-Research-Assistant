@@ -1,0 +1,10 @@
+{
+  "id": "sample_330",
+  "text": "Ndivuya ukuxelela, The getting-started guide is excellent. Clear, well-structured, and easy to follow. Nicanda umsebenzi omhle!",
+  "label": "positive",
+  "channel": "chat",
+  "taxonomy_path": "Onboarding.Registration.Setup",
+  "language": "xh",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

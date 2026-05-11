@@ -1,0 +1,10 @@
+{
+  "id": "sample_027",
+  "text": "I'm looking at migrating from a competitor — is there a migration assistance programme?",
+  "label": "neutral",
+  "channel": "call",
+  "taxonomy_path": "Billing.Subscription.Cancellation",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

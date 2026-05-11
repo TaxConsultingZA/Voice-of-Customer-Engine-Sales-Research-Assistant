@@ -1,0 +1,10 @@
+{
+  "id": "sample_460",
+  "text": "Onboarding call with your team was very helpful. They walked us through everything patiently. Ke leboha thuso ya lona!",
+  "label": "positive",
+  "channel": "chat",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "tn",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sample_422",
+  "text": "What are your support hours? I'm in Johannesburg (SAST) and need to know when I can reach someone.",
+  "label": "neutral",
+  "channel": "chat",
+  "taxonomy_path": "Authentication.Mfa.SetupFailure",
+  "language": "xh",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

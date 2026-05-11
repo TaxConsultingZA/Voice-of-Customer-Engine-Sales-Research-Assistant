@@ -1,0 +1,10 @@
+{
+  "id": "sample_340",
+  "text": "Password reset worked flawlessly this time. The email arrived within 3 minutes. Baie dankie!. Ndiyabulela!",
+  "label": "positive",
+  "channel": "call",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "xh",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

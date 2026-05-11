@@ -1,0 +1,116 @@
+version: "3.9"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# VoC Engine — Local Development Stack
+# ─────────────────────────────────────────────────────────────────────────────
+# Start:   docker compose up -d
+# Stop:    docker compose down
+# Rebuild: docker compose up -d --build
+#
+# Services:
+#   postgres    PostgreSQL 15 with ltree + uuid-ossp extensions
+#   redis       Redis 7.2 — Celery broker and cache
+#   zookeeper   Required by Kafka
+#   kafka       Single-broker dev Kafka (3-broker HA configured in prod)
+#   sa-redactor POPIA PII redaction service (must pass /health before pipeline runs)
+# ─────────────────────────────────────────────────────────────────────────────
+
+services:
+
+  # ── PostgreSQL 15 with ltree ───────────────────────────────────────────────
+  postgres:
+    image: postgres:15.4
+    container_name: voc-postgres
+    environment:
+      POSTGRES_DB: voc_engine
+      POSTGRES_USER: voc
+      POSTGRES_PASSWORD: voc_dev_secret
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./scripts/init-ltree.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U voc -d voc_engine"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # ── Redis 7.2 ─────────────────────────────────────────────────────────────
+  redis:
+    image: redis:7.2.3-alpine
+    container_name: voc-redis
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # ── Zookeeper (Kafka dependency) ───────────────────────────────────────────
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.5.3
+    container_name: voc-zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    healthcheck:
+      test: ["CMD-SHELL", "echo ruok | nc localhost 2181"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # ── Kafka (single broker for dev; 3-broker HA in prod) ────────────────────
+  kafka:
+    image: confluentinc/cp-kafka:7.5.3
+    container_name: voc-kafka
+    depends_on:
+      zookeeper:
+        condition: service_healthy
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+    healthcheck:
+      test: ["CMD", "kafka-broker-api-versions", "--bootstrap-server", "localhost:9092"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    restart: unless-stopped
+
+  # ── SA Redactor — POPIA PII redaction service ─────────────────────────────
+  sa-redactor:
+    build:
+      context: ./services/sa_redactor
+      target: production
+    container_name: voc-sa-redactor
+    ports:
+      - "8080:8080"
+    environment:
+      PRESIDIO_THRESHOLD: "0.85"
+      SPACY_MODEL: "en_core_web_lg"  # switch to en_core_web_sm for faster local builds
+    healthcheck:
+      test:
+        - "CMD"
+        - "python"
+        - "-c"
+        - "import urllib.request; urllib.request.urlopen('http://localhost:8080/health')"
+      interval: 10s
+      timeout: 5s
+      start_period: 45s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+    name: voc_postgres_data

@@ -1,0 +1,10 @@
+{
+  "id": "sample_220",
+  "text": "The reporting module is hectic slow today. Every click takes 33 seconds to respond. Ngizocela ukubuyisela imali yami.",
+  "label": "negative",
+  "channel": "mobile_app",
+  "taxonomy_path": "Billing.Subscription.Cancellation",
+  "language": "zu",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

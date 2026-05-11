@@ -1,0 +1,10 @@
+{
+  "id": "sample_429",
+  "text": "Can you explain what happens to our data if we cancel our subscription?",
+  "label": "neutral",
+  "channel": "email",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

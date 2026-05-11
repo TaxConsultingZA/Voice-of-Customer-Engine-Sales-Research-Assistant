@@ -1,0 +1,10 @@
+{
+  "id": "sample_423",
+  "text": "My scheduled report hasn't run in 11 days. The automation is completely broken. Very disappointed.",
+  "label": "negative",
+  "channel": "email",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

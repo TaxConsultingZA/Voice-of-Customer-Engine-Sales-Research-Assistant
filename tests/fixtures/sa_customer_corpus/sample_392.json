@@ -1,0 +1,10 @@
+{
+  "id": "sample_392",
+  "text": "The automation features have saved our team at least 3 hours per week. Brilliant.",
+  "label": "positive",
+  "channel": "survey",
+  "taxonomy_path": "Onboarding.Training.Onboarding",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

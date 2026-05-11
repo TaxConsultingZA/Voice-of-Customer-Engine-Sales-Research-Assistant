@@ -1,0 +1,10 @@
+{
+  "id": "sample_006",
+  "text": "I cannot believe this, Two-factor authentication codes are being sent to an old phone number I no longer use and I can't change it.",
+  "label": "negative",
+  "channel": "email",
+  "taxonomy_path": "Authentication.Mfa.VerificationFailure",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

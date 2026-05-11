@@ -1,0 +1,10 @@
+{
+  "id": "sample_410",
+  "text": "This is unacceptable, My API integration keeps showing data from 2 months ago instead of today's figures.",
+  "label": "negative",
+  "channel": "whatsapp",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sample_387",
+  "text": "Dumela! The support agent was patient, knowledgeable, and solved the problem on the first call. Ke a leboha haholo!",
+  "label": "positive",
+  "channel": "web_form",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "st",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

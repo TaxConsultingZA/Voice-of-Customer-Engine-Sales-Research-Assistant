@@ -1,0 +1,10 @@
+{
+  "id": "sample_456",
+  "text": "MFA setup is completely broken. The QR code won't scan and the manual entry code doesn't work either.",
+  "label": "negative",
+  "channel": "chat",
+  "taxonomy_path": "Billing.Subscription.Cancellation",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

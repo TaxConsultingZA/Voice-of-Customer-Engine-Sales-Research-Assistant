@@ -1,0 +1,10 @@
+{
+  "id": "sample_173",
+  "text": "Baie dankie for the quick fix. The user management is working perfectly again. Sharp!",
+  "label": "positive",
+  "channel": "email",
+  "taxonomy_path": "Onboarding.Registration.Setup",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

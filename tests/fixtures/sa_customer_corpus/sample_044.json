@@ -1,0 +1,10 @@
+{
+  "id": "sample_044",
+  "text": "Haibo, I've been paying for this service for 6 months and this is the third major outage.",
+  "label": "negative",
+  "channel": "email",
+  "taxonomy_path": "Onboarding.Registration.EmailVerification",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sample_015",
+  "text": "Really impressed with how stable the system has been this quarter. Zero downtime for us.",
+  "label": "positive",
+  "channel": "email",
+  "taxonomy_path": "Onboarding.Registration.Setup",
+  "language": "zu",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

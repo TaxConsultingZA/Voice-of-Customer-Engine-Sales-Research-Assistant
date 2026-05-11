@@ -1,0 +1,10 @@
+{
+  "id": "sample_305",
+  "text": "I cannot believe this, Your mobile app crashes every time I try to open the API integration. Happens consistently.",
+  "label": "negative",
+  "channel": "email",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

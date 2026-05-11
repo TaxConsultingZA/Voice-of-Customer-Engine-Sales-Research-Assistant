@@ -1,0 +1,10 @@
+{
+  "id": "sample_159",
+  "text": "Sawubona! The platform has been running beautifully this month. Zero complaints from our side.",
+  "label": "positive",
+  "channel": "survey",
+  "taxonomy_path": "Authentication.Login.SsoFailure",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

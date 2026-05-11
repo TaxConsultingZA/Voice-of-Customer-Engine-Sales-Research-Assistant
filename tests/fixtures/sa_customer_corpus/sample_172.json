@@ -1,0 +1,10 @@
+{
+  "id": "sample_172",
+  "text": "Is there a dedicated account manager for Professional plan customers?",
+  "label": "neutral",
+  "channel": "call",
+  "taxonomy_path": "Billing.Payment.ProcessingError",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

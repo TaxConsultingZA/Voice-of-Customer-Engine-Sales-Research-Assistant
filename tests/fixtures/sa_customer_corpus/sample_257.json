@@ -1,0 +1,10 @@
+{
+  "id": "sample_257",
+  "text": "What training resources are available for new team members joining our account?",
+  "label": "neutral",
+  "channel": "email",
+  "taxonomy_path": "Onboarding.Registration.AccountCreation",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

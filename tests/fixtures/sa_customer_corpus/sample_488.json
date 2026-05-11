@@ -1,0 +1,10 @@
+{
+  "id": "sample_488",
+  "text": "Sawubona! The platform has been running beautifully this month. Zero complaints from our side.",
+  "label": "positive",
+  "channel": "mobile_app",
+  "taxonomy_path": "Billing.Subscription.Cancellation",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

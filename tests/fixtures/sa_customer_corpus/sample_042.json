@@ -1,0 +1,10 @@
+{
+  "id": "sample_042",
+  "text": "How do I add additional user seats to our existing Professional plan?",
+  "label": "neutral",
+  "channel": "call",
+  "taxonomy_path": "Onboarding.Training.Onboarding",
+  "language": "ss",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

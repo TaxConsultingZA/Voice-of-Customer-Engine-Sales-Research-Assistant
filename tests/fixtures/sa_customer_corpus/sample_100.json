@@ -1,0 +1,10 @@
+{
+  "id": "sample_100",
+  "text": "Akukholeki lokhu, MFA setup is completely broken. The QR code won't scan and the manual entry code doesn't work either. Ngiyacela nisombulule lokhu.",
+  "label": "negative",
+  "channel": "email",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "zu",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

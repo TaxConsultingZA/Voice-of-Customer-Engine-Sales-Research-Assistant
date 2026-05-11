@@ -1,0 +1,10 @@
+{
+  "id": "sample_104",
+  "text": "What are the data retention policies for our account data?",
+  "label": "neutral",
+  "channel": "email",
+  "taxonomy_path": "Billing.Payment.ProcessingError",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

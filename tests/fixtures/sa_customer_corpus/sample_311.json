@@ -1,0 +1,10 @@
+{
+  "id": "sample_311",
+  "text": "Hi there, What is the typical response time for SMB plan support tickets?",
+  "label": "neutral",
+  "channel": "web_form",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sample_403",
+  "text": "Is there a sandbox environment we can use for testing before going live?. Please advise.",
+  "label": "neutral",
+  "channel": "whatsapp",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

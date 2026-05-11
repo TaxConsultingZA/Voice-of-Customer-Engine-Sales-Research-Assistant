@@ -1,0 +1,10 @@
+{
+  "id": "sample_133",
+  "text": "This is unacceptable, The support agent I spoke to said the issue was escalated but it's now been 13 days and nothing.",
+  "label": "negative",
+  "channel": "web_form",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sample_179",
+  "text": "Verification email arrived immediately and registration was straightforward. Lekker experience!. Nisebenta kahle!",
+  "label": "positive",
+  "channel": "whatsapp",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "ss",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

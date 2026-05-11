@@ -1,0 +1,10 @@
+{
+  "id": "sample_461",
+  "text": "Just wanted to say, The analytics tab export now includes all the fields we need. Sharp — great update. Thank you!",
+  "label": "positive",
+  "channel": "web_form",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

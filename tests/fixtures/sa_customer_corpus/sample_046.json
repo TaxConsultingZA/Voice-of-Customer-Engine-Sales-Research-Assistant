@@ -1,0 +1,10 @@
+{
+  "id": "sample_046",
+  "text": "Ag, dit is onaanvaarbaar, The API integration we built stopped working after your update. Our entire workflow is now broken.",
+  "label": "negative",
+  "channel": "email",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "af",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sample_350",
+  "text": "I am frustrated, The analytics tab is showing incorrect totals — they don't match the underlying transaction data at all.",
+  "label": "negative",
+  "channel": "call",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

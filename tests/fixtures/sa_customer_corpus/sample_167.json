@@ -1,0 +1,10 @@
+{
+  "id": "sample_167",
+  "text": "My password reset is broken — eish, I've tried 5 times now. Can someone please help?. I expect better.",
+  "label": "negative",
+  "channel": "email",
+  "taxonomy_path": "Billing.Payment.ProcessingError",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

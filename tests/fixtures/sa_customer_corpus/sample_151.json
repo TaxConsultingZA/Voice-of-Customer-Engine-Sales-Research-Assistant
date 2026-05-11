@@ -1,0 +1,10 @@
+{
+  "id": "sample_151",
+  "text": "What browsers are supported for the login page? I want to make sure I'm using a compatible one.",
+  "label": "neutral",
+  "channel": "email",
+  "taxonomy_path": "Billing.Payment.ProcessingError",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

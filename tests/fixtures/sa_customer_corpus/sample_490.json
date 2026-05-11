@@ -1,0 +1,10 @@
+{
+  "id": "sample_490",
+  "text": "What are the uptime SLAs for the Professional plan?",
+  "label": "neutral",
+  "channel": "email",
+  "taxonomy_path": "Onboarding.Training.Onboarding",
+  "language": "af",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

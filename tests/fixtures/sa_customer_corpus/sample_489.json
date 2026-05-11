@@ -1,0 +1,10 @@
+{
+  "id": "sample_489",
+  "text": "The mobile app is smooth and fast. Major improvement from the previous version. Much appreciated.",
+  "label": "positive",
+  "channel": "email",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

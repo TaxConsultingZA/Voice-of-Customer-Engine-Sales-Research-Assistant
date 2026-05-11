@@ -1,0 +1,10 @@
+{
+  "id": "sample_164",
+  "text": "Is there a way to customise the mobile app to show only certain columns?. Ngicela nangisita.",
+  "label": "neutral",
+  "channel": "chat",
+  "taxonomy_path": "Onboarding.Registration.AccountCreation",
+  "language": "ss",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

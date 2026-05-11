@@ -1,0 +1,10 @@
+{
+  "id": "sample_089",
+  "text": "Just wanted to say, Verification email arrived immediately and registration was straightforward. Lekker experience!",
+  "label": "positive",
+  "channel": "survey",
+  "taxonomy_path": "Billing.Subscription.Cancellation",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

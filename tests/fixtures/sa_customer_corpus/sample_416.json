@@ -1,0 +1,10 @@
+{
+  "id": "sample_416",
+  "text": "Your live chat says agents are available but I've been waiting 66 minutes with no reply.",
+  "label": "negative",
+  "channel": "chat",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "zu",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

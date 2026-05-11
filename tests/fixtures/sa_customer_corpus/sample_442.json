@@ -1,0 +1,10 @@
+{
+  "id": "sample_442",
+  "text": "I am frustrated, SSO login with my company account stopped working after your update on Friday. Now nobody in our team can log in.",
+  "label": "negative",
+  "channel": "chat",
+  "taxonomy_path": "Onboarding.Registration.EmailVerification",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

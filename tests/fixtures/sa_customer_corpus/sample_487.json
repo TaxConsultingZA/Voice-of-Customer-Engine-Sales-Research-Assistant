@@ -1,0 +1,10 @@
+{
+  "id": "sample_487",
+  "text": "What is the cancellation policy? How much notice do I need to give?. Ke lebelela karabelo ya lena.",
+  "label": "neutral",
+  "channel": "web_form",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "nso",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

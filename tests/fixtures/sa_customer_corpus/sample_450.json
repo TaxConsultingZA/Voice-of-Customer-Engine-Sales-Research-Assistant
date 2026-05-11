@@ -1,0 +1,10 @@
+{
+  "id": "sample_450",
+  "text": "Lekker work on the update! The user management is now exactly what we needed.",
+  "label": "positive",
+  "channel": "survey",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sample_306",
+  "text": "Hello, I submitted a ticket 4 days ago. Can you provide a status update on the progress?. Thank you in advance.",
+  "label": "neutral",
+  "channel": "whatsapp",
+  "taxonomy_path": "Billing.Subscription.Cancellation",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

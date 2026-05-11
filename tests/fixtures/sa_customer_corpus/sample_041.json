@@ -1,0 +1,10 @@
+{
+  "id": "sample_041",
+  "text": "Where can I find the getting-started documentation for new users?. Looking forward to your reply.",
+  "label": "neutral",
+  "channel": "whatsapp",
+  "taxonomy_path": "Billing.Subscription.Cancellation",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sample_161",
+  "text": "Haibo, I've been paying for this service for 7 months and this is the third major outage. I expect better.",
+  "label": "negative",
+  "channel": "call",
+  "taxonomy_path": "Authentication.Login.AccountLocked",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

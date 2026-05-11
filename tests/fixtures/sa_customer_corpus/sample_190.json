@@ -1,0 +1,10 @@
+{
+  "id": "sample_190",
+  "text": "I cannot believe this, The data import tool won't load at all during peak hours. I've been waiting 24 minutes. Please fix this urgently.",
+  "label": "negative",
+  "channel": "email",
+  "taxonomy_path": "Billing.Payment.ProcessingError",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

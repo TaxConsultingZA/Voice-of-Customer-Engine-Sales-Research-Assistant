@@ -1,0 +1,10 @@
+{
+  "id": "sample_352",
+  "text": "Sanibonani — could you tell me what data regions are available? We need our data in South Africa.",
+  "label": "neutral",
+  "channel": "whatsapp",
+  "taxonomy_path": "Billing.Subscription.Cancellation",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

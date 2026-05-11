@@ -1,0 +1,10 @@
+{
+  "id": "sample_420",
+  "text": "Ke a leboga, The setup wizard is intuitive and clear. I appreciated the helpful tooltips at each step.",
+  "label": "positive",
+  "channel": "web_form",
+  "taxonomy_path": "Onboarding.Training.Onboarding",
+  "language": "nso",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

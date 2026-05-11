@@ -1,0 +1,10 @@
+{
+  "id": "sample_005",
+  "text": "I was charged R2922 twice this month for the same subscription. I want a refund immediately. I expect better.",
+  "label": "negative",
+  "channel": "call",
+  "taxonomy_path": "Onboarding.Registration.AccountCreation",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

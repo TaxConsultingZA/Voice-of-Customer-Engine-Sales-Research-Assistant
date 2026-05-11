@@ -1,0 +1,10 @@
+{
+  "id": "sample_074",
+  "text": "Howzit, just checking — is there scheduled maintenance planned for this weekend?",
+  "label": "neutral",
+  "channel": "survey",
+  "taxonomy_path": "Billing.Subscription.Cancellation",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

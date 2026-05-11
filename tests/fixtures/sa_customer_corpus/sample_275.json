@@ -1,0 +1,10 @@
+{
+  "id": "sample_275",
+  "text": "Data I exported yesterday is different from what the reporting module shows today. Completely inconsistent.",
+  "label": "negative",
+  "channel": "call",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sample_308",
+  "text": "What are the uptime SLAs for the Team plan?",
+  "label": "neutral",
+  "channel": "email",
+  "taxonomy_path": "Onboarding.Training.Onboarding",
+  "language": "zu",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

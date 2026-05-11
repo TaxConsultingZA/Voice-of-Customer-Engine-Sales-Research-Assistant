@@ -1,0 +1,10 @@
+{
+  "id": "sample_349",
+  "text": "I am frustrated, Yoh, the app is lank slow today. Everything is timing out. Please sort this out urgently.",
+  "label": "negative",
+  "channel": "survey",
+  "taxonomy_path": "Authentication.Login.AccountLocked",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

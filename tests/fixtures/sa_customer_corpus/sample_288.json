@@ -1,0 +1,10 @@
+{
+  "id": "sample_288",
+  "text": "Ngikhatsatekile, Webhook notifications stopped firing 3 days ago. We're missing critical data in our system.",
+  "label": "negative",
+  "channel": "chat",
+  "taxonomy_path": "Authentication.Login.AccountLocked",
+  "language": "ss",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sample_382",
+  "text": "Dumela! The export feature export now includes all the fields we need. Sharp — great update. Ke leboga thušo ya lena!",
+  "label": "positive",
+  "channel": "survey",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "nso",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

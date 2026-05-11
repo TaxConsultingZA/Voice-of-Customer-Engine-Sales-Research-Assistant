@@ -1,0 +1,10 @@
+{
+  "id": "sample_325",
+  "text": "Dumela! The product roadmap update you shared is really exciting. Looking forward to the new features.",
+  "label": "positive",
+  "channel": "email",
+  "taxonomy_path": "Onboarding.Registration.EmailVerification",
+  "language": "tn",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

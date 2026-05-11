@@ -1,0 +1,10 @@
+{
+  "id": "sample_355",
+  "text": "MFA setup was smooth and straightforward. The QR code scanned first try.",
+  "label": "positive",
+  "channel": "chat",
+  "taxonomy_path": "Onboarding.Training.Onboarding",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

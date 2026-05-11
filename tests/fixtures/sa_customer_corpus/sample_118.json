@@ -1,0 +1,10 @@
+{
+  "id": "sample_118",
+  "text": "Ngikhatsatekile, The API integration we built stopped working after your update. Our entire workflow is now broken. Ngikhatsateke kakhulu.",
+  "label": "negative",
+  "channel": "email",
+  "taxonomy_path": "Onboarding.Registration.EmailVerification",
+  "language": "ss",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sample_321",
+  "text": "My scheduled report hasn't run in 13 days. The automation is completely broken. Ndi khathadzekile ngaho.",
+  "label": "negative",
+  "channel": "survey",
+  "taxonomy_path": "Onboarding.Registration.AccountCreation",
+  "language": "ve",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

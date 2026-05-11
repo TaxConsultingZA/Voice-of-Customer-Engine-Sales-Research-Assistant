@@ -1,0 +1,10 @@
+{
+  "id": "sample_188",
+  "text": "Baie dankie for the quick fix. The dashboard is working perfectly again. Sharp!",
+  "label": "positive",
+  "channel": "survey",
+  "taxonomy_path": "Onboarding.Registration.Setup",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

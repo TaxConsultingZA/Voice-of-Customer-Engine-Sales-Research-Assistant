@@ -1,0 +1,10 @@
+{
+  "id": "sample_047",
+  "text": "I've submitted 7 support tickets in the past 3 weeks and not received a single response. Ngizocela ukubuyisela imali yami.",
+  "label": "negative",
+  "channel": "mobile_app",
+  "taxonomy_path": "Onboarding.Registration.EmailVerification",
+  "language": "zu",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

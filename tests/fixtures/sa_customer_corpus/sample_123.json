@@ -1,0 +1,10 @@
+{
+  "id": "sample_123",
+  "text": "Sawubona! The getting-started guide is excellent. Clear, well-structured, and easy to follow. Niyenza umsebenzi omuhle!",
+  "label": "positive",
+  "channel": "email",
+  "taxonomy_path": "Onboarding.Training.Onboarding",
+  "language": "zu",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

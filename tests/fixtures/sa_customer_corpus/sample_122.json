@@ -1,0 +1,10 @@
+{
+  "id": "sample_122",
+  "text": "Good morning, Hi there, I'm based in Cape Town and want to confirm that data stays in the SA region. Please advise.",
+  "label": "neutral",
+  "channel": "email",
+  "taxonomy_path": "Onboarding.Training.Onboarding",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

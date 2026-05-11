@@ -1,0 +1,10 @@
+{
+  "id": "sample_307",
+  "text": "This is unacceptable, I was told the bug would be fixed in 2 days. That was 19 days ago.",
+  "label": "negative",
+  "channel": "web_form",
+  "taxonomy_path": "Billing.Subscription.Cancellation",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

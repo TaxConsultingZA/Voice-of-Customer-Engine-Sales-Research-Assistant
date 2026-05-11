@@ -1,0 +1,10 @@
+{
+  "id": "sample_183",
+  "text": "I just signed up for a Enterprise plan. What are the next steps to get started?",
+  "label": "neutral",
+  "channel": "email",
+  "taxonomy_path": "Onboarding.Training.Onboarding",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

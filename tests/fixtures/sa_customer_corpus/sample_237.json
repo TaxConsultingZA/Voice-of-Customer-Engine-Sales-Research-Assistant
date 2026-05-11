@@ -1,0 +1,10 @@
+{
+  "id": "sample_237",
+  "text": "Webhook notifications stopped firing 7 days ago. We're missing critical data in our system. Ngikhatsateke kakhulu.",
+  "label": "negative",
+  "channel": "mobile_app",
+  "taxonomy_path": "Onboarding.Registration.EmailVerification",
+  "language": "ss",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

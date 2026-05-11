@@ -1,0 +1,10 @@
+{
+  "id": "sample_103",
+  "text": "Can I downgrade my plan mid-cycle? Will I receive a prorated refund?. Thank you in advance.",
+  "label": "neutral",
+  "channel": "call",
+  "taxonomy_path": "Billing.Subscription.Cancellation",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

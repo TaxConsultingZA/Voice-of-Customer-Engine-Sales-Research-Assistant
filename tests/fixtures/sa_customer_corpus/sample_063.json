@@ -1,0 +1,10 @@
+{
+  "id": "sample_063",
+  "text": "I registered but my account is stuck on 'pending verification' and there's no way to contact anyone. I expect better.",
+  "label": "negative",
+  "channel": "email",
+  "taxonomy_path": "Billing.Subscription.Cancellation",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

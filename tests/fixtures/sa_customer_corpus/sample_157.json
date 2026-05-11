@@ -1,0 +1,10 @@
+{
+  "id": "sample_157",
+  "text": "Is there a status page where I can check if there are any ongoing incidents?. Please advise.",
+  "label": "neutral",
+  "channel": "email",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

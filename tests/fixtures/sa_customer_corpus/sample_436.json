@@ -1,0 +1,10 @@
+{
+  "id": "sample_436",
+  "text": "I registered but my account is stuck on 'pending verification' and there's no way to contact anyone. Very disappointed.",
+  "label": "negative",
+  "channel": "survey",
+  "taxonomy_path": "Billing.Payment.ProcessingError",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

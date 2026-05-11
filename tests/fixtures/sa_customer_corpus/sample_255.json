@@ -1,0 +1,10 @@
+{
+  "id": "sample_255",
+  "text": "Support resolved my issue within 34 minutes. Outstanding service — thank you!",
+  "label": "positive",
+  "channel": "chat",
+  "taxonomy_path": "Onboarding.Registration.Setup",
+  "language": "zu",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

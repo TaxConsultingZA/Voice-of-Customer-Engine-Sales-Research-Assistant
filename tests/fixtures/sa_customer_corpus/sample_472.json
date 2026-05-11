@@ -1,0 +1,10 @@
+{
+  "id": "sample_472",
+  "text": "Hoe gaan dit? I need some help understanding the pricing for additional users. Thank you in advance.",
+  "label": "neutral",
+  "channel": "web_form",
+  "taxonomy_path": "Onboarding.Setup.ProfileConfiguration",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

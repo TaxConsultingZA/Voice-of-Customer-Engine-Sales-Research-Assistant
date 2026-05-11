@@ -1,0 +1,120 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Universal Event Contract v1.0",
+  "description": "Canonical schema for all customer signals ingested by the VoC Engine.",
+  "type": "object",
+  "required": ["event_id", "timestamp", "channel", "customer_id", "sentiment", "taxonomy_path"],
+  "additionalProperties": false,
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "UUIDv4 unique identifier for this event"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp in UTC"
+    },
+    "channel": {
+      "type": "string",
+      "enum": [
+        "email",
+        "chat",
+        "call",
+        "sms",
+        "whatsapp",
+        "web_form",
+        "mobile_app",
+        "social_media",
+        "in_person",
+        "survey",
+        "api",
+        "internal_note",
+        "sales_call"
+      ]
+    },
+    "customer_id": {
+      "type": "string",
+      "minLength": 64,
+      "maxLength": 64,
+      "description": "SHA-256 hashed customer identifier — never store raw customer ID"
+    },
+    "sentiment": {
+      "type": "object",
+      "required": ["polarity", "confidence"],
+      "additionalProperties": false,
+      "properties": {
+        "polarity": {
+          "type": "number",
+          "minimum": -1.0,
+          "maximum": 1.0,
+          "description": "-1.0 = most negative, 0.0 = neutral, 1.0 = most positive"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "description": "Model confidence in the polarity prediction"
+        }
+      }
+    },
+    "entities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type", "value"],
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["PRODUCT", "FEATURE", "PERSON", "ORG", "LOCATION", "DATE", "CURRENCY"]
+          },
+          "value": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "taxonomy_path": {
+      "type": "string",
+      "pattern": "^[A-Z][a-zA-Z0-9]+\\.[A-Z][a-zA-Z0-9]+\\.[A-Z][a-zA-Z0-9]+$",
+      "description": "Format: Domain.Capability.Theme — e.g. Authentication.Login.PasswordReset"
+    },
+    "arr_linkage": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "account_arr": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Annual Recurring Revenue for this account in ZAR"
+        },
+        "at_risk_flag": {
+          "type": "boolean",
+          "description": "True if this account is flagged as churn risk"
+        }
+      }
+    },
+    "raw_text_hash": {
+      "type": "string",
+      "minLength": 64,
+      "maxLength": 64,
+      "description": "SHA-256 hash of the original (pre-redaction) text for audit lineage"
+    },
+    "model_version": {
+      "type": "string",
+      "pattern": "^sentiment-sa-v\\d+\\.\\d+\\.\\d+$",
+      "description": "Model version that produced this sentiment — e.g. sentiment-sa-v2.1.3"
+    },
+    "language_detected": {
+      "type": "string",
+      "description": "BCP-47 language tag — e.g. en, af, zu, xh"
+    },
+    "intent": {
+      "type": "string",
+      "enum": ["complaint", "praise", "question", "request", "data_access_request", "cancellation", "unknown"]
+    }
+  }
+}

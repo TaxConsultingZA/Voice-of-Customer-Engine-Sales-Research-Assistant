@@ -1,0 +1,10 @@
+{
+  "id": "sample_351",
+  "text": "Ngiyakhala — Your login page gives me a blank white screen on Chrome. I've tried three different browsers and it's the same. Ngiyacela nisombulule lokhu.",
+  "label": "negative",
+  "channel": "survey",
+  "taxonomy_path": "Authentication.Mfa.VerificationFailure",
+  "language": "zu",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sample_126",
+  "text": "Password reset worked flawlessly this time. The email arrived within 1 minutes. Baie dankie!",
+  "label": "positive",
+  "channel": "mobile_app",
+  "taxonomy_path": "Onboarding.Registration.EmailVerification",
+  "language": "nso",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

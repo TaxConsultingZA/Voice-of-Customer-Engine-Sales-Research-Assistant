@@ -1,0 +1,10 @@
+{
+  "id": "sample_263",
+  "text": "Ndingakhathazekile kakhulu, MFA setup is completely broken. The QR code won't scan and the manual entry code doesn't work either. Ndiyacela niphande ngoku.",
+  "label": "negative",
+  "channel": "chat",
+  "taxonomy_path": "Billing.Payment.ProcessingError",
+  "language": "xh",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sample_225",
+  "text": "Two-factor authentication codes are being sent to an old phone number I no longer use and I can't change it.",
+  "label": "negative",
+  "channel": "chat",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "ve",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

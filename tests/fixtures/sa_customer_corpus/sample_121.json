@@ -1,0 +1,10 @@
+{
+  "id": "sample_121",
+  "text": "This is unacceptable, Everything times out after 52 seconds. I cannot get anything done. The system is unusable. I expect better.",
+  "label": "negative",
+  "channel": "whatsapp",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

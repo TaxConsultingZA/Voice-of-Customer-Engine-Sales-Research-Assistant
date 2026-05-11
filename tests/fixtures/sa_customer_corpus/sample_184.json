@@ -1,0 +1,10 @@
+{
+  "id": "sample_184",
+  "text": "The mobile app export now includes all the fields we need. Sharp — great update.",
+  "label": "positive",
+  "channel": "whatsapp",
+  "taxonomy_path": "Onboarding.Registration.Setup",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

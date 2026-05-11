@@ -1,0 +1,10 @@
+{
+  "id": "sample_148",
+  "text": "Is there an onboarding webinar I can join to learn the platform?. Ngilindele impendulo yenu.",
+  "label": "neutral",
+  "channel": "whatsapp",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "zu",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

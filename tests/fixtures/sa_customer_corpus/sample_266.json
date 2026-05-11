@@ -1,0 +1,10 @@
+{
+  "id": "sample_266",
+  "text": "The pricing is fair and the value for money is excellent. Lekker service overall. Ngiyabonga kakhulu!",
+  "label": "positive",
+  "channel": "email",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "zu",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

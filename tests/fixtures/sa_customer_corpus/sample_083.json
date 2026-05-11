@@ -1,0 +1,10 @@
+{
+  "id": "sample_083",
+  "text": "Great news — The automation features have saved our team at least 9 hours per week. Brilliant.",
+  "label": "positive",
+  "channel": "survey",
+  "taxonomy_path": "Onboarding.Registration.EmailVerification",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

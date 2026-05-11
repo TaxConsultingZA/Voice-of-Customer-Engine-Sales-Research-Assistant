@@ -1,0 +1,10 @@
+{
+  "id": "sample_418",
+  "text": "The platform has transformed how our team works. Can't imagine going back to spreadsheets. Thank you!",
+  "label": "positive",
+  "channel": "whatsapp",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

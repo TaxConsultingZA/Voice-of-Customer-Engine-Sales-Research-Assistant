@@ -1,0 +1,10 @@
+{
+  "id": "sample_102",
+  "text": "Where can I find the getting-started documentation for new users?. Thank you in advance.",
+  "label": "neutral",
+  "channel": "email",
+  "taxonomy_path": "Compliance.Popia.DataAccessRequest",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

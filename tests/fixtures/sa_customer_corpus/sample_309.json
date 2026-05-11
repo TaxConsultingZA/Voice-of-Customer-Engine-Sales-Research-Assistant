@@ -1,0 +1,10 @@
+{
+  "id": "sample_309",
+  "text": "Your login page gives me a blank white screen on Chrome. I've tried three different browsers and it's the same.",
+  "label": "negative",
+  "channel": "email",
+  "taxonomy_path": "Onboarding.Registration.EmailVerification",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

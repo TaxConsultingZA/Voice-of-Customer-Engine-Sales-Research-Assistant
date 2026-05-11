@@ -1,0 +1,10 @@
+{
+  "id": "sample_485",
+  "text": "Hoe gaan dit, Where can I find the getting-started documentation for new users?. Groete.",
+  "label": "neutral",
+  "channel": "web_form",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "af",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

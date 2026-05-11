@@ -1,0 +1,10 @@
+{
+  "id": "sample_085",
+  "text": "The new dashboard layout is clean and intuitive. Our team picked it up without any training.",
+  "label": "positive",
+  "channel": "whatsapp",
+  "taxonomy_path": "Onboarding.Registration.EmailVerification",
+  "language": "af",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

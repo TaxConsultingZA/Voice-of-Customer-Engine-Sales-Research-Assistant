@@ -1,0 +1,10 @@
+{
+  "id": "sample_381",
+  "text": "This is unacceptable, My password reset email never arrives. I've checked my spam folder 4 times. Nothing. Please fix this urgently.",
+  "label": "negative",
+  "channel": "call",
+  "taxonomy_path": "Billing.Payment.ProcessingError",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

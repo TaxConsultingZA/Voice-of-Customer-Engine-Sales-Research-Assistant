@@ -1,0 +1,10 @@
+{
+  "id": "sample_465",
+  "text": "Ag, dit is onaanvaarbaar, Everything times out after 30 seconds. I cannot get anything done. The system is unusable.",
+  "label": "negative",
+  "channel": "web_form",
+  "taxonomy_path": "Billing.Payment.ProcessingError",
+  "language": "af",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

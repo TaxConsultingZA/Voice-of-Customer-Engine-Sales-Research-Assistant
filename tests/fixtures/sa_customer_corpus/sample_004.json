@@ -1,0 +1,10 @@
+{
+  "id": "sample_004",
+  "text": "The Zapier integration throws authentication errors every 3 hours and requires manual re-authorisation. Ke nyaka karabo ka bonako.",
+  "label": "negative",
+  "channel": "call",
+  "taxonomy_path": "Billing.Payment.ProcessingError",
+  "language": "tn",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

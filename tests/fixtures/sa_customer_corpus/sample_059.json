@@ -1,0 +1,10 @@
+{
+  "id": "sample_059",
+  "text": "Ndingakhathazekile kakhulu, I reset my password successfully but the new password still doesn't work. This is going in circles.",
+  "label": "negative",
+  "channel": "chat",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "xh",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

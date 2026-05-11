@@ -1,0 +1,10 @@
+{
+  "id": "sample_149",
+  "text": "Is it possible to schedule automated exports from the export feature?",
+  "label": "neutral",
+  "channel": "email",
+  "taxonomy_path": "Authentication.Mfa.SetupFailure",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

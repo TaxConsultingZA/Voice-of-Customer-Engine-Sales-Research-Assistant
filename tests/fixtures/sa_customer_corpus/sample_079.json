@@ -1,0 +1,10 @@
+{
+  "id": "sample_079",
+  "text": "Can you explain what happens to our data if we cancel our subscription?. Thank you in advance.",
+  "label": "neutral",
+  "channel": "whatsapp",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sample_279",
+  "text": "Can you explain the difference between the Enterprise and Professional plans?",
+  "label": "neutral",
+  "channel": "email",
+  "taxonomy_path": "Compliance.Popia.DataAccessRequest",
+  "language": "af",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sample_144",
+  "text": "This is unacceptable, Jislaaik, I've submitted the same request 8 times and nobody has helped me. Aikona!",
+  "label": "negative",
+  "channel": "whatsapp",
+  "taxonomy_path": "Billing.Subscription.Cancellation",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

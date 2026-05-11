@@ -1,0 +1,10 @@
+{
+  "id": "sample_322",
+  "text": "Howzit, just checking — is there scheduled maintenance planned for this weekend?. Looking forward to your reply.",
+  "label": "neutral",
+  "channel": "email",
+  "taxonomy_path": "Onboarding.Training.Onboarding",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

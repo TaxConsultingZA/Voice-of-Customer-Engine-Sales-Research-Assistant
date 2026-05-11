@@ -1,0 +1,10 @@
+{
+  "id": "sample_050",
+  "text": "Everything times out after 58 seconds. I cannot get anything done. The system is unusable. Please fix this urgently.",
+  "label": "negative",
+  "channel": "call",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

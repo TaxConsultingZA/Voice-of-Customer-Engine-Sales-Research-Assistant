@@ -1,0 +1,10 @@
+{
+  "id": "sample_182",
+  "text": "Webhook notifications stopped firing 5 days ago. We're missing critical data in our system. I expect better.",
+  "label": "negative",
+  "channel": "email",
+  "taxonomy_path": "Billing.Subscription.Cancellation",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sample_346",
+  "text": "Great news — Onboarding call with your team was very helpful. They walked us through everything patiently.",
+  "label": "positive",
+  "channel": "email",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

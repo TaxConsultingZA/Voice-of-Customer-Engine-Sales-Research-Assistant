@@ -1,0 +1,10 @@
+{
+  "id": "sample_205",
+  "text": "Howzit, just checking — is there scheduled maintenance planned for this weekend?",
+  "label": "neutral",
+  "channel": "whatsapp",
+  "taxonomy_path": "Compliance.Popia.DataAccessRequest",
+  "language": "zu",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

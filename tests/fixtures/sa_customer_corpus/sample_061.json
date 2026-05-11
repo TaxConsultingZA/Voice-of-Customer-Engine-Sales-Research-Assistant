@@ -1,0 +1,10 @@
+{
+  "id": "sample_061",
+  "text": "My scheduled report hasn't run in 3 days. The automation is completely broken.",
+  "label": "negative",
+  "channel": "email",
+  "taxonomy_path": "Onboarding.Registration.EmailVerification",
+  "language": "zu",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

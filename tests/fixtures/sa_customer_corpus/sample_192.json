@@ -1,0 +1,10 @@
+{
+  "id": "sample_192",
+  "text": "How long does a session stay active before it times out automatically?",
+  "label": "neutral",
+  "channel": "survey",
+  "taxonomy_path": "Billing.Payment.ProcessingError",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

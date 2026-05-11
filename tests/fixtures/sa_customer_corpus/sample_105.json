@@ -1,0 +1,10 @@
+{
+  "id": "sample_105",
+  "text": "Every time I call support I get transferred to a different department and have to explain the problem from scratch.",
+  "label": "negative",
+  "channel": "whatsapp",
+  "taxonomy_path": "Billing.Payment.ProcessingError",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

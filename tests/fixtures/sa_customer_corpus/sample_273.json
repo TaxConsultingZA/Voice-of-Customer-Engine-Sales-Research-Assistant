@@ -1,0 +1,10 @@
+{
+  "id": "sample_273",
+  "text": "I was charged R2197 twice this month for the same subscription. I want a refund immediately.",
+  "label": "negative",
+  "channel": "chat",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

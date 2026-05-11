@@ -1,0 +1,10 @@
+{
+  "id": "sample_189",
+  "text": "My billing portal keeps showing data from 2 months ago instead of today's figures.",
+  "label": "negative",
+  "channel": "chat",
+  "taxonomy_path": "Authentication.Login.AccountLocked",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

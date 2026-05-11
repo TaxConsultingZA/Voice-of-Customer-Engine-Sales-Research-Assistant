@@ -1,0 +1,10 @@
+{
+  "id": "sample_404",
+  "text": "Sharp sharp — the issue was fixed faster than expected. Baie dankie to the support team!",
+  "label": "positive",
+  "channel": "call",
+  "taxonomy_path": "Onboarding.Registration.Setup",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

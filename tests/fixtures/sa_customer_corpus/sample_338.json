@@ -1,0 +1,10 @@
+{
+  "id": "sample_338",
+  "text": "Is there a sandbox environment we can use for testing before going live?",
+  "label": "neutral",
+  "channel": "chat",
+  "taxonomy_path": "Authentication.Mfa.SetupFailure",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

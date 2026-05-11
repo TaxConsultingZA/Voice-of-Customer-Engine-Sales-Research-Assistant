@@ -1,0 +1,10 @@
+{
+  "id": "sample_304",
+  "text": "Where can I find the getting-started documentation for new users?. Looking forward to your reply.",
+  "label": "neutral",
+  "channel": "chat",
+  "taxonomy_path": "Onboarding.Setup.ProfileConfiguration",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sample_452",
+  "text": "Great news — Password reset worked flawlessly this time. The email arrived within 1 minutes. Baie dankie!",
+  "label": "positive",
+  "channel": "web_form",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

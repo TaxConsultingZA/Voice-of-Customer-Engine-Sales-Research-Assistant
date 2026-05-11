@@ -1,0 +1,10 @@
+{
+  "id": "sample_092",
+  "text": "Login works on desktop but completely fails on mobile. The app just crashes on the login screen.",
+  "label": "negative",
+  "channel": "whatsapp",
+  "taxonomy_path": "Authentication.Login.SsoFailure",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sample_177",
+  "text": "Can I downgrade my plan mid-cycle? Will I receive a prorated refund?",
+  "label": "neutral",
+  "channel": "chat",
+  "taxonomy_path": "Onboarding.Training.Onboarding",
+  "language": "af",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

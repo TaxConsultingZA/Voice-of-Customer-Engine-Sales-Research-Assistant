@@ -1,0 +1,10 @@
+{
+  "id": "sample_236",
+  "text": "Ke batla thuso, How do I enable MFA for my account? I want to improve security. Ke emetse karabo ya lona.",
+  "label": "neutral",
+  "channel": "email",
+  "taxonomy_path": "Authentication.Mfa.SetupFailure",
+  "language": "tn",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

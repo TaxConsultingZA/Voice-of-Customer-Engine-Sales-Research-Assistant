@@ -1,0 +1,10 @@
+{
+  "id": "sample_216",
+  "text": "Great news — Geen probleem with the system today — running like a dream. Lekker!. Thank you!",
+  "label": "positive",
+  "channel": "chat",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

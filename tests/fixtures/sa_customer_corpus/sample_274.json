@@ -1,0 +1,10 @@
+{
+  "id": "sample_274",
+  "text": "What is the password policy? How often do passwords expire and what are the requirements?",
+  "label": "neutral",
+  "channel": "call",
+  "taxonomy_path": "Onboarding.Setup.ProfileConfiguration",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

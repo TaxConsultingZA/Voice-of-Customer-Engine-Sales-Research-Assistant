@@ -1,0 +1,10 @@
+{
+  "id": "sample_116",
+  "text": "Howzit, just popping in to say your team is sharp. Problem sorted, very happy customer.",
+  "label": "positive",
+  "channel": "email",
+  "taxonomy_path": "Onboarding.Registration.Setup",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

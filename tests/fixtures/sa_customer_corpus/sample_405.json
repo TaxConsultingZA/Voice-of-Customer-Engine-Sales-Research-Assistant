@@ -1,0 +1,10 @@
+{
+  "id": "sample_405",
+  "text": "I cannot believe this, I was told the bug would be fixed in 1 days. That was 10 days ago. Very disappointed.",
+  "label": "negative",
+  "channel": "email",
+  "taxonomy_path": "Onboarding.Setup.ProfileConfiguration",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

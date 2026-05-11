@@ -1,0 +1,10 @@
+{
+  "id": "sample_084",
+  "text": "Dumela, I'd like to know when the new analytics tab feature will be available. Dankie by voorbaat.",
+  "label": "neutral",
+  "channel": "email",
+  "taxonomy_path": "Onboarding.Registration.AccountCreation",
+  "language": "af",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

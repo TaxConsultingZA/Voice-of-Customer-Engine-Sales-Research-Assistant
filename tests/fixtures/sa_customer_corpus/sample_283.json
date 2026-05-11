@@ -1,0 +1,10 @@
+{
+  "id": "sample_283",
+  "text": "Can I log in to the same account from multiple devices simultaneously?",
+  "label": "neutral",
+  "channel": "whatsapp",
+  "taxonomy_path": "Onboarding.Registration.AccountCreation",
+  "language": "af",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

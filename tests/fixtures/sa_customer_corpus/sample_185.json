@@ -1,0 +1,10 @@
+{
+  "id": "sample_185",
+  "text": "Howzit, just popping in to say your team is sharp. Problem sorted, very happy customer.",
+  "label": "positive",
+  "channel": "whatsapp",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

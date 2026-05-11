@@ -1,0 +1,10 @@
+{
+  "id": "sample_212",
+  "text": "The bulk import feature works perfectly. Uploaded 2198 records without a single error.",
+  "label": "positive",
+  "channel": "whatsapp",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "zu",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

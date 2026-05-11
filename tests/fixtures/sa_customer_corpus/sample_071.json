@@ -1,0 +1,10 @@
+{
+  "id": "sample_071",
+  "text": "Dis nie reg nie — I lost 3 hours of work because your autosave feature stopped working. Ngizocela ukubuyisela imali yami.",
+  "label": "negative",
+  "channel": "chat",
+  "taxonomy_path": "Billing.Payment.ProcessingError",
+  "language": "zu",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

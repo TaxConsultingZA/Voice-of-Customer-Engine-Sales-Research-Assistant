@@ -1,0 +1,10 @@
+{
+  "id": "sample_014",
+  "text": "Is there an audit trail or activity log I can access for compliance purposes?",
+  "label": "neutral",
+  "channel": "email",
+  "taxonomy_path": "Onboarding.Registration.AccountCreation",
+  "language": "st",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

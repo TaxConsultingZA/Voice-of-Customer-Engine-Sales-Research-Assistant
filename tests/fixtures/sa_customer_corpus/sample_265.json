@@ -1,0 +1,10 @@
+{
+  "id": "sample_265",
+  "text": "I cannot believe this, Data I exported yesterday is different from what the dashboard shows today. Completely inconsistent. Please fix this urgently.",
+  "label": "negative",
+  "channel": "web_form",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

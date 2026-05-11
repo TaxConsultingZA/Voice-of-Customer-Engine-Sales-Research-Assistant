@@ -1,0 +1,10 @@
+{
+  "id": "sample_493",
+  "text": "The Zapier integration throws authentication errors every 3 hours and requires manual re-authorisation. Please fix this urgently.",
+  "label": "negative",
+  "channel": "email",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

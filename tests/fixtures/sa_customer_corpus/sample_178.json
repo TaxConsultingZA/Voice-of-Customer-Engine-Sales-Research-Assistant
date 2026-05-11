@@ -1,0 +1,10 @@
+{
+  "id": "sample_178",
+  "text": "The login button just spins forever and never actually logs me in. I've cleared cache and cookies.",
+  "label": "negative",
+  "channel": "whatsapp",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "af",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

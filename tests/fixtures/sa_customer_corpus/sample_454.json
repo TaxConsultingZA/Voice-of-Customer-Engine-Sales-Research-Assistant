@@ -1,0 +1,10 @@
+{
+  "id": "sample_454",
+  "text": "The data sync between your platform and our CRM has been broken for 10 days. Records are out of date.",
+  "label": "negative",
+  "channel": "email",
+  "taxonomy_path": "Onboarding.Setup.ProfileConfiguration",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sample_022",
+  "text": "Hi there, Is there a way to customise the dashboard to show only certain columns?. Thank you in advance.",
+  "label": "neutral",
+  "channel": "chat",
+  "taxonomy_path": "Onboarding.Registration.AccountCreation",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

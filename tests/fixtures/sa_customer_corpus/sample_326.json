@@ -1,0 +1,10 @@
+{
+  "id": "sample_326",
+  "text": "The user management won't load at all during peak hours. I've been waiting 22 minutes. Ek verwag 'n reaksie.",
+  "label": "negative",
+  "channel": "whatsapp",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "af",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

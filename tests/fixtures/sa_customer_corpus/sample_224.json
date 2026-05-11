@@ -1,0 +1,10 @@
+{
+  "id": "sample_224",
+  "text": "Sanibonani — could you tell me what data regions are available? We need our data in South Africa.",
+  "label": "neutral",
+  "channel": "call",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "st",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sample_262",
+  "text": "SSO is working perfectly after the update. My whole team can now log in without any issues. Well done!",
+  "label": "positive",
+  "channel": "email",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

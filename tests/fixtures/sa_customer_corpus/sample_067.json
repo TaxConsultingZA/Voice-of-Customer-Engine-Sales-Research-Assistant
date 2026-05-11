@@ -1,0 +1,10 @@
+{
+  "id": "sample_067",
+  "text": "Does your platform integrate with Salesforce or HubSpot?. Please advise.",
+  "label": "neutral",
+  "channel": "chat",
+  "taxonomy_path": "Onboarding.Training.Onboarding",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

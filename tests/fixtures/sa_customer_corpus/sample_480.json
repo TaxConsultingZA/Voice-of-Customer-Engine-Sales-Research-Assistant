@@ -1,0 +1,10 @@
+{
+  "id": "sample_480",
+  "text": "My password reset is broken — eish, I've tried 9 times now. Can someone please help?. Very disappointed.",
+  "label": "negative",
+  "channel": "web_form",
+  "taxonomy_path": "Onboarding.Setup.ProfileConfiguration",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

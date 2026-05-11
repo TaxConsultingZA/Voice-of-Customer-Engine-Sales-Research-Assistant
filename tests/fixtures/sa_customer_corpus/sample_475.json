@@ -1,0 +1,10 @@
+{
+  "id": "sample_475",
+  "text": "Is there an audit trail or activity log I can access for compliance purposes?",
+  "label": "neutral",
+  "channel": "chat",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sample_290",
+  "text": "Can I downgrade my plan mid-cycle? Will I receive a prorated refund?",
+  "label": "neutral",
+  "channel": "whatsapp",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

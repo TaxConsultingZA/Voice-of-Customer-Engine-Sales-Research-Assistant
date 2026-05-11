@@ -1,0 +1,10 @@
+{
+  "id": "sample_028",
+  "text": "Dumela, Is there an onboarding webinar I can join to learn the platform?",
+  "label": "neutral",
+  "channel": "mobile_app",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "nso",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

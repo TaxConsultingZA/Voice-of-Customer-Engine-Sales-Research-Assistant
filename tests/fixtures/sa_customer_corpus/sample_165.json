@@ -1,0 +1,10 @@
+{
+  "id": "sample_165",
+  "text": "How do I enable MFA for my account? I want to improve security. Ndicela impendulo.",
+  "label": "neutral",
+  "channel": "chat",
+  "taxonomy_path": "Billing.Payment.ProcessingError",
+  "language": "xh",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

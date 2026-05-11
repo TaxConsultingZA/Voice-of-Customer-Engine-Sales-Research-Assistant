@@ -1,0 +1,10 @@
+{
+  "id": "sample_087",
+  "text": "Hello, How do I add additional user seats to our existing Starter plan?",
+  "label": "neutral",
+  "channel": "chat",
+  "taxonomy_path": "Onboarding.Setup.ProfileConfiguration",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

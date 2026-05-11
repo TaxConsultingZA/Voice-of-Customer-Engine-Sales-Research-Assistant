@@ -1,0 +1,10 @@
+{
+  "id": "sample_425",
+  "text": "Is there a status page where I can check if there are any ongoing incidents?",
+  "label": "neutral",
+  "channel": "whatsapp",
+  "taxonomy_path": "Onboarding.Registration.AccountCreation",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sample_078",
+  "text": "Does your platform integrate with Salesforce or HubSpot?. Please advise.",
+  "label": "neutral",
+  "channel": "chat",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

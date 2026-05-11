@@ -1,0 +1,10 @@
+{
+  "id": "sample_115",
+  "text": "What is the typical response time for SMB plan support tickets?",
+  "label": "neutral",
+  "channel": "survey",
+  "taxonomy_path": "Onboarding.Setup.ProfileConfiguration",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

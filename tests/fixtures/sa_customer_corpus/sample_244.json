@@ -1,0 +1,10 @@
+{
+  "id": "sample_244",
+  "text": "Good morning, I just signed up for a SMB plan. What are the next steps to get started?",
+  "label": "neutral",
+  "channel": "call",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

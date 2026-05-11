@@ -1,0 +1,10 @@
+{
+  "id": "sample_376",
+  "text": "Is the platform POPIA compliant? We deal with South African customer data. Please advise.",
+  "label": "neutral",
+  "channel": "chat",
+  "taxonomy_path": "Authentication.Login.AccountLocked",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

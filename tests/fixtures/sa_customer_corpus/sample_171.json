@@ -1,0 +1,10 @@
+{
+  "id": "sample_171",
+  "text": "Molo, I've been locked out 5 times today because the system keeps logging me out mid-session. Lo mba kufuneka usolulwe.",
+  "label": "negative",
+  "channel": "chat",
+  "taxonomy_path": "Authentication.Login.SsoFailure",
+  "language": "xh",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

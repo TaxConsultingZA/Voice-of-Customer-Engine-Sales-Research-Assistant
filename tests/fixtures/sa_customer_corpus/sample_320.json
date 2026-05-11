@@ -1,0 +1,10 @@
+{
+  "id": "sample_320",
+  "text": "Is there a dedicated account manager for SMB plan customers?. Looking forward to your reply.",
+  "label": "neutral",
+  "channel": "whatsapp",
+  "taxonomy_path": "Onboarding.Training.Onboarding",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

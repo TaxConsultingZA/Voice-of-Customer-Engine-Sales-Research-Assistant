@@ -1,0 +1,10 @@
+{
+  "id": "sample_166",
+  "text": "Is there an audit trail or activity log I can access for compliance purposes?",
+  "label": "neutral",
+  "channel": "whatsapp",
+  "taxonomy_path": "Billing.Subscription.Cancellation",
+  "language": "st",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

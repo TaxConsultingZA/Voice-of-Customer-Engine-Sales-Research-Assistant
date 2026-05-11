@@ -1,0 +1,10 @@
+{
+  "id": "sample_198",
+  "text": "I've submitted 6 support tickets in the past 3 weeks and not received a single response.",
+  "label": "negative",
+  "channel": "whatsapp",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

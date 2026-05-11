@@ -1,0 +1,10 @@
+{
+  "id": "sample_303",
+  "text": "What is the typical response time for Team plan support tickets?",
+  "label": "neutral",
+  "channel": "whatsapp",
+  "taxonomy_path": "Compliance.Popia.DataAccessRequest",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

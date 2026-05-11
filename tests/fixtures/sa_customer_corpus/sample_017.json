@@ -1,0 +1,10 @@
+{
+  "id": "sample_017",
+  "text": "What are the uptime SLAs for the Starter plan?",
+  "label": "neutral",
+  "channel": "email",
+  "taxonomy_path": "Billing.Payment.ProcessingError",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

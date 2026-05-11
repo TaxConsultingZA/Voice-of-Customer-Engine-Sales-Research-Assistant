@@ -1,0 +1,10 @@
+{
+  "id": "sample_132",
+  "text": "The API integration we built stopped working after your update. Our entire workflow is now broken.",
+  "label": "negative",
+  "channel": "call",
+  "taxonomy_path": "Billing.Subscription.Cancellation",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

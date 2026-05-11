@@ -1,0 +1,10 @@
+{
+  "id": "sample_281",
+  "text": "The 'Forgot Password' link does nothing when I click it. It just reloads the same page.",
+  "label": "negative",
+  "channel": "email",
+  "taxonomy_path": "Onboarding.Registration.EmailVerification",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

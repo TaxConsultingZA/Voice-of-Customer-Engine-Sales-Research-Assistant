@@ -1,0 +1,10 @@
+{
+  "id": "sample_211",
+  "text": "I'm looking at migrating from a competitor — is there a migration assistance programme?",
+  "label": "neutral",
+  "channel": "chat",
+  "taxonomy_path": "Onboarding.Registration.AccountCreation",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

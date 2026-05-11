@@ -1,0 +1,10 @@
+{
+  "id": "sample_361",
+  "text": "I cannot believe this, I've been locked out 5 times today because the system keeps logging me out mid-session. I expect better.",
+  "label": "negative",
+  "channel": "survey",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

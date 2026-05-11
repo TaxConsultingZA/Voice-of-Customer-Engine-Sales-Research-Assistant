@@ -1,0 +1,10 @@
+{
+  "id": "sample_399",
+  "text": "Happy to share, Just renewed our Enterprise plan for another year. Happy customers here!. Thank you!",
+  "label": "positive",
+  "channel": "email",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

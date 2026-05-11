@@ -1,0 +1,10 @@
+{
+  "id": "sample_396",
+  "text": "My account access was restored quickly after I contacted support. Very impressed with the response time.",
+  "label": "positive",
+  "channel": "chat",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sample_380",
+  "text": "When is the new notification system feature expected to be released?",
+  "label": "neutral",
+  "channel": "chat",
+  "taxonomy_path": "Onboarding.Training.Onboarding",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

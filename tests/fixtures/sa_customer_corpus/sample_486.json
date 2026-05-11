@@ -1,0 +1,10 @@
+{
+  "id": "sample_486",
+  "text": "My scheduled report hasn't run in 9 days. The automation is completely broken.",
+  "label": "negative",
+  "channel": "chat",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "st",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

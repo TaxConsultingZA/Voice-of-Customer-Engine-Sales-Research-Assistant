@@ -1,0 +1,10 @@
+{
+  "id": "sample_072",
+  "text": "The setup wizard is intuitive and clear. I appreciated the helpful tooltips at each step.",
+  "label": "positive",
+  "channel": "call",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "xh",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

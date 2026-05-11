@@ -1,0 +1,10 @@
+{
+  "id": "sample_469",
+  "text": "Can you explain what happens to our data if we cancel our subscription?",
+  "label": "neutral",
+  "channel": "survey",
+  "taxonomy_path": "Onboarding.Registration.AccountCreation",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

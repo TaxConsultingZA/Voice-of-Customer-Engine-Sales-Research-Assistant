@@ -1,0 +1,10 @@
+{
+  "id": "sample_319",
+  "text": "The API integration we built stopped working after your update. Our entire workflow is now broken.",
+  "label": "negative",
+  "channel": "web_form",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

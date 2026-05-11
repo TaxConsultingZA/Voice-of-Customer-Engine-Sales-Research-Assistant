@@ -1,0 +1,10 @@
+{
+  "id": "sample_433",
+  "text": "How do I add additional user seats to our existing Enterprise plan?",
+  "label": "neutral",
+  "channel": "chat",
+  "taxonomy_path": "Onboarding.Registration.AccountCreation",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

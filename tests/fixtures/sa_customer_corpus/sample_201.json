@@ -1,0 +1,10 @@
+{
+  "id": "sample_201",
+  "text": "What is the cancellation policy? How much notice do I need to give?. Ngicela ningithumele ulwazi.",
+  "label": "neutral",
+  "channel": "mobile_app",
+  "taxonomy_path": "Authentication.Mfa.SetupFailure",
+  "language": "zu",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

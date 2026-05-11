@@ -1,0 +1,10 @@
+{
+  "id": "sample_140",
+  "text": "Onboarding call with your team was very helpful. They walked us through everything patiently. Much appreciated.",
+  "label": "positive",
+  "channel": "call",
+  "taxonomy_path": "Onboarding.Registration.Setup",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

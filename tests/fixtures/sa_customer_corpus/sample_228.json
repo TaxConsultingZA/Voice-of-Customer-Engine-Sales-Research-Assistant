@@ -1,0 +1,10 @@
+{
+  "id": "sample_228",
+  "text": "What are the uptime SLAs for the Enterprise plan?",
+  "label": "neutral",
+  "channel": "email",
+  "taxonomy_path": "Billing.Payment.ProcessingError",
+  "language": "af",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

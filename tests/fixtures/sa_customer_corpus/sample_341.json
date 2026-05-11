@@ -1,0 +1,10 @@
+{
+  "id": "sample_341",
+  "text": "I registered but my account is stuck on 'pending verification' and there's no way to contact anyone.",
+  "label": "negative",
+  "channel": "chat",
+  "taxonomy_path": "Authentication.Login.AccountLocked",
+  "language": "af",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sample_358",
+  "text": "Can I set up role-based access control for different team members?",
+  "label": "neutral",
+  "channel": "whatsapp",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "xh",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

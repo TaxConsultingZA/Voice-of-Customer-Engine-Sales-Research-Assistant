@@ -1,0 +1,10 @@
+{
+  "id": "sample_395",
+  "text": "The onboarding process was really smooth and easy to follow. Got set up in under 30 minutes. Ngiyabonga kakhulu!",
+  "label": "positive",
+  "channel": "email",
+  "taxonomy_path": "Onboarding.Registration.Setup",
+  "language": "zu",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

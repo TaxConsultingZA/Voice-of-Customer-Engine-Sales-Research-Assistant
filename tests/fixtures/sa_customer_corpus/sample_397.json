@@ -1,0 +1,10 @@
+{
+  "id": "sample_397",
+  "text": "Does your platform integrate with Salesforce or HubSpot?",
+  "label": "neutral",
+  "channel": "whatsapp",
+  "taxonomy_path": "Billing.Payment.ProcessingError",
+  "language": "nso",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

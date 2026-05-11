@@ -1,0 +1,10 @@
+{
+  "id": "sample_400",
+  "text": "What file formats does the export feature support for imports?",
+  "label": "neutral",
+  "channel": "whatsapp",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

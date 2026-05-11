@@ -1,0 +1,10 @@
+{
+  "id": "sample_029",
+  "text": "Good morning, What file formats does the API integration support for imports?",
+  "label": "neutral",
+  "channel": "call",
+  "taxonomy_path": "Onboarding.Registration.AccountCreation",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sample_002",
+  "text": "Sawubona! The platform has been running beautifully this month. Zero complaints from our side. Thank you!",
+  "label": "positive",
+  "channel": "email",
+  "taxonomy_path": "Billing.Subscription.Cancellation",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

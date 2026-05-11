@@ -1,0 +1,10 @@
+{
+  "id": "sample_081",
+  "text": "I cancelled my subscription 19 days ago and I'm still being billed. This needs to stop.",
+  "label": "negative",
+  "channel": "web_form",
+  "taxonomy_path": "Authentication.Mfa.VerificationFailure",
+  "language": "ve",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

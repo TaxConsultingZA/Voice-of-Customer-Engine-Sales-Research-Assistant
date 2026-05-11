@@ -1,0 +1,10 @@
+{
+  "id": "sample_362",
+  "text": "How do I reset my password? I can't find the option in the account settings.",
+  "label": "neutral",
+  "channel": "email",
+  "taxonomy_path": "Onboarding.Training.Onboarding",
+  "language": "af",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

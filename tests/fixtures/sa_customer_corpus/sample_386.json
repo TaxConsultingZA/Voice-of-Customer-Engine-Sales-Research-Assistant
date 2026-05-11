@@ -1,0 +1,10 @@
+{
+  "id": "sample_386",
+  "text": "Hello, Where can I find the getting-started documentation for new users?",
+  "label": "neutral",
+  "channel": "whatsapp",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sample_432",
+  "text": "The dashboard is really slow today. Every click takes 57 seconds to respond.",
+  "label": "negative",
+  "channel": "whatsapp",
+  "taxonomy_path": "Billing.Payment.ProcessingError",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

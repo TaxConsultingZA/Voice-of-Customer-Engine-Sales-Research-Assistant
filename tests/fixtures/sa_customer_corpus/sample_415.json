@@ -1,0 +1,10 @@
+{
+  "id": "sample_415",
+  "text": "We've been customers for 3 years and the product keeps getting better. Sharp sharp!",
+  "label": "positive",
+  "channel": "mobile_app",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

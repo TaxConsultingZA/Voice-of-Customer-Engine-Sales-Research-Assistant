@@ -1,0 +1,10 @@
+{
+  "id": "sample_032",
+  "text": "The invoice I received is for the wrong amount — it shows R7788 but my plan is R670/month.",
+  "label": "negative",
+  "channel": "survey",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "af",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sample_271",
+  "text": "I reset my password successfully but the new password still doesn't work. This is going in circles. E batla ho lokiswa kapele.",
+  "label": "negative",
+  "channel": "whatsapp",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "st",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

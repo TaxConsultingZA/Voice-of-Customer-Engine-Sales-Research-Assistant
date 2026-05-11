@@ -1,0 +1,10 @@
+{
+  "id": "sample_203",
+  "text": "Sawubona! The platform has been running beautifully this month. Zero complaints from our side. Thank you!",
+  "label": "positive",
+  "channel": "call",
+  "taxonomy_path": "Onboarding.Training.Onboarding",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

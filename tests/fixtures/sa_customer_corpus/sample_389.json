@@ -1,0 +1,10 @@
+{
+  "id": "sample_389",
+  "text": "Is it possible to schedule automated exports from the user management?",
+  "label": "neutral",
+  "channel": "chat",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "nso",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

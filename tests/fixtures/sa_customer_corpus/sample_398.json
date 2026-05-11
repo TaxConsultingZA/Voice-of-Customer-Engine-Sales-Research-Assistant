@@ -1,0 +1,10 @@
+{
+  "id": "sample_398",
+  "text": "I reset my password successfully but the new password still doesn't work. This is going in circles.",
+  "label": "negative",
+  "channel": "email",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "zu",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

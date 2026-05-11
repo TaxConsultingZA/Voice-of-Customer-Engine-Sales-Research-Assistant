@@ -1,0 +1,10 @@
+{
+  "id": "sample_135",
+  "text": "What is the typical response time for Enterprise plan support tickets?",
+  "label": "neutral",
+  "channel": "chat",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "tn",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

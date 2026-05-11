@@ -1,0 +1,10 @@
+{
+  "id": "sample_474",
+  "text": "Ek is baie gefrustreerd, I've submitted 6 support tickets in the past 1 weeks and not received a single response.",
+  "label": "negative",
+  "channel": "web_form",
+  "taxonomy_path": "Onboarding.Registration.EmailVerification",
+  "language": "af",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

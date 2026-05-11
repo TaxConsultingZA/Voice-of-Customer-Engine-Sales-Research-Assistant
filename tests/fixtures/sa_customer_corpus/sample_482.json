@@ -1,0 +1,10 @@
+{
+  "id": "sample_482",
+  "text": "Ngiyakhala — The API integration won't load at all during peak hours. I've been waiting 42 minutes. Ngizocela ukubuyisela imali yami.",
+  "label": "negative",
+  "channel": "whatsapp",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "zu",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

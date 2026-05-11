@@ -1,0 +1,10 @@
+{
+  "id": "sample_451",
+  "text": "This is unacceptable, The CSV export downloads an empty file every single time. I need this data urgently. Very disappointed.",
+  "label": "negative",
+  "channel": "email",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

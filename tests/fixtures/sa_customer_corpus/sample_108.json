@@ -1,0 +1,10 @@
+{
+  "id": "sample_108",
+  "text": "Great news — Support resolved my issue within 43 minutes. Outstanding service — thank you!",
+  "label": "positive",
+  "channel": "call",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

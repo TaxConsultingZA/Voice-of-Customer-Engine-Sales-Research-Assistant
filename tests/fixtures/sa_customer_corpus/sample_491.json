@@ -1,0 +1,10 @@
+{
+  "id": "sample_491",
+  "text": "I cancelled my subscription 28 days ago and I'm still being billed. This needs to stop.",
+  "label": "negative",
+  "channel": "call",
+  "taxonomy_path": "Onboarding.Registration.EmailVerification",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

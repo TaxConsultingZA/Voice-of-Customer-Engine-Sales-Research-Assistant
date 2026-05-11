@@ -1,0 +1,10 @@
+{
+  "id": "sample_287",
+  "text": "Hoe gaan dit? I need some help understanding the pricing for additional users.",
+  "label": "neutral",
+  "channel": "web_form",
+  "taxonomy_path": "Billing.Payment.ProcessingError",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

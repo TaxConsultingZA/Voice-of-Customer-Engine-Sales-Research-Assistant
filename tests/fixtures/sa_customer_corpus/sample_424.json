@@ -1,0 +1,10 @@
+{
+  "id": "sample_424",
+  "text": "My account has been locked for 4 days and I still cannot get access. I am a paying Enterprise customer.",
+  "label": "negative",
+  "channel": "web_form",
+  "taxonomy_path": "Authentication.Mfa.VerificationFailure",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

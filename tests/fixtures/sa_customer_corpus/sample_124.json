@@ -1,0 +1,10 @@
+{
+  "id": "sample_124",
+  "text": "Goeiemôre, I submitted a ticket 4 days ago. Can you provide a status update on the progress?. Asseblief adviseer.",
+  "label": "neutral",
+  "channel": "email",
+  "taxonomy_path": "Billing.Payment.ProcessingError",
+  "language": "af",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

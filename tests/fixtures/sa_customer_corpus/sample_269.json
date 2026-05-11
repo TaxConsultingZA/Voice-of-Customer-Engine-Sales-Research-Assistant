@@ -1,0 +1,10 @@
+{
+  "id": "sample_269",
+  "text": "MFA setup was smooth and straightforward. The QR code scanned first try.",
+  "label": "positive",
+  "channel": "email",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

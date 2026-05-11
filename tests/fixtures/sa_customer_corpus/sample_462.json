@@ -1,0 +1,10 @@
+{
+  "id": "sample_462",
+  "text": "The invoice I received is for the wrong amount — it shows R3561 but my plan is R636/month. Ngiyacela nisombulule lokhu.",
+  "label": "negative",
+  "channel": "email",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "zu",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

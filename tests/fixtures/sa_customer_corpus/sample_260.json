@@ -1,0 +1,10 @@
+{
+  "id": "sample_260",
+  "text": "When does my current billing cycle end? I'd like to know before making any changes.",
+  "label": "neutral",
+  "channel": "whatsapp",
+  "taxonomy_path": "Compliance.Popia.DataAccessRequest",
+  "language": "af",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

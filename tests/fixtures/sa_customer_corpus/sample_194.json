@@ -1,0 +1,10 @@
+{
+  "id": "sample_194",
+  "text": "Sawubona! The platform has been running beautifully this month. Zero complaints from our side.",
+  "label": "positive",
+  "channel": "chat",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

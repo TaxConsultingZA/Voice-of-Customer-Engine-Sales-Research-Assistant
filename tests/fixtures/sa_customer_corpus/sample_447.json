@@ -1,0 +1,10 @@
+{
+  "id": "sample_447",
+  "text": "I've been trying to log in for the past 2 hours and keep getting an 'invalid credentials' error even though I haven't changed my password.",
+  "label": "negative",
+  "channel": "call",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

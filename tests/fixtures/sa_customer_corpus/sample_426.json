@@ -1,0 +1,10 @@
+{
+  "id": "sample_426",
+  "text": "API response times have gone from under 1 second to over 25 seconds. Something is badly broken. Very disappointed.",
+  "label": "negative",
+  "channel": "chat",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

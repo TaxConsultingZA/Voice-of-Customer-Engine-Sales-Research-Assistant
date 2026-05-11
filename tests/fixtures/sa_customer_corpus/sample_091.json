@@ -1,0 +1,10 @@
+{
+  "id": "sample_091",
+  "text": "Yoh, the app is lank slow today. Everything is timing out. Please sort this out urgently.",
+  "label": "negative",
+  "channel": "email",
+  "taxonomy_path": "Onboarding.Registration.AccountCreation",
+  "language": "af",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

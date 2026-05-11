@@ -1,0 +1,10 @@
+{
+  "id": "sample_119",
+  "text": "The onboarding video tutorial links are all broken — they all give me a 404 error.",
+  "label": "negative",
+  "channel": "email",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "af",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

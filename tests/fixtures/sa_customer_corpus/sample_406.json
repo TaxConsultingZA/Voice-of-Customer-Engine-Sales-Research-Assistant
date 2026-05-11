@@ -1,0 +1,10 @@
+{
+  "id": "sample_406",
+  "text": "Good morning, Is there a way to customise the analytics tab to show only certain columns?",
+  "label": "neutral",
+  "channel": "chat",
+  "taxonomy_path": "Billing.Payment.ProcessingError",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

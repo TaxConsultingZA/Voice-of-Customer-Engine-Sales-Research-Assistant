@@ -1,0 +1,10 @@
+{
+  "id": "sample_197",
+  "text": "Ag shame, I'm trying to help a client and your system is down again. Dis nie reg nie. Very disappointed.",
+  "label": "negative",
+  "channel": "email",
+  "taxonomy_path": "Billing.Payment.ProcessingError",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

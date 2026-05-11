@@ -1,0 +1,10 @@
+{
+  "id": "sample_217",
+  "text": "Good morning, What are the uptime SLAs for the Professional plan?",
+  "label": "neutral",
+  "channel": "call",
+  "taxonomy_path": "Authentication.Mfa.SetupFailure",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

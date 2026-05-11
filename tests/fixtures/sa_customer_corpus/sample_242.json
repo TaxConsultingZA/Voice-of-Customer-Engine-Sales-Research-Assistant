@@ -1,0 +1,10 @@
+{
+  "id": "sample_242",
+  "text": "I am frustrated, Everything times out after 21 seconds. I cannot get anything done. The system is unusable. Very disappointed.",
+  "label": "negative",
+  "channel": "call",
+  "taxonomy_path": "Onboarding.Registration.EmailVerification",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

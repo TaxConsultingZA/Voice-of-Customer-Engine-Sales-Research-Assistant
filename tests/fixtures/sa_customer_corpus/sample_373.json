@@ -1,0 +1,10 @@
+{
+  "id": "sample_373",
+  "text": "The login issue I reported has been fixed. Everything works perfectly now. Sharp sharp!. Thank you!",
+  "label": "positive",
+  "channel": "chat",
+  "taxonomy_path": "Onboarding.Registration.EmailVerification",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

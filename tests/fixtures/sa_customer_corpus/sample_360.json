@@ -1,0 +1,10 @@
+{
+  "id": "sample_360",
+  "text": "Is the platform POPIA compliant? We deal with South African customer data.",
+  "label": "neutral",
+  "channel": "call",
+  "taxonomy_path": "Billing.Subscription.Cancellation",
+  "language": "ts",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

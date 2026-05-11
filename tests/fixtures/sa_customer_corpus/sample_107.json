@@ -1,0 +1,10 @@
+{
+  "id": "sample_107",
+  "text": "I am frustrated, API response times have gone from under 1 second to over 12 seconds. Something is badly broken. Please fix this urgently.",
+  "label": "negative",
+  "channel": "whatsapp",
+  "taxonomy_path": "Billing.Subscription.Cancellation",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

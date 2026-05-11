@@ -1,0 +1,10 @@
+{
+  "id": "sample_317",
+  "text": "Can you explain the difference between the Enterprise and Professional plans?",
+  "label": "neutral",
+  "channel": "chat",
+  "taxonomy_path": "Onboarding.Setup.ProfileConfiguration",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

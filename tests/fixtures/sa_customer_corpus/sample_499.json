@@ -1,0 +1,10 @@
+{
+  "id": "sample_499",
+  "text": "Dumela, Ag shame, I'm trying to help a client and your system is down again. Dis nie reg nie.",
+  "label": "negative",
+  "channel": "survey",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "nso",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

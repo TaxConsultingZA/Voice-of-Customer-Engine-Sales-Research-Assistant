@@ -1,0 +1,10 @@
+{
+  "id": "sample_411",
+  "text": "Ngiyakhala — The data import tool is showing incorrect totals — they don't match the underlying transaction data at all. Ngiyacela nisombulule lokhu.",
+  "label": "negative",
+  "channel": "web_form",
+  "taxonomy_path": "Billing.Payment.ProcessingError",
+  "language": "zu",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

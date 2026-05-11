@@ -1,0 +1,10 @@
+{
+  "id": "sample_160",
+  "text": "Ag, dit is onaanvaarbaar, I signed up 4 days ago and still haven't received my verification email. I've resent it 3 times.",
+  "label": "negative",
+  "channel": "whatsapp",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "af",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

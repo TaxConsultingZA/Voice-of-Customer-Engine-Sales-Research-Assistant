@@ -1,0 +1,10 @@
+{
+  "id": "sample_364",
+  "text": "The user management is showing incorrect totals — they don't match the underlying transaction data at all.",
+  "label": "negative",
+  "channel": "whatsapp",
+  "taxonomy_path": "Billing.Payment.ProcessingError",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

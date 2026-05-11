@@ -1,0 +1,10 @@
+{
+  "id": "sample_068",
+  "text": "The support agent I spoke to said the issue was escalated but it's now been 12 days and nothing.",
+  "label": "negative",
+  "channel": "chat",
+  "taxonomy_path": "Onboarding.Setup.ProfileConfiguration",
+  "language": "en",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

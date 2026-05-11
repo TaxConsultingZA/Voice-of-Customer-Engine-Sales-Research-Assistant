@@ -1,0 +1,10 @@
+{
+  "id": "sample_468",
+  "text": "My export feature keeps showing data from 2 months ago instead of today's figures. Ke kgateletsegile thata.",
+  "label": "negative",
+  "channel": "call",
+  "taxonomy_path": "Authentication.Mfa.VerificationFailure",
+  "language": "tn",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

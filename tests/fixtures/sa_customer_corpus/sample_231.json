@@ -1,0 +1,10 @@
+{
+  "id": "sample_231",
+  "text": "The onboarding process was really smooth and easy to follow. Got set up in under 26 minutes. Well done!",
+  "label": "positive",
+  "channel": "web_form",
+  "taxonomy_path": "Authentication.Login.PasswordReset",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

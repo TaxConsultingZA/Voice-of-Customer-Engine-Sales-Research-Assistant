@@ -1,0 +1,10 @@
+{
+  "id": "sample_155",
+  "text": "Is there a sandbox environment we can use for testing before going live?",
+  "label": "neutral",
+  "channel": "email",
+  "taxonomy_path": "Onboarding.Registration.AccountCreation",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

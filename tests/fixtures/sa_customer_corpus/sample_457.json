@@ -1,0 +1,10 @@
+{
+  "id": "sample_457",
+  "text": "The setup wizard is intuitive and clear. I appreciated the helpful tooltips at each step.",
+  "label": "positive",
+  "channel": "survey",
+  "taxonomy_path": "Onboarding.Registration.EmailVerification",
+  "language": "en",
+  "contains_slang": false,
+  "annotator": "synthetic"
+}

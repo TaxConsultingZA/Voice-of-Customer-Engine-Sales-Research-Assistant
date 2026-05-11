@@ -1,0 +1,10 @@
+{
+  "id": "sample_186",
+  "text": "Ke a nyorilwe, The support agent I spoke to said the issue was escalated but it's now been 7 days and nothing.",
+  "label": "negative",
+  "channel": "web_form",
+  "taxonomy_path": "Billing.Subscription.Cancellation",
+  "language": "tn",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

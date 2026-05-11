@@ -1,0 +1,10 @@
+{
+  "id": "sample_075",
+  "text": "Molo! Sharp sharp — the issue was fixed faster than expected. Baie dankie to the support team!. Ndiyabulela!",
+  "label": "positive",
+  "channel": "survey",
+  "taxonomy_path": "Reporting.Dashboards.Export",
+  "language": "xh",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}

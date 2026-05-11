@@ -1,0 +1,10 @@
+{
+  "id": "sample_428",
+  "text": "Login works on desktop but completely fails on mobile. The app just crashes on the login screen. Ek verwag 'n reaksie.",
+  "label": "negative",
+  "channel": "web_form",
+  "taxonomy_path": "Billing.Payment.ProcessingError",
+  "language": "af",
+  "contains_slang": true,
+  "annotator": "synthetic"
+}
