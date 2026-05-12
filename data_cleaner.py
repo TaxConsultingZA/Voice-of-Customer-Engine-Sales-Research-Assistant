@@ -127,7 +127,9 @@ def choose_text_column(records: List[Dict], text_column: Optional[str]) -> str:
     # Fallback: choose the first column containing "text/message/content" words.
     for key in records[0].keys():
         key_lower = str(key).lower()
-        if any(x in key_lower for x in ["text", "message", "content", "desc", "transcript"]):
+        if any(
+            x in key_lower for x in ["text", "message", "content", "desc", "transcript"]
+        ):
             return key
 
     raise ValueError(
@@ -176,10 +178,18 @@ def main() -> None:
     parser = argparse.ArgumentParser(
         description="Clean customer tickets/transcripts into plain text."
     )
-    parser.add_argument("--input", required=True, help="Input file path (.csv/.json/.jsonl/.xlsx)")
-    parser.add_argument("--output", default="cleaned_output.csv", help="Output CSV path")
-    parser.add_argument("--text-column", default=None, help="Column containing raw text")
-    parser.add_argument("--preview", type=int, default=3, help="Number of cleaned samples to print")
+    parser.add_argument(
+        "--input", required=True, help="Input file path (.csv/.json/.jsonl/.xlsx)"
+    )
+    parser.add_argument(
+        "--output", default="cleaned_output.csv", help="Output CSV path"
+    )
+    parser.add_argument(
+        "--text-column", default=None, help="Column containing raw text"
+    )
+    parser.add_argument(
+        "--preview", type=int, default=3, help="Number of cleaned samples to print"
+    )
     args = parser.parse_args()
 
     input_path = Path(args.input)
