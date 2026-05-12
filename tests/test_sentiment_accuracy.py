@@ -17,20 +17,23 @@ F1_THRESHOLD = 0.94
 MIN_CORPUS_SIZE = 500
 
 
-@pytest.mark.skip(reason="Requires trained model at models/sentiment-sa-v2 — activate post-training")
+@pytest.mark.skip(
+    reason="Requires trained model at models/sentiment-sa-v2 — activate post-training"
+)
 def test_sa_sentiment_f1_benchmark():
     """F1 ≥ 0.94 on SA customer corpus. Build gate — see SYSTEM_PROMPT §3.3."""
-    from pathlib import Path
     import json
+    from pathlib import Path
+
     from sklearn.metrics import f1_score
 
     corpus_dir = Path(CORPUS_PATH)
     assert corpus_dir.exists(), f"Corpus not found at {CORPUS_PATH}"
 
     samples = list(corpus_dir.glob("*.json"))
-    assert len(samples) >= MIN_CORPUS_SIZE, (
-        f"Corpus has {len(samples)} samples — need ≥{MIN_CORPUS_SIZE}"
-    )
+    assert (
+        len(samples) >= MIN_CORPUS_SIZE
+    ), f"Corpus has {len(samples)} samples — need ≥{MIN_CORPUS_SIZE}"
 
     texts, true_labels = [], []
     for path in samples:
@@ -40,6 +43,7 @@ def test_sa_sentiment_f1_benchmark():
 
     # Import here so the skip fires before any import errors
     from services.nlp.app.sentiment import SentimentModel
+
     model = SentimentModel(model_path=MODEL_PATH)
     predictions = [model.predict(t).label for t in texts]
 
@@ -54,6 +58,7 @@ def test_sa_sentiment_f1_benchmark():
 def test_sa_slang_sentiment_cases():
     """Specific SA slang terms must be classified correctly."""
     from services.nlp.app.sentiment import SentimentModel
+
     model = SentimentModel(model_path=MODEL_PATH)
 
     cases = [
@@ -68,6 +73,6 @@ def test_sa_slang_sentiment_cases():
 
     for text, expected in cases:
         result = model.predict(text)
-        assert result.label == expected, (
-            f"Slang misclassified: '{text}' → got '{result.label}', expected '{expected}'"
-        )
+        assert (
+            result.label == expected
+        ), f"Slang misclassified: '{text}' → got '{result.label}', expected '{expected}'"

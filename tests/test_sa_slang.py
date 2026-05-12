@@ -7,8 +7,6 @@ the terms required by the NLP layer's slang-awareness tests.
 
 from pathlib import Path
 
-import pytest
-
 ROOT = Path(__file__).parent.parent
 
 REQUIRED_TERMS = [
@@ -54,14 +52,22 @@ def test_all_values_are_non_empty_strings(sa_slang):
 
 def test_negative_signal_terms_described_as_negative(sa_slang):
     """Definitions for known negative terms must mention negative/frustration/surprise."""
-    negative_keywords = {"negative", "frustration", "disappoint", "bad", "shock", "concern", "alarm"}
+    negative_keywords = {
+        "negative",
+        "frustration",
+        "disappoint",
+        "bad",
+        "shock",
+        "concern",
+        "alarm",
+    }
     for term in NEGATIVE_SIGNAL_TERMS:
         if term in sa_slang:
             definition = sa_slang[term].lower()
             has_negative_hint = any(kw in definition for kw in negative_keywords)
-            assert has_negative_hint, (
-                f"Definition for negative term '{term}' should hint at negative sentiment: {sa_slang[term]}"
-            )
+            assert (
+                has_negative_hint
+            ), f"'{term}' definition missing negative-sentiment hint: {sa_slang[term]}"
 
 
 def test_positive_signal_terms_described_as_positive(sa_slang):
@@ -70,9 +76,9 @@ def test_positive_signal_terms_described_as_positive(sa_slang):
         if term in sa_slang:
             definition = sa_slang[term].lower()
             has_positive_hint = any(kw in definition for kw in positive_keywords)
-            assert has_positive_hint, (
-                f"Definition for positive term '{term}' should hint at positive sentiment: {sa_slang[term]}"
-            )
+            assert (
+                has_positive_hint
+            ), f"'{term}' definition missing positive-sentiment hint: {sa_slang[term]}"
 
 
 def test_no_duplicate_keys(sa_slang):

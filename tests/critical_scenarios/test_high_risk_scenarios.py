@@ -11,7 +11,7 @@ See SYSTEM_PROMPT §3.8 and §6 for governance thresholds.
 
 import pytest
 
-RED_THRESHOLD = 0.6    # Crisis Score — requires human approval
+RED_THRESHOLD = 0.6  # Crisis Score — requires human approval
 YELLOW_THRESHOLD = 0.3  # Crisis Score — automation with notification
 
 
@@ -96,9 +96,9 @@ def test_enterprise_cancellation_requires_human_approval():
 
     assert result.crisis_score >= RED_THRESHOLD
     assert result.requires_approval is True
-    assert "auto_cancel" not in result.actions, (
-        "Red gate violated: auto-cancel must not fire without human approval"
-    )
+    assert (
+        "auto_cancel" not in result.actions
+    ), "Red gate violated: auto-cancel must not fire without human approval"
 
 
 @pytest.mark.skip(reason="Requires anomaly detection module")
@@ -117,7 +117,7 @@ def test_sentiment_spike_above_3sigma_flagged():
         baseline_std=3.0,
     )
 
-    sigma = (45 - 5.0) / 3.0  # = 13.3σ
+    sigma = (45 - 5.0) / 3.0  # = 13.3σ  # noqa: F841
     assert result.sigma > 3.0, f"Anomaly detector returned σ={result.sigma:.1f}, expected >3.0"
     assert result.is_anomaly is True
     assert result.recommended_action == "escalate_to_product"
@@ -138,7 +138,7 @@ def test_smb_complaint_routes_yellow_not_red():
     }
     result = process_complaint(complaint)
 
-    assert YELLOW_THRESHOLD <= result.crisis_score < RED_THRESHOLD, (
-        f"Expected Yellow crisis score (0.3-0.6), got {result.crisis_score:.2f}"
-    )
+    assert (
+        YELLOW_THRESHOLD <= result.crisis_score < RED_THRESHOLD
+    ), f"Expected Yellow crisis score (0.3-0.6), got {result.crisis_score:.2f}"
     assert result.requires_approval is False

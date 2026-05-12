@@ -45,12 +45,9 @@ def test_event_ingestion_p95_latency(latency_event):
     p99 = float(np.percentile(latencies, 99))
 
     assert p95 < P95_BUDGET_SECONDS, (
-        f"P95 latency {p95 * 1000:.0f}ms exceeds 500ms budget — "
-        f"check af-south-1 region routing"
+        f"P95 latency {p95 * 1000:.0f}ms exceeds 500ms budget — " f"check af-south-1 region routing"
     )
-    assert p99 < P99_BUDGET_SECONDS, (
-        f"P99 latency {p99 * 1000:.0f}ms exceeds 1000ms NLP budget"
-    )
+    assert p99 < P99_BUDGET_SECONDS, f"P99 latency {p99 * 1000:.0f}ms exceeds 1000ms NLP budget"
 
 
 @pytest.mark.integration

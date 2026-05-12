@@ -16,14 +16,17 @@ THRESHOLD = 0.85
 @pytest.fixture(scope="module")
 def analyzer():
     import os
+
     from presidio_analyzer import AnalyzerEngine, Pattern, PatternRecognizer
     from presidio_analyzer.nlp_engine import NlpEngineProvider
 
     model = os.getenv("SPACY_MODEL", "en_core_web_sm")
-    provider = NlpEngineProvider(nlp_configuration={
-        "nlp_engine_name": "spacy",
-        "models": [{"lang_code": "en", "model_name": model}],
-    })
+    provider = NlpEngineProvider(
+        nlp_configuration={
+            "nlp_engine_name": "spacy",
+            "models": [{"lang_code": "en", "model_name": model}],
+        }
+    )
     engine = AnalyzerEngine(nlp_engine=provider.create_engine())
 
     # Presidio's built-in phone recognizer misses SA +27 format with sm model.
@@ -80,9 +83,9 @@ def test_clean_product_complaint_no_false_positive(analyzer):
         "The login feature is broken and I cannot access my dashboard. "
         "The password reset button does not send an email. Eish, very frustrating."
     )
-    assert not pii_detected(analyzer, clean_text), (
-        "False positive: PII detected in clean product complaint"
-    )
+    assert not pii_detected(
+        analyzer, clean_text
+    ), "False positive: PII detected in clean product complaint"
 
 
 def test_sa_slang_no_false_positive(analyzer):
@@ -102,6 +105,7 @@ def test_taxonomy_path_no_false_positive(analyzer):
 
 def test_redaction_removes_email(analyzer):
     from presidio_anonymizer import AnonymizerEngine
+
     anonymizer = AnonymizerEngine()
 
     text = "Please contact jane.smith@enterprise.co.za about this issue"
@@ -114,6 +118,7 @@ def test_redaction_removes_email(analyzer):
 
 def test_redaction_removes_phone(analyzer):
     from presidio_anonymizer import AnonymizerEngine
+
     anonymizer = AnonymizerEngine()
 
     text = "You can reach me on +27 11 456 7890 during business hours"

@@ -12,13 +12,7 @@ from pathlib import Path
 
 import pytest
 
-from data_cleaner import (
-    clean_ticket_text,
-    clean_records,
-    choose_text_column,
-    load_records,
-)
-
+from data_cleaner import choose_text_column, clean_records, clean_ticket_text, load_records
 
 # ---------------------------------------------------------------------------
 # clean_ticket_text
@@ -201,7 +195,9 @@ def test_load_json():
 
 
 def test_load_jsonl():
-    with tempfile.NamedTemporaryFile(mode="w", suffix=".jsonl", delete=False, encoding="utf-8") as f:
+    with tempfile.NamedTemporaryFile(
+        mode="w", suffix=".jsonl", delete=False, encoding="utf-8"
+    ) as f:
         f.write('{"id": "1", "message": "Login broken"}\n')
         f.write('{"id": "2", "message": "Password reset fails"}\n')
         tmp_path = Path(f.name)

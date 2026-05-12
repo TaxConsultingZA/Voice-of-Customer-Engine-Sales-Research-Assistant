@@ -1,0 +1,8 @@
+[flake8]
+max-line-length = 100
+exclude = .git,__pycache__,venv,.venv,.mypy_cache
+extend-ignore = E203,W503
+per-file-ignores =
+    # Corpus generator: intentionally long phrase strings and lambdas with
+    # f-strings containing comma-separated args (flake8 misreads E231 there).
+    scripts/generate_corpus.py:E501,E231,F541

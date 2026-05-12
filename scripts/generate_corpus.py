@@ -30,45 +30,78 @@ OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 # ─────────────────────────────────────────────────────────────────────────────
 
 NEG_OPENERS = [
-    "Eish,", "Ag,", "Yoh,", "Haibo,", "Jislaaik,", "Aikona,",
-    "I am very frustrated.", "This is completely unacceptable.",
-    "Dis nie reg nie —", "I've had enough.",
-    "I cannot believe this.", "Honestly,",
+    "Eish,",
+    "Ag,",
+    "Yoh,",
+    "Haibo,",
+    "Jislaaik,",
+    "Aikona,",
+    "I am very frustrated.",
+    "This is completely unacceptable.",
+    "Dis nie reg nie —",
+    "I've had enough.",
+    "I cannot believe this.",
+    "Honestly,",
 ]
 
 POS_OPENERS = [
-    "Lekker work!", "Sharp sharp!", "Howzit!", "Yebo!", "Sawubona,",
-    "Just wanted to say", "Baie dankie!", "Great news —",
-    "Pleased to report", "Happy to share",
+    "Lekker work!",
+    "Sharp sharp!",
+    "Howzit!",
+    "Yebo!",
+    "Sawubona,",
+    "Just wanted to say",
+    "Baie dankie!",
+    "Great news —",
+    "Pleased to report",
+    "Happy to share",
 ]
 
 NEU_OPENERS = [
-    "Howzit,", "Hi there,", "Good day,", "Dumela,",
-    "Hello,", "Good morning,", "Sanibonani,",
-    "I would like to enquire about", "Quick question:",
+    "Howzit,",
+    "Hi there,",
+    "Good day,",
+    "Dumela,",
+    "Hello,",
+    "Good morning,",
+    "Sanibonani,",
+    "I would like to enquire about",
+    "Quick question:",
     "Could you please clarify",
 ]
 
 NEG_CLOSERS = [
-    "This is unacceptable!", "Please sort this out urgently.",
-    "I expect a response within 24 hours.", "Very disappointed.",
-    "Lank frustrated now.", "This is hectic — please help.",
+    "This is unacceptable!",
+    "Please sort this out urgently.",
+    "I expect a response within 24 hours.",
+    "Very disappointed.",
+    "Lank frustrated now.",
+    "This is hectic — please help.",
     "I may have to cancel my subscription.",
-    "Ag, I've been waiting too long.", "Eish, please fix this.",
+    "Ag, I've been waiting too long.",
+    "Eish, please fix this.",
     "This is really kak service.",
 ]
 
 POS_CLOSERS = [
-    "Baie dankie!", "Sharp!", "Keep up the great work!",
-    "Very impressed — well done.", "Lekker service!",
-    "Appreciate the quick help.", "Five stars from me.",
-    "Will definitely recommend.", "Sharp sharp!",
+    "Baie dankie!",
+    "Sharp!",
+    "Keep up the great work!",
+    "Very impressed — well done.",
+    "Lekker service!",
+    "Appreciate the quick help.",
+    "Five stars from me.",
+    "Will definitely recommend.",
+    "Sharp sharp!",
 ]
 
 NEU_CLOSERS = [
-    "Please advise.", "Looking forward to your response.",
-    "Kind regards.", "Thanks in advance.",
-    "Please let me know.", "Awaiting your feedback.",
+    "Please advise.",
+    "Looking forward to your response.",
+    "Kind regards.",
+    "Thanks in advance.",
+    "Please let me know.",
+    "Awaiting your feedback.",
 ]
 
 # Per-language greeting and thanks phrases used for authentic code-switching.
@@ -86,7 +119,11 @@ LANG_PHRASES = {
         "neg_open": ["Dis nie reg nie —", "Ek is baie gefrustreerd,", "Ag, dit is onaanvaarbaar,"],
         "pos_open": ["Baie dankie!", "Groot nuus —", "Ek is bly om te deel,"],
         "neu_open": ["Hoe gaan dit,", "Goeie dag,", "Goeiemôre,"],
-        "neg_close": ["Geen probleem nie — dit moet reggemaak word.", "Ek verwag 'n reaksie.", "Baie teleurgesteld."],
+        "neg_close": [
+            "Geen probleem nie — dit moet reggemaak word.",
+            "Ek verwag 'n reaksie.",
+            "Baie teleurgesteld.",
+        ],
         "pos_close": ["Baie dankie!", "Geen probleem!", "Uitstekende diens!"],
         "neu_close": ["Asseblief adviseer.", "Dankie by voorbaat.", "Groete."],
     },
@@ -94,7 +131,11 @@ LANG_PHRASES = {
         "neg_open": ["Sawubona,", "Ngiyakhala —", "Akukholeki lokhu,"],
         "pos_open": ["Sawubona!", "Ngiyajabula ukusho,", "Yebo,"],
         "neu_open": ["Sawubona,", "Sanibonani,", "Ngicela usizo,"],
-        "neg_close": ["Ngiyacela nisombulule lokhu.", "Ngiyakhathazeka kakhulu.", "Ngizocela ukubuyisela imali yami."],
+        "neg_close": [
+            "Ngiyacela nisombulule lokhu.",
+            "Ngiyakhathazeka kakhulu.",
+            "Ngizocela ukubuyisela imali yami.",
+        ],
         "pos_close": ["Ngiyabonga kakhulu!", "Hambani kahle!", "Niyenza umsebenzi omuhle!"],
         "neu_close": ["Ngiyabonga.", "Ngilindele impendulo yenu.", "Ngicela ningithumele ulwazi."],
     },
@@ -102,7 +143,11 @@ LANG_PHRASES = {
         "neg_open": ["Molo,", "Hayi, akufanelanga —", "Ndingakhathazekile kakhulu,"],
         "pos_open": ["Molo!", "Ndivuya ukuxelela,", "Ndixelela izindaba ezimnandi,"],
         "neu_open": ["Molo,", "Molweni,", "Ndicela uncedo,"],
-        "neg_close": ["Ndiyacela niphande ngoku.", "Ndidanile kakhulu.", "Lo mba kufuneka usolulwe."],
+        "neg_close": [
+            "Ndiyacela niphande ngoku.",
+            "Ndidanile kakhulu.",
+            "Lo mba kufuneka usolulwe.",
+        ],
         "pos_close": ["Enkosi kakhulu!", "Nicanda umsebenzi omhle!", "Ndiyabulela!"],
         "neu_close": ["Enkosi.", "Ndicela impendulo.", "Ndilindele ukuva kuni."],
     },
@@ -110,7 +155,11 @@ LANG_PHRASES = {
         "neg_open": ["Dumela,", "Ke a kgalemela —", "Ha ke kgotsofalehe,"],
         "pos_open": ["Dumela!", "Ke a leboha,", "Ke na le ditaba tse molemo,"],
         "neu_open": ["Dumela,", "Ke kopa thuso,", "Ke na le potso,"],
-        "neg_close": ["Ke kopa hore le lokise bothata bona.", "Ke kgathetse haholo.", "E batla ho lokiswa kapele."],
+        "neg_close": [
+            "Ke kopa hore le lokise bothata bona.",
+            "Ke kgathetse haholo.",
+            "E batla ho lokiswa kapele.",
+        ],
         "pos_close": ["Ke a leboha haholo!", "Mosebetsi o motle!", "Ke leboha thuso ya lona!"],
         "neu_close": ["Ke a leboha.", "Ke lebeletse karabo ya lona.", "Ke kopa le nthuse."],
     },
@@ -118,7 +167,11 @@ LANG_PHRASES = {
         "neg_open": ["Dumela,", "Ga ke kgotsofalego —", "Ke kwišitšwe ke mahloko,"],
         "pos_open": ["Dumela!", "Ke a leboga,", "Ke na le ditaba tše dingwe tše botse,"],
         "neu_open": ["Dumela,", "Ke nyaka thušo,", "Ke na le potšišo,"],
-        "neg_close": ["Ke kgopela gore le lokiše bothata bjo.", "Ke nyaka karabelo ka pela.", "Ga go loke."],
+        "neg_close": [
+            "Ke kgopela gore le lokiše bothata bjo.",
+            "Ke nyaka karabelo ka pela.",
+            "Ga go loke.",
+        ],
         "pos_close": ["Ke a leboga kudu!", "Mošomo o motle!", "Ke leboga thušo ya lena!"],
         "neu_close": ["Ke a leboga.", "Ke lebelela karabelo ya lena.", "Ke kgopela thušo ya lena."],
     },
@@ -126,7 +179,11 @@ LANG_PHRASES = {
         "neg_open": ["Dumela,", "Ga ke itumelele —", "Ke a nyorilwe,"],
         "pos_open": ["Dumela!", "Ke a leboga,", "Ke na le dikgang tse di molemo,"],
         "neu_open": ["Dumela,", "Ke batla thuso,", "Ke na le potso,"],
-        "neg_close": ["Ga go siame — ke kopa lo baakanyetse bothata jono.", "Ke nyaka karabo ka bonako.", "Ke kgateletsegile thata."],
+        "neg_close": [
+            "Ga go siame — ke kopa lo baakanyetse bothata jono.",
+            "Ke nyaka karabo ka bonako.",
+            "Ke kgateletsegile thata.",
+        ],
         "pos_close": ["Ke a leboga thata!", "Lo dira sentle!", "Ke leboha thuso ya lona!"],
         "neu_close": ["Ke a leboga.", "Ke emetse karabo ya lona.", "Ke kopa thuso ya lona."],
     },
@@ -142,7 +199,11 @@ LANG_PHRASES = {
         "neg_open": ["Ndaa,", "A zwi ngo luga —", "Ndi a tambudzeka,"],
         "pos_open": ["Ndaa!", "Ndo livhuwa,", "Ndi na mafhungo maawanaho,"],
         "neu_open": ["Ndaa,", "Ndi toda thuso,", "Ndi na mbudziso,"],
-        "neg_close": ["Ndi humbela uri lu thuse.", "Ndi khathadzekile ngaho.", "Izwi iri a li ngo luga."],
+        "neg_close": [
+            "Ndi humbela uri lu thuse.",
+            "Ndi khathadzekile ngaho.",
+            "Izwi iri a li ngo luga.",
+        ],
         "pos_close": ["Ndo livhuwa nga maanda!", "Lu shuma zwaavhuya!", "Ndo livhuwa thuso yanu!"],
         "neu_close": ["Ndo livhuwa.", "Ndi lindela mhindulo yanu.", "Ndi humbela thuso yanu."],
     },
@@ -150,15 +211,27 @@ LANG_PHRASES = {
         "neg_open": ["Avuxeni,", "A swi lungi —", "Ndzi khomiwa hi ku khumbiwa,"],
         "pos_open": ["Avuxeni!", "Ndza khensa,", "Ndzi na mahungu lama kahle,"],
         "neu_open": ["Avuxeni,", "Ndza lava nseketelo,", "Ndzi na swivutiso,"],
-        "neg_close": ["Ndza lava leswaku mi lulamisela xiphiqo lexi.", "Ndzi dzunisekile ngopfu.", "Leswi a swi lungi."],
-        "pos_close": ["Ndza khensa ngopfu!", "Mi endla ntirho lowunene!", "Ndza khensa nseketelo wa n'wina!"],
+        "neg_close": [
+            "Ndza lava leswaku mi lulamisela xiphiqo lexi.",
+            "Ndzi dzunisekile ngopfu.",
+            "Leswi a swi lungi.",
+        ],
+        "pos_close": [
+            "Ndza khensa ngopfu!",
+            "Mi endla ntirho lowunene!",
+            "Ndza khensa nseketelo wa n'wina!",
+        ],
         "neu_close": ["Ndza khensa.", "Ndzi rindza nhlamulo ya n'wina.", "Ndza lava ku pfuniwa."],
     },
     "nr": {
         "neg_open": ["Lotjhani,", "Akukho lunge —", "Ngiyakhathazeka,"],
         "pos_open": ["Lotjhani!", "Ngiyabonga,", "Nginezindaba ezimnandi,"],
         "neu_open": ["Lotjhani,", "Ngidinga usizo,", "Nginemibuzo,"],
-        "neg_close": ["Ngicela nixazulule inkinga le.", "Ngiyaphoxeka kakhulu.", "Lokhu akufaneleki."],
+        "neg_close": [
+            "Ngicela nixazulule inkinga le.",
+            "Ngiyaphoxeka kakhulu.",
+            "Lokhu akufaneleki.",
+        ],
         "pos_close": ["Ngiyabonga kakhulu!", "Nisebenza kuhle!", "Ngiyabonga ngesizo lenu!"],
         "neu_close": ["Ngiyabonga.", "Ngilindele impendulo yenu.", "Ngicela nangisizeni."],
     },
@@ -168,14 +241,22 @@ INTENSIFIERS = ["lank", "very", "quite", "extremely", "really", "hectic"]
 
 ACCOUNT_TYPES = ["Enterprise", "Professional", "SMB", "Starter", "Team"]
 FEATURES = [
-    "dashboard", "export feature", "reporting module", "API integration",
-    "analytics tab", "user management", "billing portal",
-    "notification system", "mobile app", "data import tool",
+    "dashboard",
+    "export feature",
+    "reporting module",
+    "API integration",
+    "analytics tab",
+    "user management",
+    "billing portal",
+    "notification system",
+    "mobile app",
+    "data import tool",
 ]
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Template pools — each returns a string
 # ─────────────────────────────────────────────────────────────────────────────
+
 
 def _pick(*pools):
     return random.choice(list(pools))
@@ -406,26 +487,62 @@ TOPIC_MAP = {
 # English dominates business writing; other languages appear via code-switching.
 LANGUAGES = {
     "negative": [
-        ("en",  0.63), ("af", 0.12), ("zu", 0.08), ("xh", 0.05),
-        ("st",  0.04), ("tn", 0.03), ("nso", 0.02), ("ss", 0.01),
-        ("ve",  0.01), ("ts", 0.005), ("nr", 0.005),
+        ("en", 0.63),
+        ("af", 0.12),
+        ("zu", 0.08),
+        ("xh", 0.05),
+        ("st", 0.04),
+        ("tn", 0.03),
+        ("nso", 0.02),
+        ("ss", 0.01),
+        ("ve", 0.01),
+        ("ts", 0.005),
+        ("nr", 0.005),
     ],
     "positive": [
-        ("en",  0.60), ("af", 0.14), ("zu", 0.09), ("xh", 0.06),
-        ("st",  0.04), ("tn", 0.03), ("nso", 0.02), ("ss", 0.01),
-        ("ve",  0.005), ("ts", 0.005), ("nr", 0.00),
+        ("en", 0.60),
+        ("af", 0.14),
+        ("zu", 0.09),
+        ("xh", 0.06),
+        ("st", 0.04),
+        ("tn", 0.03),
+        ("nso", 0.02),
+        ("ss", 0.01),
+        ("ve", 0.005),
+        ("ts", 0.005),
+        ("nr", 0.00),
     ],
     "neutral": [
-        ("en",  0.65), ("af", 0.12), ("zu", 0.07), ("xh", 0.05),
-        ("st",  0.04), ("tn", 0.03), ("nso", 0.02), ("ss", 0.01),
-        ("ve",  0.005), ("ts", 0.005), ("nr", 0.00),
+        ("en", 0.65),
+        ("af", 0.12),
+        ("zu", 0.07),
+        ("xh", 0.05),
+        ("st", 0.04),
+        ("tn", 0.03),
+        ("nso", 0.02),
+        ("ss", 0.01),
+        ("ve", 0.005),
+        ("ts", 0.005),
+        ("nr", 0.00),
     ],
 }
 
 SA_SLANG_TERMS = [
-    "eish", "lekker", "howzit", "yebo", "haibo", "ag", "sharp",
-    "hectic", "lank", "baie dankie", "ja nee", "aikona", "jislaaik",
-    "dis nie reg nie", "yoh",
+    "eish",
+    "lekker",
+    "howzit",
+    "yebo",
+    "haibo",
+    "ag",
+    "sharp",
+    "hectic",
+    "lank",
+    "baie dankie",
+    "ja nee",
+    "aikona",
+    "jislaaik",
+    "dis nie reg nie",
+    "yoh",
 ]
 
 
@@ -465,6 +582,7 @@ def _build_text(label: str, template_fn, language: str = "en") -> str:
 # ─────────────────────────────────────────────────────────────────────────────
 # Generation
 # ─────────────────────────────────────────────────────────────────────────────
+
 
 def generate_samples():
     plan = (
@@ -514,9 +632,17 @@ def main():
             slang_count += 1
 
     lang_names = {
-        "en": "English", "af": "Afrikaans", "zu": "isiZulu", "xh": "isiXhosa",
-        "st": "Sesotho", "nso": "Sepedi", "tn": "Setswana", "ss": "siSwati",
-        "ve": "Tshivenda", "ts": "Xitsonga", "nr": "isiNdebele",
+        "en": "English",
+        "af": "Afrikaans",
+        "zu": "isiZulu",
+        "xh": "isiXhosa",
+        "st": "Sesotho",
+        "nso": "Sepedi",
+        "tn": "Setswana",
+        "ss": "siSwati",
+        "ve": "Tshivenda",
+        "ts": "Xitsonga",
+        "nr": "isiNdebele",
     }
 
     print("=" * 52)

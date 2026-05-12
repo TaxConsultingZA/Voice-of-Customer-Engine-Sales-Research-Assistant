@@ -99,8 +99,7 @@ def load_records(input_path: Path) -> List[Dict]:
             import pandas as pd  # Optional dependency
         except ImportError as exc:
             raise ImportError(
-                "Excel detected. Install pandas and openpyxl first: "
-                "pip install pandas openpyxl"
+                "Excel detected. Install pandas and openpyxl first: " "pip install pandas openpyxl"
             ) from exc
         return pd.read_excel(input_path).to_dict(orient="records")
 
@@ -130,9 +129,7 @@ def choose_text_column(records: List[Dict], text_column: Optional[str]) -> str:
         if any(x in key_lower for x in ["text", "message", "content", "desc", "transcript"]):
             return key
 
-    raise ValueError(
-        "Cannot auto-detect text column. Please pass --text-column explicitly."
-    )
+    raise ValueError("Cannot auto-detect text column. Please pass --text-column explicitly.")
 
 
 def clean_records(records: List[Dict], text_column: str) -> List[Dict]:

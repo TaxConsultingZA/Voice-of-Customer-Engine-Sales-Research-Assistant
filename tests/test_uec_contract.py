@@ -11,9 +11,19 @@ import jsonschema
 import pytest
 
 ALL_CHANNELS = [
-    "email", "chat", "call", "sms", "whatsapp",
-    "web_form", "mobile_app", "social_media",
-    "in_person", "survey", "api", "internal_note", "sales_call",
+    "email",
+    "chat",
+    "call",
+    "sms",
+    "whatsapp",
+    "web_form",
+    "mobile_app",
+    "social_media",
+    "in_person",
+    "survey",
+    "api",
+    "internal_note",
+    "sales_call",
 ]
 
 ALL_ENTITY_TYPES = ["PRODUCT", "FEATURE", "PERSON", "ORG", "LOCATION", "DATE", "CURRENCY"]
@@ -78,7 +88,7 @@ def test_taxonomy_path_valid_format_accepted(uec_schema, sample_uec_event):
 def test_taxonomy_path_invalid_format_rejected(uec_schema, sample_uec_event):
     invalid_paths = [
         "authentication.login.reset",  # must start uppercase
-        "Auth.Login",                  # only two segments
+        "Auth.Login",  # only two segments
         "Authentication-Login-Reset",  # wrong separator
         "plain_string",
     ]

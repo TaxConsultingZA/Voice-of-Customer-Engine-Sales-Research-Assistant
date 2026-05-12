@@ -2,9 +2,10 @@ import os
 from functools import lru_cache
 
 from fastapi import FastAPI
-from pydantic import BaseModel, Field
 from presidio_analyzer import AnalyzerEngine, Pattern, PatternRecognizer
+from presidio_analyzer.nlp_engine import NlpEngineProvider
 from presidio_anonymizer import AnonymizerEngine
+from pydantic import BaseModel, Field
 
 app = FastAPI(
     title="SA Redactor",
@@ -12,18 +13,18 @@ app = FastAPI(
     version="1.0.0",
 )
 
-from presidio_analyzer.nlp_engine import NlpEngineProvider
-
 THRESHOLD = float(os.getenv("PRESIDIO_THRESHOLD", "0.85"))
 SPACY_MODEL = os.getenv("SPACY_MODEL", "en_core_web_lg")
 
 
 @lru_cache(maxsize=1)
 def get_analyzer() -> AnalyzerEngine:
-    provider = NlpEngineProvider(nlp_configuration={
-        "nlp_engine_name": "spacy",
-        "models": [{"lang_code": "en", "model_name": SPACY_MODEL}],
-    })
+    provider = NlpEngineProvider(
+        nlp_configuration={
+            "nlp_engine_name": "spacy",
+            "models": [{"lang_code": "en", "model_name": SPACY_MODEL}],
+        }
+    )
     engine = AnalyzerEngine(nlp_engine=provider.create_engine())
     # Regex-based SA phone recognizer — catches +27 and 0XX formats reliably.
     sa_phone = PatternRecognizer(
@@ -105,9 +106,7 @@ def redact(req: RedactRequest):
 @app.post("/scan", response_model=ScanResponse)
 def scan(req: ScanRequest):
     """Scan text for PII without redacting. Used by the CI/CD POPIA gate."""
-    results = get_analyzer().analyze(
-        text=req.text, language="en", score_threshold=req.threshold
-    )
+    results = get_analyzer().analyze(text=req.text, language="en", score_threshold=req.threshold)
     entities = [
         EntityHit(entity_type=r.entity_type, score=r.score, start=r.start, end=r.end)
         for r in results
