@@ -50,7 +50,6 @@ jobs:
     name: "Unit Tests (coverage ≥ 85%)"
     runs-on: ubuntu-latest
     needs: lint
-    if: ${{ hashFiles('tests/**/*.py') != '' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -86,7 +85,6 @@ jobs:
     name: "UEC Contract Validation"
     runs-on: ubuntu-latest
     needs: lint
-    if: ${{ hashFiles('tests/test_uec_contract.py') != '' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -109,7 +107,6 @@ jobs:
     name: "POPIA Compliance Scan (Presidio threshold 0.85)"
     runs-on: ubuntu-latest
     needs: unit-tests
-    if: ${{ hashFiles('tests/test_popia_compliance.py') != '' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -169,7 +166,6 @@ jobs:
     name: "Critical Scenario Suite"
     runs-on: ubuntu-latest
     needs: [unit-tests, uec-contract]
-    if: ${{ hashFiles('tests/critical_scenarios/**/*.py') != '' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -192,7 +188,6 @@ jobs:
     name: "SA Sentiment Benchmark (F1 ≥ 0.94)"
     runs-on: ubuntu-latest
     needs: [unit-tests, popia-scan]
-    if: ${{ hashFiles('tests/test_sentiment_accuracy.py') != '' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -230,7 +225,7 @@ jobs:
     name: "SA Regional Latency (P95 < 500ms)"
     runs-on: ubuntu-latest
     needs: [critical-scenarios, popia-scan]
-    if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' && hashFiles('tests/integration/test_sa_latency.py') != '' }}
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     environment: staging-af-south-1
     steps:
       - uses: actions/checkout@v4
