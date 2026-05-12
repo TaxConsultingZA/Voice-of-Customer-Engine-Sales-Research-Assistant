@@ -25,6 +25,7 @@ models/*.pt
 # IDE
 .vscode/
 .idea/
+.claude/
 *.swp
 
 # Docker
