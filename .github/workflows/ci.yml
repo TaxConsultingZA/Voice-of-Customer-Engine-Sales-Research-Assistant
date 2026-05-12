@@ -1,0 +1,245 @@
+name: VoC Engine CI
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Pipeline sequence (each stage gates the next):
+#   Lint → Unit Tests → UEC Contract → POPIA Scan → Critical Scenarios
+#   → [main only] SA Regional Latency
+# ─────────────────────────────────────────────────────────────────────────────
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main, dev]
+
+env:
+  PYTHON_VERSION: "3.11"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# STAGE 1 — Lint
+# ─────────────────────────────────────────────────────────────────────────────
+jobs:
+  lint:
+    name: "Lint (black · isort · flake8)"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+
+      - name: Install linters
+        run: pip install black==23.11.0 isort==5.12.0 flake8==6.1.0
+
+      - name: black
+        run: black --check .
+
+      - name: isort
+        run: isort --check-only .
+
+      - name: flake8
+        run: flake8 . --max-line-length=100 --exclude=.git,__pycache__,venv,.mypy_cache
+
+# ─────────────────────────────────────────────────────────────────────────────
+# STAGE 2 — Unit Tests (coverage ≥ 85%)
+# ─────────────────────────────────────────────────────────────────────────────
+  unit-tests:
+    name: "Unit Tests (coverage ≥ 85%)"
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+
+      - name: Install dev dependencies
+        run: pip install -r requirements-dev.txt
+
+      - name: Run unit tests
+        run: |
+          pytest tests/ \
+            --ignore=tests/integration \
+            --ignore=tests/critical_scenarios \
+            --cov=. \
+            --cov-report=xml \
+            --cov-report=term-missing \
+            --cov-fail-under=85 \
+            -v
+
+      - name: Upload coverage
+        uses: codecov/codecov-action@v4
+        with:
+          file: coverage.xml
+          fail_ci_if_error: false
+
+# ─────────────────────────────────────────────────────────────────────────────
+# STAGE 3 — UEC Contract Validation
+# ─────────────────────────────────────────────────────────────────────────────
+  uec-contract:
+    name: "UEC Contract Validation"
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+
+      - name: Install jsonschema
+        run: pip install jsonschema==4.19.1 pytest==7.4.3
+
+      - name: Validate UEC contract
+        run: pytest tests/test_uec_contract.py -v
+
+# ─────────────────────────────────────────────────────────────────────────────
+# STAGE 4 — POPIA Compliance Scan
+# Fail criteria: PII confidence > 0.85 in any pipeline output
+# ─────────────────────────────────────────────────────────────────────────────
+  popia-scan:
+    name: "POPIA Compliance Scan (Presidio threshold 0.85)"
+    runs-on: ubuntu-latest
+    needs: unit-tests
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+
+      - name: Install Presidio + spacy
+        run: |
+          pip install presidio-analyzer==2.2.33 presidio-anonymizer==2.2.33 spacy==3.7.2 pytest==7.4.3
+          python -m spacy download en_core_web_lg
+
+      - name: Run POPIA compliance tests
+        run: pytest tests/test_popia_compliance.py -v
+
+      - name: Scan processed data directory for PII leaks
+        run: |
+          python - <<'EOF'
+          import os
+          import json
+          from pathlib import Path
+          from presidio_analyzer import AnalyzerEngine
+
+          threshold = 0.85
+          scan_dirs = ["data/processed"] if Path("data/processed").exists() else []
+
+          if not scan_dirs:
+              print("No processed data directory found — skipping file scan.")
+              exit(0)
+
+          analyzer = AnalyzerEngine()
+          violations = []
+
+          for scan_dir in scan_dirs:
+              for path in Path(scan_dir).rglob("*.json"):
+                  content = path.read_text(encoding="utf-8")
+                  results = analyzer.analyze(text=content, language="en", score_threshold=threshold)
+                  if results:
+                      violations.append({
+                          "file": str(path),
+                          "entities": [{"type": r.entity_type, "score": r.score} for r in results],
+                      })
+
+          if violations:
+              print("POPIA VIOLATION — PII detected in processed output:")
+              print(json.dumps(violations, indent=2))
+              exit(1)
+
+          print("POPIA scan passed — no PII detected above threshold.")
+          EOF
+
+# ─────────────────────────────────────────────────────────────────────────────
+# STAGE 5 — Critical Scenario Suite
+# ─────────────────────────────────────────────────────────────────────────────
+  critical-scenarios:
+    name: "Critical Scenario Suite"
+    runs-on: ubuntu-latest
+    needs: [unit-tests, uec-contract]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements-dev.txt
+
+      - name: Run critical scenarios
+        run: pytest tests/critical_scenarios/ -v --timeout=60
+
+# ─────────────────────────────────────────────────────────────────────────────
+# STAGE 6 — SA Sentiment Benchmark (F1 ≥ 0.94)
+# Runs only when model weights are present (skips gracefully otherwise)
+# ─────────────────────────────────────────────────────────────────────────────
+  sentiment-benchmark:
+    name: "SA Sentiment Benchmark (F1 ≥ 0.94)"
+    runs-on: ubuntu-latest
+    needs: [unit-tests, popia-scan]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+
+      - name: Restore model weights from cache
+        uses: actions/cache@v4
+        id: model-cache
+        with:
+          path: models/
+          key: sentiment-model-${{ hashFiles('models/.model-version') }}
+
+      - name: Install ML dependencies
+        run: pip install -r requirements-dev.txt scikit-learn==1.3.2
+
+      - name: Run sentiment benchmark
+        run: pytest tests/test_sentiment_accuracy.py -v --timeout=300
+        env:
+          MODEL_PATH: models/sentiment-sa-v2
+
+      - name: Alert on F1 regression
+        if: failure()
+        run: |
+          echo "::error::Sentiment F1 regression detected — build blocked."
+          echo "::error::Action: rollback model weights, notify #voc-ml, investigate corpus drift."
+
+# ─────────────────────────────────────────────────────────────────────────────
+# STAGE 7 — SA Regional Latency (P95 < 500ms)
+# Runs only on pushes to main — requires staging environment
+# ─────────────────────────────────────────────────────────────────────────────
+  sa-regional-latency:
+    name: "SA Regional Latency (P95 < 500ms)"
+    runs-on: ubuntu-latest
+    needs: [critical-scenarios, popia-scan]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    environment: staging-af-south-1
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+
+      - name: Install test dependencies
+        run: pip install requests==2.31.0 numpy==1.25.2 pytest==7.4.3 pytest-timeout==2.2.0
+
+      - name: Run SA latency tests
+        run: pytest tests/integration/test_sa_latency.py -v -m integration --timeout=120
+        env:
+          STAGING_API_URL: ${{ secrets.STAGING_API_URL }}
+          REDACTOR_URL: ${{ secrets.REDACTOR_URL }}
