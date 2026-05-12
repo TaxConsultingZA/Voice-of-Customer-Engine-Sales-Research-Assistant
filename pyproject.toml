@@ -26,6 +26,21 @@ markers = [
 addopts = "--strict-markers"
 timeout = 120
 
+[tool.coverage.run]
+omit = [
+    "tests/*",
+    "scripts/*",
+    "venv/*",
+    ".venv/*",
+    "*/site-packages/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "if __name__ == .__main__.:",
+    "pragma: no cover",
+]
+
 [tool.flake8]
 max-line-length = 100
 exclude = [".git", "__pycache__", "venv", ".mypy_cache"]

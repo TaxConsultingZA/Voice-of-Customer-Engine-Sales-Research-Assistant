@@ -7,12 +7,21 @@ before text reaches the NLP pipeline.
 
 import csv
 import json
+import sys
 import tempfile
 from pathlib import Path
+from unittest.mock import patch
 
 import pytest
 
-from data_cleaner import choose_text_column, clean_records, clean_ticket_text, load_records
+from data_cleaner import (
+    choose_text_column,
+    clean_records,
+    clean_ticket_text,
+    load_records,
+    main,
+    save_as_csv,
+)
 
 # ---------------------------------------------------------------------------
 # clean_ticket_text
@@ -210,3 +219,85 @@ def test_load_jsonl():
 def test_unsupported_file_type_raises():
     with pytest.raises(ValueError, match="Unsupported"):
         load_records(Path("data.pdf"))
+
+
+def test_load_json_dict_format():
+    """JSON files wrapping the record list in {"data": [...]} are supported."""
+    data = {"data": [{"id": "1", "message": "Login broken"}]}
+    with tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False, encoding="utf-8") as f:
+        json.dump(data, f)
+        tmp_path = Path(f.name)
+
+    records = load_records(tmp_path)
+    assert len(records) == 1
+    assert records[0]["message"] == "Login broken"
+    tmp_path.unlink()
+
+
+def test_load_excel_without_pandas_raises():
+    """Excel loading raises ImportError with install instructions when pandas is absent."""
+    with patch.dict("sys.modules", {"pandas": None}):
+        with pytest.raises(ImportError, match="pandas"):
+            load_records(Path("data.xlsx"))
+
+
+# ---------------------------------------------------------------------------
+# choose_text_column — edge cases
+# ---------------------------------------------------------------------------
+
+
+def test_fuzzy_fallback_detects_transcript_column():
+    """Falls back to first column whose name contains 'transcript'."""
+    records = [{"call_transcript": "Hello", "id": 1}]
+    assert choose_text_column(records, None) == "call_transcript"
+
+
+def test_no_detectable_column_raises():
+    """Raises ValueError when no text-like column can be found."""
+    records = [{"id": 1, "score": 5}]
+    with pytest.raises(ValueError, match="auto-detect"):
+        choose_text_column(records, None)
+
+
+# ---------------------------------------------------------------------------
+# save_as_csv
+# ---------------------------------------------------------------------------
+
+
+def test_save_as_csv_writes_file(tmp_path):
+    rows = [{"id": "1", "cleaned_text": "Login broken"}]
+    out = tmp_path / "output.csv"
+    save_as_csv(rows, out)
+    assert out.exists()
+    assert "Login broken" in out.read_text(encoding="utf-8-sig")
+
+
+def test_save_as_csv_empty_raises():
+    with pytest.raises(ValueError, match="No cleaned rows"):
+        save_as_csv([], Path("output.csv"))
+
+
+# ---------------------------------------------------------------------------
+# main() — end-to-end CLI
+# ---------------------------------------------------------------------------
+
+
+def test_main_runs_end_to_end(tmp_path, monkeypatch):
+    """main() reads a CSV, cleans text, and writes a valid output file."""
+    input_file = tmp_path / "input.csv"
+    output_file = tmp_path / "output.csv"
+
+    with input_file.open("w", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=["text"])
+        writer.writeheader()
+        writer.writerow({"text": "Login is broken"})
+
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        ["data_cleaner.py", "--input", str(input_file), "--output", str(output_file)],
+    )
+    main()
+
+    assert output_file.exists()
+    assert "Login is broken" in output_file.read_text(encoding="utf-8-sig")
