@@ -5,8 +5,6 @@ Validates Signal Alpha domain classification (Authentication & Onboarding)
 and broader taxonomy coverage. All tests are rule-based and run without a model.
 """
 
-import pytest
-
 from services.nlp.app.taxonomy import classify
 
 # ---------------------------------------------------------------------------

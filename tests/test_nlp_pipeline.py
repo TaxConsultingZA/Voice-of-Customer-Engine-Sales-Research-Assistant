@@ -5,8 +5,6 @@ Validates crisis score calculation, gate assignment, intent detection,
 and routing logic. Tests run without a trained model.
 """
 
-import pytest
-
 from services.nlp.app.pipeline import (
     RED_THRESHOLD,
     YELLOW_THRESHOLD,
