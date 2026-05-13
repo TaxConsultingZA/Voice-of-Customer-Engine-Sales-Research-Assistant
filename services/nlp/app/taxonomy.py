@@ -60,11 +60,11 @@ _RULES: list[tuple[list[str], str]] = [
         "Compliance.Popia.DataAccessRequest",
     ),
     # ── Billing ──────────────────────────────────────────────────────────────
-    (["refund", "money back", "reimburs"], "Billing.Payment.Refund"),
     (
         ["cancel my subscription", "cancel subscription", "cancellation", "terminate"],
         "Billing.Subscription.Cancellation",
     ),
+    (["refund", "money back", "reimburs"], "Billing.Payment.Refund"),
     (
         ["charged twice", "duplicate charge", "double charge", "overcharged"],
         "Billing.Payment.DuplicateCharge",

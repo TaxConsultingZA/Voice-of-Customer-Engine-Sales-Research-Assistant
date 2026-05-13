@@ -149,3 +149,24 @@ def test_crisis_score_within_bounds():
     for text, arr in texts:
         result = process_complaint(_complaint(text, arr=arr))
         assert 0.0 <= result.crisis_score <= 1.0, f"Score out of bounds for: {text}"
+
+
+def test_sub_unit_arr_does_not_create_negative_crisis_score():
+    result = process_complaint(_complaint("The system is broken and terrible.", arr=0.5))
+    assert result.crisis_score >= 0.0
+
+
+def test_anomaly_inputs_are_processed_when_provided():
+    result = process_complaint(
+        {
+            "text": "Password reset requests are suddenly exploding.",
+            "customer_arr": 80_000,
+            "anomaly_topic": "PasswordReset",
+            "anomaly_count": 45,
+            "anomaly_baseline_mean": 5.0,
+            "anomaly_baseline_std": 3.0,
+        }
+    )
+    assert result.anomaly_sigma is not None
+    assert result.anomaly_is_detected is True
+    assert result.anomaly_recommended_action == "escalate_to_product"

@@ -118,6 +118,11 @@ def test_cancellation_classified_correctly():
     assert path == "Billing.Subscription.Cancellation"
 
 
+def test_cancel_and_refund_prefers_cancellation():
+    path = classify("Please cancel my subscription and refund the remaining amount")
+    assert path == "Billing.Subscription.Cancellation"
+
+
 def test_payment_failure_classified_correctly():
     path = classify("My payment keeps failing at checkout")
     assert path == "Billing.Payment.Failure"
