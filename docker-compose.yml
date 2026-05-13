@@ -13,6 +13,7 @@ version: "3.9"
 #   zookeeper   Required by Kafka
 #   kafka       Single-broker dev Kafka (3-broker HA configured in prod)
 #   sa-redactor POPIA PII redaction service (must pass /health before pipeline runs)
+#   nlp         NLP intelligence layer — sentiment, taxonomy, intent, crisis scoring
 # ─────────────────────────────────────────────────────────────────────────────
 
 services:
@@ -108,6 +109,33 @@ services:
       interval: 10s
       timeout: 5s
       start_period: 45s
+      retries: 5
+    restart: unless-stopped
+
+  # ── NLP Service — sentiment, taxonomy, intent, crisis scoring ────────────────
+  nlp:
+    build:
+      context: ./services/nlp
+      target: production
+    container_name: voc-nlp
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./data/sa_slang.json:/app/data/sa_slang.json:ro
+    environment:
+      SLANG_FILE: "/app/data/sa_slang.json"
+    depends_on:
+      sa-redactor:
+        condition: service_healthy
+    healthcheck:
+      test:
+        - "CMD"
+        - "python"
+        - "-c"
+        - "import urllib.request; urllib.request.urlopen('http://localhost:8081/health')"
+      interval: 10s
+      timeout: 5s
+      start_period: 15s
       retries: 5
     restart: unless-stopped
 
