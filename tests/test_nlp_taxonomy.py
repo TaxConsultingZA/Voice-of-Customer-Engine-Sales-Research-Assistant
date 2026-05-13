@@ -9,34 +9,50 @@ import pytest
 
 from services.nlp.app.taxonomy import classify
 
-
 # ---------------------------------------------------------------------------
 # Signal Alpha — Authentication (highest priority)
 # ---------------------------------------------------------------------------
 
 
 def test_password_reset_classified_correctly():
-    assert classify("The password reset email never arrives") == "Authentication.Login.PasswordReset"
+    assert (
+        classify("The password reset email never arrives") == "Authentication.Login.PasswordReset"
+    )
 
 
 def test_forgot_password_classified_correctly():
-    assert classify("I clicked forgot password but nothing happened") == "Authentication.Login.PasswordReset"
+    assert (
+        classify("I clicked forgot password but nothing happened")
+        == "Authentication.Login.PasswordReset"
+    )
 
 
 def test_mfa_issue_classified_correctly():
-    assert classify("The MFA code keeps expiring before I can enter it") == "Authentication.Login.MultiFactorAuth"
+    assert (
+        classify("The MFA code keeps expiring before I can enter it")
+        == "Authentication.Login.MultiFactorAuth"
+    )
 
 
 def test_two_factor_classified_correctly():
-    assert classify("Two-factor authentication is not working") == "Authentication.Login.MultiFactorAuth"
+    assert (
+        classify("Two-factor authentication is not working")
+        == "Authentication.Login.MultiFactorAuth"
+    )
 
 
 def test_account_locked_classified_correctly():
-    assert classify("My account is locked after too many attempts") == "Authentication.Login.AccountLocked"
+    assert (
+        classify("My account is locked after too many attempts")
+        == "Authentication.Login.AccountLocked"
+    )
 
 
 def test_sso_failure_classified_correctly():
-    assert classify("SSO login with our company account stopped working") == "Authentication.SSO.Failure"
+    assert (
+        classify("SSO login with our company account stopped working")
+        == "Authentication.SSO.Failure"
+    )
 
 
 def test_generic_login_failure_classified_correctly():
@@ -53,11 +69,17 @@ def test_sign_in_failure_classified_correctly():
 
 
 def test_email_verification_classified_correctly():
-    assert classify("My verification email never arrived") == "Onboarding.Registration.EmailVerification"
+    assert (
+        classify("My verification email never arrived")
+        == "Onboarding.Registration.EmailVerification"
+    )
 
 
 def test_signup_failure_classified_correctly():
-    assert classify("I cannot complete my sign up, the form keeps failing") == "Onboarding.Registration.Failure"
+    assert (
+        classify("I cannot complete my sign up, the form keeps failing")
+        == "Onboarding.Registration.Failure"
+    )
 
 
 def test_setup_wizard_classified_correctly():
@@ -70,11 +92,17 @@ def test_setup_wizard_classified_correctly():
 
 
 def test_popia_data_request_classified_correctly():
-    assert classify("I want a copy of all personal data you hold about me") == "Compliance.Popia.DataAccessRequest"
+    assert (
+        classify("I want a copy of all personal data you hold about me")
+        == "Compliance.Popia.DataAccessRequest"
+    )
 
 
 def test_section_23_classified_correctly():
-    assert classify("Section 23 right of access — please send me my data") == "Compliance.Popia.DataAccessRequest"
+    assert (
+        classify("Section 23 right of access — please send me my data")
+        == "Compliance.Popia.DataAccessRequest"
+    )
 
 
 # ---------------------------------------------------------------------------

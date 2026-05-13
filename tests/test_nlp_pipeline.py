@@ -49,9 +49,7 @@ def test_enterprise_cancellation_triggers_red():
 
 
 def test_mid_arr_complaint_is_yellow():
-    result = process_complaint(
-        _complaint("My payment keeps failing at checkout.", arr=85_000)
-    )
+    result = process_complaint(_complaint("My payment keeps failing at checkout.", arr=85_000))
     assert result.crisis_score >= YELLOW_THRESHOLD
     assert result.at_risk_flag is True
 
@@ -84,16 +82,12 @@ def test_cancellation_intent_detected():
 
 
 def test_data_access_request_intent_detected():
-    result = process_complaint(
-        _complaint("I want a copy of all personal data you hold about me.")
-    )
+    result = process_complaint(_complaint("I want a copy of all personal data you hold about me."))
     assert result.intent == "data_access_request"
 
 
 def test_data_access_request_routes_to_compliance():
-    result = process_complaint(
-        _complaint("POPIA right of access — please send me my data.")
-    )
+    result = process_complaint(_complaint("POPIA right of access — please send me my data."))
     assert "popia_compliance_team" in result.routing
     assert "route_to_compliance" in result.actions
 

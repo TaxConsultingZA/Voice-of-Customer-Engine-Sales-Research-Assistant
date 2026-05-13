@@ -37,30 +37,22 @@ def test_normal_count_not_anomaly(detector):
 
 
 def test_sigma_calculation_correct(detector):
-    result = detector.check_spike(
-        topic="LoginFail", count=20, baseline_mean=5.0, baseline_std=5.0
-    )
+    result = detector.check_spike(topic="LoginFail", count=20, baseline_mean=5.0, baseline_std=5.0)
     assert abs(result.sigma - 3.0) < 0.01  # (20-5)/5 = 3.0
 
 
 def test_exact_3sigma_not_anomaly(detector):
-    result = detector.check_spike(
-        topic="LoginFail", count=20, baseline_mean=5.0, baseline_std=5.0
-    )
+    result = detector.check_spike(topic="LoginFail", count=20, baseline_mean=5.0, baseline_std=5.0)
     assert result.is_anomaly is False  # > 3.0 required, not >= 3.0
 
 
 def test_zero_std_with_spike_is_anomaly(detector):
-    result = detector.check_spike(
-        topic="Outage", count=10, baseline_mean=0.0, baseline_std=0.0
-    )
+    result = detector.check_spike(topic="Outage", count=10, baseline_mean=0.0, baseline_std=0.0)
     assert result.is_anomaly is True
 
 
 def test_zero_std_no_spike_not_anomaly(detector):
-    result = detector.check_spike(
-        topic="Outage", count=0, baseline_mean=0.0, baseline_std=0.0
-    )
+    result = detector.check_spike(topic="Outage", count=0, baseline_mean=0.0, baseline_std=0.0)
     assert result.is_anomaly is False
 
 
@@ -77,9 +69,7 @@ def test_13sigma_escalates_to_product(detector):
 
 
 def test_5sigma_escalates_to_engineering(detector):
-    result = detector.check_spike(
-        topic="LoginFail", count=30, baseline_mean=5.0, baseline_std=5.0
-    )
+    result = detector.check_spike(topic="LoginFail", count=30, baseline_mean=5.0, baseline_std=5.0)
     assert result.recommended_action == "escalate_to_engineering"
 
 
@@ -103,9 +93,7 @@ def test_below_threshold_monitors(detector):
 
 
 def test_returns_anomaly_result_dataclass(detector):
-    result = detector.check_spike(
-        topic="LoginFail", count=10, baseline_mean=5.0, baseline_std=2.0
-    )
+    result = detector.check_spike(topic="LoginFail", count=10, baseline_mean=5.0, baseline_std=2.0)
     assert isinstance(result, AnomalyResult)
 
 
