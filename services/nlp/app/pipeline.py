@@ -149,7 +149,5 @@ def process_complaint(complaint: dict) -> ComplaintResult:
         contains_slang=_slang.contains_slang(text),
         anomaly_sigma=anomaly_result.sigma if anomaly_result else None,
         anomaly_is_detected=anomaly_result.is_anomaly if anomaly_result else False,
-        anomaly_recommended_action=(
-            anomaly_result.recommended_action if anomaly_result else None
-        ),
+        anomaly_recommended_action=(anomaly_result.recommended_action if anomaly_result else None),
     )
