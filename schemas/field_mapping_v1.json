@@ -1,0 +1,77 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "VoC Engine — Channel Field Mapping v1.0",
+  "description": "Official mapping of raw channel payload fields to UEC (Universal Event Contract) standard fields. Priority order: first matching field wins.",
+  "version": "1.0.0",
+  "uec_fields": {
+    "text": "The complaint or message body — passed to NLP pipeline for analysis.",
+    "customer_id": "Raw customer identifier — SHA-256 hashed before storage (POPIA compliance).",
+    "timestamp": "Event timestamp — ISO 8601 UTC. Defaults to ingest time if absent.",
+    "customer_arr": "Customer Annual Recurring Revenue in ZAR — used for crisis score weighting.",
+    "sentiment_polarity": "Pre-computed polarity [-1.0, 1.0] — overrides NLP if supplied by source.",
+    "sentiment_confidence": "Pre-computed confidence [0.0, 1.0] — overrides NLP if supplied by source.",
+    "taxonomy_path": "Pre-classified UEC path (Domain.Capability.Theme) — overrides classifier if supplied."
+  },
+  "channels": {
+    "email": {
+      "description": "Inbound support emails — direct from inbox or forwarded via helpdesk.",
+      "field_map": {
+        "text":                ["text", "body", "message", "content"],
+        "customer_id":         ["customer_id", "email_from", "from", "sender_email"],
+        "timestamp":           ["timestamp", "sent_at", "date", "received_at"],
+        "customer_arr":        ["customer_arr", "arr", "account_arr"],
+        "sentiment_polarity":  ["sentiment_polarity"],
+        "sentiment_confidence":["sentiment_confidence"],
+        "taxonomy_path":       ["taxonomy_path", "category"]
+      }
+    },
+    "whatsapp": {
+      "description": "WhatsApp Business API messages.",
+      "field_map": {
+        "text":                ["message_text", "text", "body"],
+        "customer_id":         ["wa_id", "customer_id", "phone_number", "from"],
+        "timestamp":           ["timestamp", "sent_at"],
+        "customer_arr":        ["customer_arr", "arr"],
+        "sentiment_polarity":  ["sentiment_polarity"],
+        "sentiment_confidence":["sentiment_confidence"],
+        "taxonomy_path":       ["taxonomy_path"]
+      }
+    },
+    "zendesk": {
+      "description": "Zendesk ticket submissions — description field is the primary text source.",
+      "field_map": {
+        "text":                ["description", "comment_body", "text", "body"],
+        "customer_id":         ["requester_id", "user_id", "customer_id"],
+        "timestamp":           ["created_at", "submitted_at", "timestamp"],
+        "customer_arr":        ["customer_arr", "arr", "account_arr"],
+        "sentiment_polarity":  ["sentiment_polarity"],
+        "sentiment_confidence":["sentiment_confidence"],
+        "taxonomy_path":       ["taxonomy_path", "ticket_type", "category"]
+      }
+    },
+    "web_form": {
+      "description": "In-product feedback forms and contact-us submissions.",
+      "field_map": {
+        "text":                ["message", "feedback", "text", "body", "content"],
+        "customer_id":         ["customer_id", "user_id", "email"],
+        "timestamp":           ["submitted_at", "timestamp", "created_at"],
+        "customer_arr":        ["customer_arr", "arr"],
+        "sentiment_polarity":  ["sentiment_polarity"],
+        "sentiment_confidence":["sentiment_confidence"],
+        "taxonomy_path":       ["taxonomy_path", "form_category"]
+      }
+    },
+    "api": {
+      "description": "Programmatic submissions — internal tools, CRM integrations, batch imports.",
+      "field_map": {
+        "text":                ["text", "body", "message", "content"],
+        "customer_id":         ["customer_id", "account_id", "user_id"],
+        "timestamp":           ["timestamp", "event_time", "created_at"],
+        "customer_arr":        ["customer_arr", "arr", "account_arr"],
+        "sentiment_polarity":  ["sentiment_polarity"],
+        "sentiment_confidence":["sentiment_confidence"],
+        "taxonomy_path":       ["taxonomy_path"]
+      }
+    }
+  }
+}
