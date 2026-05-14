@@ -61,6 +61,10 @@ def test_sign_in_failure_classified_correctly():
     assert classify("Cannot sign in, getting an error") == "Authentication.Login.Failure"
 
 
+def test_afrikaans_login_failure_classified_correctly():
+    assert classify("Ek kan nie inlog op my rekening nie") == "Authentication.Login.Failure"
+
+
 # ---------------------------------------------------------------------------
 # Signal Alpha — Onboarding
 # ---------------------------------------------------------------------------
@@ -115,6 +119,11 @@ def test_refund_request_classified_correctly():
 
 def test_cancellation_classified_correctly():
     path = classify("Please cancel my subscription immediately")
+    assert path == "Billing.Subscription.Cancellation"
+
+
+def test_afrikaans_cancellation_classified_correctly():
+    path = classify("Kanselleer my intekening asseblief")
     assert path == "Billing.Subscription.Cancellation"
 
 

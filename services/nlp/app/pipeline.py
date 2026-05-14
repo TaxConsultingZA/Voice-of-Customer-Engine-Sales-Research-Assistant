@@ -24,10 +24,28 @@ _anomaly = AnomalyDetector()
 
 _INTENT_KEYWORDS: list[tuple[list[str], str]] = [
     (
-        ["personal data", "my data", "right of access", "popia", "section 23", "delete my data"],
+        [
+            "personal data",
+            "my data",
+            "right of access",
+            "popia",
+            "section 23",
+            "delete my data",
+            "persoonlike data",
+        ],
         "data_access_request",
     ),
-    (["cancel", "cancellation", "terminate", "end my subscription"], "cancellation"),
+    (
+        [
+            "cancel",
+            "cancellation",
+            "terminate",
+            "end my subscription",
+            "kanselleer",
+            "stop my subscription",
+        ],
+        "cancellation",
+    ),
     (
         ["great", "excellent", "amazing", "love", "fantastic", "thank you", "lekker", "sharp"],
         "praise",
@@ -74,6 +92,21 @@ def _detect_intent(text: str) -> str:
     return "complaint"
 
 
+def _detect_language(text: str) -> str:
+    text_lower = text.lower()
+    zulu_hints = {"ngiyacela", "ngiyabonga", "angikwazi", "akusebenzi", "kuhle"}
+    xhosa_hints = {"ndicela", "enkosi", "andinako", "ayisebenzi", "ingxaki"}
+    afrikaans_hints = {"asseblief", "dankie", "kan nie", "werk nie", "baie"}
+
+    if any(token in text_lower for token in zulu_hints):
+        return "zu"
+    if any(token in text_lower for token in xhosa_hints):
+        return "xh"
+    if any(token in text_lower for token in afrikaans_hints):
+        return "af"
+    return "en"
+
+
 def _compute_crisis_score(polarity: float, customer_arr: float, intent: str) -> float:
     # Severity: 0 = very positive, 1 = very negative
     severity = (1.0 - polarity) / 2.0
@@ -95,6 +128,7 @@ def process_complaint(complaint: dict) -> ComplaintResult:
 
     sentiment = _sentiment.analyze(text)
     intent = _detect_intent(text)
+    language_detected = _detect_language(text)
     taxonomy_path = classify_taxonomy(text, intent)
     crisis_score = _compute_crisis_score(sentiment.polarity, arr, intent)
     anomaly_result = None
@@ -145,7 +179,7 @@ def process_complaint(complaint: dict) -> ComplaintResult:
         requires_approval=requires_approval,
         sentiment_polarity=sentiment.polarity,
         sentiment_confidence=sentiment.confidence,
-        language_detected="en",
+        language_detected=language_detected,
         contains_slang=_slang.contains_slang(text),
         anomaly_sigma=anomaly_result.sigma if anomaly_result else None,
         anomaly_is_detected=anomaly_result.is_anomaly if anomaly_result else False,

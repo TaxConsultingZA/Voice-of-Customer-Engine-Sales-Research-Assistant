@@ -79,6 +79,11 @@ def test_cancellation_intent_detected():
     assert result.intent == "cancellation"
 
 
+def test_afrikaans_cancellation_intent_detected():
+    result = process_complaint(_complaint("Kan jy asseblief my intekening kanselleer."))
+    assert result.intent == "cancellation"
+
+
 def test_data_access_request_intent_detected():
     result = process_complaint(_complaint("I want a copy of all personal data you hold about me."))
     assert result.intent == "data_access_request"
@@ -128,6 +133,11 @@ def test_eish_detected_as_slang():
 def test_clean_text_no_slang():
     result = process_complaint(_complaint("The login page is not working."))
     assert result.contains_slang is False
+
+
+def test_language_detection_for_afrikaans_text():
+    result = process_complaint(_complaint("Asseblief, dit werk nie en ek is baie gefrustreerd."))
+    assert result.language_detected == "af"
 
 
 # ---------------------------------------------------------------------------

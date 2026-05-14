@@ -29,7 +29,16 @@ _RULES: list[tuple[list[str], str]] = [
         "Authentication.Login.SessionExpired",
     ),
     (
-        ["log in", "login", "sign in", "cannot access", "can't log", "access my account"],
+        [
+            "log in",
+            "login",
+            "sign in",
+            "cannot access",
+            "can't log",
+            "access my account",
+            "kan nie inlog",
+            "akusebenzi ukungena",
+        ],
         "Authentication.Login.Failure",
     ),
     # ── Onboarding (Signal Alpha) ────────────────────────────────────────────
@@ -61,7 +70,13 @@ _RULES: list[tuple[list[str], str]] = [
     ),
     # ── Billing ──────────────────────────────────────────────────────────────
     (
-        ["cancel my subscription", "cancel subscription", "cancellation", "terminate"],
+        [
+            "cancel my subscription",
+            "cancel subscription",
+            "cancellation",
+            "terminate",
+            "kanselleer my intekening",
+        ],
         "Billing.Subscription.Cancellation",
     ),
     (["refund", "money back", "reimburs"], "Billing.Payment.Refund"),
@@ -78,6 +93,8 @@ _RULES: list[tuple[list[str], str]] = [
             "payment not going through",
             "failing at checkout",
             "payment keeps",
+            "betaling misluk",
+            "inkokhelo yehluleka",
         ],
         "Billing.Payment.Failure",
     ),

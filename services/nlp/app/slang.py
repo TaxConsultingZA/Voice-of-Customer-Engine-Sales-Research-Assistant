@@ -5,7 +5,9 @@ from functools import lru_cache
 from pathlib import Path
 
 _DEFAULT_SLANG_PATH = Path(__file__).parent.parent.parent.parent / "data" / "sa_slang.json"
-SLANG_PATH = Path(os.getenv("SLANG_DICT_PATH", str(_DEFAULT_SLANG_PATH)))
+SLANG_PATH = Path(
+    os.getenv("SLANG_DICT_PATH") or os.getenv("SLANG_FILE") or str(_DEFAULT_SLANG_PATH)
+)
 
 _NEGATIVE_HINTS = {
     "frustrat",
