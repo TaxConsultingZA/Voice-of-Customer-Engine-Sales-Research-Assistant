@@ -1,0 +1,154 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "VoC Engine — Unified Taxonomy v1.0",
+  "description": "Official classification labels for all customer signals. Format: Domain.Capability.Theme. Signal Alpha domains (Authentication, Onboarding) are evaluated first.",
+  "version": "1.0.0",
+  "format": "Domain.Capability.Theme",
+  "signal_alpha_domains": ["Authentication", "Onboarding"],
+  "labels": {
+    "Authentication": {
+      "description": "All account access and identity issues.",
+      "signal_alpha": true,
+      "capabilities": {
+        "Login": {
+          "themes": {
+            "Failure":            "General sign-in failure — no more specific cause identified.",
+            "PasswordReset":      "User cannot reset password — reset email not received or link expired.",
+            "MultiFactorAuth":    "MFA/2FA code not delivered, expired, or app not working.",
+            "AccountLocked":      "Account locked due to too many failed attempts or admin action.",
+            "InvalidCredentials": "Username or password rejected — credentials mismatch.",
+            "SessionExpired":     "User unexpectedly logged out or session timed out."
+          }
+        },
+        "SSO": {
+          "themes": {
+            "Failure": "Single sign-on (SAML/OAuth) not working — company SSO cannot authenticate."
+          }
+        }
+      }
+    },
+    "Onboarding": {
+      "description": "New user registration and initial product setup issues.",
+      "signal_alpha": true,
+      "capabilities": {
+        "Registration": {
+          "themes": {
+            "Failure":           "Sign-up form fails, errors on submission, or account not created.",
+            "EmailVerification": "Verification or confirmation email not received or link expired."
+          }
+        },
+        "Setup": {
+          "themes": {
+            "Failure": "Setup wizard, initial configuration, or first-run experience broken."
+          }
+        }
+      }
+    },
+    "Billing": {
+      "description": "Payment, subscription, and invoicing issues.",
+      "signal_alpha": false,
+      "capabilities": {
+        "Subscription": {
+          "themes": {
+            "Cancellation": "Customer requests to cancel or terminate their subscription.",
+            "Upgrade":       "Customer wants to upgrade or downgrade their plan."
+          }
+        },
+        "Payment": {
+          "themes": {
+            "Failure":        "Payment declined, card rejected, or checkout not completing.",
+            "Refund":         "Customer requests a full or partial refund.",
+            "DuplicateCharge":"Customer charged twice or billed an incorrect amount."
+          }
+        },
+        "Invoice": {
+          "themes": {
+            "Query": "Question about invoice, pricing, subscription cost, or billing cycle."
+          }
+        }
+      }
+    },
+    "Performance": {
+      "description": "System reliability, uptime, and speed issues.",
+      "signal_alpha": false,
+      "capabilities": {
+        "Availability": {
+          "themes": {
+            "Outage": "Service completely down, unavailable, or returning 5xx errors."
+          }
+        },
+        "Latency": {
+          "themes": {
+            "Degradation": "Pages, reports, or features loading significantly slower than expected."
+          }
+        }
+      }
+    },
+    "Compliance": {
+      "description": "Regulatory and data privacy requests — POPIA/GDPR.",
+      "signal_alpha": false,
+      "capabilities": {
+        "Popia": {
+          "themes": {
+            "DataAccessRequest": "Section 23 right of access — customer requests copy of personal data.",
+            "DataDeletion":      "Right to erasure — customer requests deletion of personal data.",
+            "DataCorrection":    "Right to correct — customer disputes accuracy of stored personal data."
+          }
+        }
+      }
+    },
+    "Reporting": {
+      "description": "Dashboard, analytics, and export issues.",
+      "signal_alpha": false,
+      "capabilities": {
+        "Dashboard": {
+          "themes": {
+            "Failure": "Dashboard, chart, graph, or analytics view not loading or showing errors."
+          }
+        },
+        "Export": {
+          "themes": {
+            "Failure": "Data export (CSV, PDF, Excel) failing or producing empty/corrupt files."
+          }
+        }
+      }
+    },
+    "Integration": {
+      "description": "API, webhook, and third-party connector issues.",
+      "signal_alpha": false,
+      "capabilities": {
+        "API": {
+          "themes": {
+            "Failure": "REST API returning errors, timeouts, or unexpected responses."
+          }
+        },
+        "Webhook": {
+          "themes": {
+            "Failure": "Webhook events not being delivered or delivery retries failing."
+          }
+        },
+        "Sync": {
+          "themes": {
+            "Failure": "Data sync with third-party system (CRM, ERP, Zapier) not completing."
+          }
+        }
+      }
+    },
+    "Support": {
+      "description": "Support process and general enquiries.",
+      "signal_alpha": false,
+      "capabilities": {
+        "Response": {
+          "themes": {
+            "Delay": "No reply from support team or response taking too long."
+          }
+        },
+        "General": {
+          "themes": {
+            "Unknown": "FALLBACK — complaint does not match any defined taxonomy path."
+          }
+        }
+      }
+    }
+  }
+}

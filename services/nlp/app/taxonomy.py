@@ -56,6 +56,14 @@ _RULES: list[tuple[list[str], str]] = [
     ),
     # ── Compliance ───────────────────────────────────────────────────────────
     (
+        ["delete my data", "erase my data", "right to erasure", "remove my information"],
+        "Compliance.Popia.DataDeletion",
+    ),
+    (
+        ["correct my data", "update my information", "wrong information on file", "data correction"],
+        "Compliance.Popia.DataCorrection",
+    ),
+    (
         [
             "personal data",
             "my data",
@@ -64,7 +72,6 @@ _RULES: list[tuple[list[str], str]] = [
             "section 23",
             "popia",
             "gdpr",
-            "delete my data",
         ],
         "Compliance.Popia.DataAccessRequest",
     ),
@@ -98,6 +105,10 @@ _RULES: list[tuple[list[str], str]] = [
         ],
         "Billing.Payment.Failure",
     ),
+    (
+        ["upgrade my plan", "downgrade my plan", "change my plan", "switch plan", "upgrade subscription"],
+        "Billing.Subscription.Upgrade",
+    ),
     (["invoice", "billing", "subscription cost", "pricing"], "Billing.Invoice.Query"),
     # ── Performance ──────────────────────────────────────────────────────────
     (
@@ -110,11 +121,17 @@ _RULES: list[tuple[list[str], str]] = [
     ),
     # ── Reporting ────────────────────────────────────────────────────────────
     (
-        ["dashboard", "export", "report", "analytics", "graph", "chart"],
+        ["export failed", "download failed", "csv not working", "export not working", "export error"],
+        "Reporting.Export.Failure",
+    ),
+    (
+        ["dashboard", "report", "analytics", "graph", "chart"],
         "Reporting.Dashboard.Failure",
     ),
     # ── Integration ──────────────────────────────────────────────────────────
-    (["api", "webhook", "integration", "sync", "connector", "zapier"], "Integration.API.Failure"),
+    (["webhook", "webhook not firing", "webhook failed", "events not delivered"], "Integration.Webhook.Failure"),
+    (["sync failed", "not syncing", "sync error", "data sync", "out of sync"], "Integration.Sync.Failure"),
+    (["api", "integration", "connector", "zapier"], "Integration.API.Failure"),
     # ── Support ──────────────────────────────────────────────────────────────
     (
         ["support team", "response time", "waiting for", "no reply", "slow support", "no response"],
