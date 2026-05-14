@@ -79,6 +79,11 @@ def test_cancellation_intent_detected():
     assert result.intent == "cancellation"
 
 
+def test_afrikaans_cancellation_intent_detected():
+    result = process_complaint(_complaint("Kan jy asseblief my intekening kanselleer."))
+    assert result.intent == "cancellation"
+
+
 def test_data_access_request_intent_detected():
     result = process_complaint(_complaint("I want a copy of all personal data you hold about me."))
     assert result.intent == "data_access_request"
@@ -130,6 +135,11 @@ def test_clean_text_no_slang():
     assert result.contains_slang is False
 
 
+def test_language_detection_for_afrikaans_text():
+    result = process_complaint(_complaint("Asseblief, dit werk nie en ek is baie gefrustreerd."))
+    assert result.language_detected == "af"
+
+
 # ---------------------------------------------------------------------------
 # Return type
 # ---------------------------------------------------------------------------
@@ -149,3 +159,24 @@ def test_crisis_score_within_bounds():
     for text, arr in texts:
         result = process_complaint(_complaint(text, arr=arr))
         assert 0.0 <= result.crisis_score <= 1.0, f"Score out of bounds for: {text}"
+
+
+def test_sub_unit_arr_does_not_create_negative_crisis_score():
+    result = process_complaint(_complaint("The system is broken and terrible.", arr=0.5))
+    assert result.crisis_score >= 0.0
+
+
+def test_anomaly_inputs_are_processed_when_provided():
+    result = process_complaint(
+        {
+            "text": "Password reset requests are suddenly exploding.",
+            "customer_arr": 80_000,
+            "anomaly_topic": "PasswordReset",
+            "anomaly_count": 45,
+            "anomaly_baseline_mean": 5.0,
+            "anomaly_baseline_std": 3.0,
+        }
+    )
+    assert result.anomaly_sigma is not None
+    assert result.anomaly_is_detected is True
+    assert result.anomaly_recommended_action == "escalate_to_product"

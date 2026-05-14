@@ -34,6 +34,10 @@ models/*.pt
 .DS_Store
 Thumbs.db
 
+# Runtime artifacts
+data/processed/*.jsonl
+data/reports/*.md
+
 # Secrets — never commit these
 *.pem
 *.key

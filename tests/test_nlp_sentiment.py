@@ -82,6 +82,16 @@ def test_kak_is_strong_negative_signal(analyser):
     assert result.polarity < -0.1
 
 
+def test_negated_positive_phrase_becomes_negative(analyser):
+    result = analyser.analyze("This is not good and not reliable at all.")
+    assert result.label == "NEGATIVE"
+
+
+def test_afrikaans_negative_signal_detected(analyser):
+    result = analyser.analyze("Die diens is baie sleg en dit werk nie.")
+    assert result.label == "NEGATIVE"
+
+
 # ---------------------------------------------------------------------------
 # Confidence
 # ---------------------------------------------------------------------------

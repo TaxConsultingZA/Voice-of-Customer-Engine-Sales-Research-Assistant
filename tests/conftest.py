@@ -8,13 +8,13 @@ ROOT = Path(__file__).parent.parent
 
 @pytest.fixture(scope="session")
 def uec_schema():
-    with (ROOT / "schemas" / "uec_v1.json").open() as f:
+    with (ROOT / "schemas" / "uec_v1.json").open(encoding="utf-8") as f:
         return json.load(f)
 
 
 @pytest.fixture(scope="session")
 def sa_slang():
-    with (ROOT / "data" / "sa_slang.json").open() as f:
+    with (ROOT / "data" / "sa_slang.json").open(encoding="utf-8") as f:
         return json.load(f)
 
 

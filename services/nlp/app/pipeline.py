@@ -24,10 +24,28 @@ _anomaly = AnomalyDetector()
 
 _INTENT_KEYWORDS: list[tuple[list[str], str]] = [
     (
-        ["personal data", "my data", "right of access", "popia", "section 23", "delete my data"],
+        [
+            "personal data",
+            "my data",
+            "right of access",
+            "popia",
+            "section 23",
+            "delete my data",
+            "persoonlike data",
+        ],
         "data_access_request",
     ),
-    (["cancel", "cancellation", "terminate", "end my subscription"], "cancellation"),
+    (
+        [
+            "cancel",
+            "cancellation",
+            "terminate",
+            "end my subscription",
+            "kanselleer",
+            "stop my subscription",
+        ],
+        "cancellation",
+    ),
     (
         ["great", "excellent", "amazing", "love", "fantastic", "thank you", "lekker", "sharp"],
         "praise",
@@ -61,6 +79,9 @@ class ComplaintResult:
     sentiment_confidence: float = 0.0
     language_detected: str = "en"
     contains_slang: bool = False
+    anomaly_sigma: float | None = None
+    anomaly_is_detected: bool = False
+    anomaly_recommended_action: str | None = None
 
 
 def _detect_intent(text: str) -> str:
@@ -71,18 +92,34 @@ def _detect_intent(text: str) -> str:
     return "complaint"
 
 
+def _detect_language(text: str) -> str:
+    text_lower = text.lower()
+    zulu_hints = {"ngiyacela", "ngiyabonga", "angikwazi", "akusebenzi", "kuhle"}
+    xhosa_hints = {"ndicela", "enkosi", "andinako", "ayisebenzi", "ingxaki"}
+    afrikaans_hints = {"asseblief", "dankie", "kan nie", "werk nie", "baie"}
+
+    if any(token in text_lower for token in zulu_hints):
+        return "zu"
+    if any(token in text_lower for token in xhosa_hints):
+        return "xh"
+    if any(token in text_lower for token in afrikaans_hints):
+        return "af"
+    return "en"
+
+
 def _compute_crisis_score(polarity: float, customer_arr: float, intent: str) -> float:
     # Severity: 0 = very positive, 1 = very negative
     severity = (1.0 - polarity) / 2.0
 
     # ARR factor: log scale normalised to R200K cap
     if customer_arr > 0:
-        arr_factor = min(math.log10(customer_arr) / math.log10(200_000), 1.0)
+        safe_arr = max(1.0, customer_arr)
+        arr_factor = min(math.log10(safe_arr) / math.log10(200_000), 1.0)
     else:
         arr_factor = 0.1
 
     intent_factor = _INTENT_MULTIPLIERS.get(intent, 1.0)
-    return round(min(severity * arr_factor * intent_factor, 1.0), 4)
+    return round(max(0.0, min(severity * arr_factor * intent_factor, 1.0)), 4)
 
 
 def process_complaint(complaint: dict) -> ComplaintResult:
@@ -91,8 +128,26 @@ def process_complaint(complaint: dict) -> ComplaintResult:
 
     sentiment = _sentiment.analyze(text)
     intent = _detect_intent(text)
+    language_detected = _detect_language(text)
     taxonomy_path = classify_taxonomy(text, intent)
     crisis_score = _compute_crisis_score(sentiment.polarity, arr, intent)
+    anomaly_result = None
+
+    anomaly_topic = complaint.get("anomaly_topic")
+    anomaly_count = complaint.get("anomaly_count")
+    anomaly_baseline_mean = complaint.get("anomaly_baseline_mean")
+    anomaly_baseline_std = complaint.get("anomaly_baseline_std")
+
+    if all(
+        value is not None
+        for value in (anomaly_topic, anomaly_count, anomaly_baseline_mean, anomaly_baseline_std)
+    ):
+        anomaly_result = _anomaly.check_spike(
+            topic=str(anomaly_topic),
+            count=int(anomaly_count),
+            baseline_mean=float(anomaly_baseline_mean),
+            baseline_std=float(anomaly_baseline_std),
+        )
 
     escalation_triggered = crisis_score >= YELLOW_THRESHOLD
     at_risk_flag = crisis_score >= YELLOW_THRESHOLD or intent == "cancellation"
@@ -124,6 +179,9 @@ def process_complaint(complaint: dict) -> ComplaintResult:
         requires_approval=requires_approval,
         sentiment_polarity=sentiment.polarity,
         sentiment_confidence=sentiment.confidence,
-        language_detected="en",
+        language_detected=language_detected,
         contains_slang=_slang.contains_slang(text),
+        anomaly_sigma=anomaly_result.sigma if anomaly_result else None,
+        anomaly_is_detected=anomaly_result.is_anomaly if anomaly_result else False,
+        anomaly_recommended_action=(anomaly_result.recommended_action if anomaly_result else None),
     )

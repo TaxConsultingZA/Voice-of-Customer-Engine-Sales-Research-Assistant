@@ -123,6 +123,7 @@ services:
     volumes:
       - ./data/sa_slang.json:/app/data/sa_slang.json:ro
     environment:
+      SLANG_DICT_PATH: "/app/data/sa_slang.json"
       SLANG_FILE: "/app/data/sa_slang.json"
     depends_on:
       sa-redactor:
@@ -133,6 +134,41 @@ services:
         - "python"
         - "-c"
         - "import urllib.request; urllib.request.urlopen('http://localhost:8081/health')"
+      interval: 10s
+      timeout: 5s
+      start_period: 15s
+      retries: 5
+    restart: unless-stopped
+
+  # ── Ingestion Service — normalize channel payloads into UEC events ────────────
+  ingestion:
+    build:
+      context: ./services/ingestion
+      target: production
+    container_name: voc-ingestion
+    ports:
+      - "8000:8000"
+    environment:
+      INGESTION_DEAD_LETTER_PATH: "/app/data/ingestion_failed_events.jsonl"
+      INGESTION_EVENT_LOG_PATH: "/app/data/processed/uec_events.jsonl"
+      INGESTION_ENABLE_ENRICHMENT: "true"
+      INGESTION_FAIL_OPEN: "true"
+      INGESTION_HTTP_TIMEOUT_SECONDS: "2.0"
+      REDACTOR_URL: "http://sa-redactor:8080"
+      NLP_URL: "http://nlp:8081"
+    volumes:
+      - ./data:/app/data
+    depends_on:
+      nlp:
+        condition: service_healthy
+      sa-redactor:
+        condition: service_healthy
+    healthcheck:
+      test:
+        - "CMD"
+        - "python"
+        - "-c"
+        - "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"
       interval: 10s
       timeout: 5s
       start_period: 15s
