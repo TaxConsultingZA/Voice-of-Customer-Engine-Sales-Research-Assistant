@@ -5,12 +5,16 @@ import requests
 from fastapi.testclient import TestClient
 
 from services.ingestion.app import main
+from services.ingestion.app.adapters import reload_field_mapping
 from services.ingestion.app.main import app
 
 
 @pytest.fixture(autouse=True)
 def _disable_external_enrichment(monkeypatch):
     monkeypatch.setenv("INGESTION_ENABLE_ENRICHMENT", "false")
+    reload_field_mapping()
+    yield
+    reload_field_mapping()
 
 
 def test_email_payload_is_normalized_and_accepted():
@@ -59,6 +63,25 @@ def test_zendesk_payload_maps_to_api_channel():
     assert body["taxonomy_path"].startswith("Billing.")
     assert body["redaction_applied"] is False
     assert body["persisted"] is True
+
+
+def test_web_form_payload_is_supported_via_field_mapping():
+    client = TestClient(app)
+    response = client.post(
+        "/api/events",
+        json={
+            "source": "web_form",
+            "payload": {
+                "feedback": "Login screen is broken.",
+                "email": "customer@example.com",
+                "submitted_at": "2026-04-28T09:00:00Z",
+            },
+        },
+    )
+    assert response.status_code == 201
+    body = response.json()
+    assert body["accepted"] is True
+    assert body["channel"] == "web_form"
 
 
 def test_invalid_payload_goes_to_dead_letter(tmp_path, monkeypatch):
@@ -229,3 +252,49 @@ def test_successful_ingestion_persists_event_log(tmp_path, monkeypatch):
     event = json.loads(lines[0])
     assert event["channel"] == "email"
     assert "event_id" in event
+
+
+def test_reload_mapping_endpoint_uses_custom_field_mapping(tmp_path, monkeypatch):
+    custom_mapping_path = tmp_path / "field_mapping_custom.json"
+    custom_mapping_path.write_text(
+        json.dumps(
+            {
+                "version": "99.0.0",
+                "channels": {
+                    "email": {
+                        "field_map": {
+                            "text": ["body_alt"],
+                            "customer_id": ["sender_alt"],
+                            "timestamp": ["ts_alt"],
+                            "customer_arr": ["arr_alt"],
+                            "sentiment_polarity": [],
+                            "sentiment_confidence": [],
+                            "taxonomy_path": [],
+                        }
+                    }
+                },
+            }
+        ),
+        encoding="utf-8",
+    )
+    monkeypatch.setenv("FIELD_MAPPING_PATH", str(custom_mapping_path))
+    client = TestClient(app)
+
+    reload_resp = client.post("/admin/reload-mapping")
+    assert reload_resp.status_code == 200
+    assert reload_resp.json()["mapping_version"] == "99.0.0"
+    assert reload_resp.json()["channels"] == ["email"]
+
+    ingest_resp = client.post(
+        "/api/events",
+        json={
+            "source": "email",
+            "payload": {
+                "body_alt": "I cannot login.",
+                "sender_alt": "customer@example.com",
+                "ts_alt": "2026-04-28T09:00:00Z",
+                "arr_alt": 50000,
+            },
+        },
+    )
+    assert ingest_resp.status_code == 201

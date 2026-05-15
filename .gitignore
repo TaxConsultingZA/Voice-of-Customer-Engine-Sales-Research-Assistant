@@ -37,6 +37,7 @@ Thumbs.db
 # Runtime artifacts
 data/processed/*.jsonl
 data/reports/*.md
+data/dead_letter/*.jsonl
 
 # Secrets — never commit these
 *.pem

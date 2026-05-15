@@ -1,6 +1,21 @@
 import hashlib
+import json
+import os
 from datetime import UTC, datetime
+from functools import lru_cache
+from pathlib import Path
 from uuid import uuid4
+
+_DEFAULT_FIELD_MAPPING_PATH = (
+    Path(__file__).resolve().parents[3] / "schemas" / "field_mapping_v1.json"
+)
+_SOURCE_TO_CHANNEL = {
+    "email": "email",
+    "whatsapp": "whatsapp",
+    "zendesk": "api",
+    "web_form": "web_form",
+    "api": "api",
+}
 
 
 def _as_utc_timestamp(value: str | None) -> str:
@@ -20,6 +35,48 @@ def _default_taxonomy(text: str) -> str:
     if "payment" in text_lower or "refund" in text_lower:
         return "Billing.Payment.Failure"
     return "Support.General.Unknown"
+
+
+def _mapping_path() -> Path:
+    return Path(os.getenv("FIELD_MAPPING_PATH", str(_DEFAULT_FIELD_MAPPING_PATH)))
+
+
+@lru_cache(maxsize=1)
+def load_field_mapping() -> dict:
+    with _mapping_path().open(encoding="utf-8") as f:
+        return json.load(f)
+
+
+def reload_field_mapping() -> dict:
+    load_field_mapping.cache_clear()
+    return load_field_mapping()
+
+
+def _channel_field_map(source: str) -> dict:
+    mapping = load_field_mapping()
+    channels = mapping.get("channels", {})
+    if source not in channels:
+        msg = f"Unsupported source '{source}' in field mapping."
+        raise ValueError(msg)
+    return channels[source].get("field_map", {})
+
+
+def _pick_first(payload: dict, aliases: list[str], default=None):
+    for alias in aliases:
+        value = payload.get(alias)
+        if value is None:
+            continue
+        if isinstance(value, str) and not value.strip():
+            continue
+        return value
+    return default
+
+
+def _as_float(value, default: float = 0.0) -> float:
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return default
 
 
 def _normalize_common(
@@ -54,67 +111,66 @@ def _normalize_common(
     }
 
 
-def normalize_email(payload: dict) -> dict:
-    text = str(payload.get("text", payload.get("body", "")))
-    raw_customer_id = str(payload.get("customer_id", payload.get("email_from", "")))
+def normalize_payload(source: str, payload: dict) -> dict:
+    field_map = _channel_field_map(source)
+    text = str(_pick_first(payload, field_map.get("text", []), ""))
+    raw_customer_id = str(_pick_first(payload, field_map.get("customer_id", []), ""))
+    timestamp = _pick_first(payload, field_map.get("timestamp", []), None)
+    sentiment_polarity = _as_float(
+        _pick_first(payload, field_map.get("sentiment_polarity", []), 0.0), 0.0
+    )
+    sentiment_confidence = _as_float(
+        _pick_first(payload, field_map.get("sentiment_confidence", []), 0.5), 0.5
+    )
+    taxonomy_path = _pick_first(payload, field_map.get("taxonomy_path", []), None)
+
+    channel = _SOURCE_TO_CHANNEL.get(source, source)
     return _normalize_common(
-        source="email",
-        channel="email",
+        source=source,
+        channel=channel,
         text=text,
         raw_customer_id=raw_customer_id,
-        timestamp=payload.get("timestamp"),
-        sentiment_polarity=float(payload.get("sentiment_polarity", 0.0)),
-        sentiment_confidence=float(payload.get("sentiment_confidence", 0.5)),
-        taxonomy_path=payload.get("taxonomy_path"),
+        timestamp=str(timestamp) if timestamp is not None else None,
+        sentiment_polarity=sentiment_polarity,
+        sentiment_confidence=sentiment_confidence,
+        taxonomy_path=str(taxonomy_path) if taxonomy_path is not None else None,
     )
+
+
+def normalize_email(payload: dict) -> dict:
+    return normalize_payload("email", payload)
 
 
 def normalize_whatsapp(payload: dict) -> dict:
-    text = str(payload.get("message_text", payload.get("text", "")))
-    raw_customer_id = str(payload.get("wa_id", payload.get("customer_id", "")))
-    return _normalize_common(
-        source="whatsapp",
-        channel="whatsapp",
-        text=text,
-        raw_customer_id=raw_customer_id,
-        timestamp=payload.get("timestamp"),
-        sentiment_polarity=float(payload.get("sentiment_polarity", 0.0)),
-        sentiment_confidence=float(payload.get("sentiment_confidence", 0.5)),
-        taxonomy_path=payload.get("taxonomy_path"),
-    )
+    return normalize_payload("whatsapp", payload)
 
 
 def normalize_zendesk(payload: dict) -> dict:
-    text = str(payload.get("description", payload.get("text", "")))
-    raw_customer_id = str(payload.get("requester_id", payload.get("customer_id", "")))
-    return _normalize_common(
-        source="zendesk",
-        channel="api",
-        text=text,
-        raw_customer_id=raw_customer_id,
-        timestamp=payload.get("created_at"),
-        sentiment_polarity=float(payload.get("sentiment_polarity", 0.0)),
-        sentiment_confidence=float(payload.get("sentiment_confidence", 0.5)),
-        taxonomy_path=payload.get("taxonomy_path"),
-    )
+    return normalize_payload("zendesk", payload)
+
+
+def normalize_web_form(payload: dict) -> dict:
+    return normalize_payload("web_form", payload)
+
+
+def normalize_api(payload: dict) -> dict:
+    return normalize_payload("api", payload)
 
 
 NORMALIZERS = {
     "email": normalize_email,
     "whatsapp": normalize_whatsapp,
     "zendesk": normalize_zendesk,
+    "web_form": normalize_web_form,
+    "api": normalize_api,
 }
 
 
 def extract_text(source: str, payload: dict) -> str:
-    if source == "email":
-        return str(payload.get("text", payload.get("body", "")))
-    if source == "whatsapp":
-        return str(payload.get("message_text", payload.get("text", "")))
-    if source == "zendesk":
-        return str(payload.get("description", payload.get("text", "")))
-    return ""
+    field_map = _channel_field_map(source)
+    return str(_pick_first(payload, field_map.get("text", []), ""))
 
 
-def extract_customer_arr(payload: dict) -> float:
-    return float(payload.get("customer_arr", 0.0))
+def extract_customer_arr(source: str, payload: dict) -> float:
+    field_map = _channel_field_map(source)
+    return _as_float(_pick_first(payload, field_map.get("customer_arr", []), 0.0), 0.0)

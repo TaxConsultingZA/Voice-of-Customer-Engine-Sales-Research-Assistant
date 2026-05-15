@@ -64,6 +64,18 @@ python scripts/generate_weekly_digest.py --input data/processed/uec_events.jsonl
 # Optional: also write a stakeholder-facing sample copy
 python scripts/generate_weekly_digest.py --sample-output data/reports/weekly_digest_sample.md
 
+# Synthetic load test for ingestion API
+python scripts/load_test_ingestion.py --base-url http://localhost:8000 --requests 1000 --concurrency 50
+
+# Synthetic load test + markdown report
+python scripts/load_test_ingestion.py --base-url http://localhost:8000 --requests 1000 --concurrency 50 --report-output data/reports/load_test_report.md
+
+# Verify fail-open / fail-closed strategy behavior
+python scripts/verify_ingestion_fail_strategy.py
+
+# One-command verification: health + fail strategy + load test + markdown report
+python scripts/run_ingestion_verification.py --ingestion-url http://localhost:8000 --strict-health --output data/reports/ingestion_verification_report.md
+
 # Lint
 black --check .
 isort --check .

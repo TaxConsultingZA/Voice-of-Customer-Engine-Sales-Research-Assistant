@@ -7,7 +7,13 @@ import requests
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
-from .adapters import NORMALIZERS, extract_customer_arr, extract_text
+from .adapters import (
+    NORMALIZERS,
+    extract_customer_arr,
+    extract_text,
+    load_field_mapping,
+    reload_field_mapping,
+)
 from .dead_letter import write_dead_letter
 from .event_store import persist_event
 from .uec import validate_uec_event
@@ -20,7 +26,7 @@ app = FastAPI(
 
 
 class IngestRequest(BaseModel):
-    source: Literal["email", "whatsapp", "zendesk"]
+    source: Literal["email", "whatsapp", "zendesk", "web_form", "api"]
     payload: dict = Field(default_factory=dict)
 
 
@@ -33,9 +39,26 @@ class IngestResponse(BaseModel):
     persisted: bool
 
 
+class ReloadMappingResponse(BaseModel):
+    status: str
+    mapping_version: str | None = None
+    channels: list[str] = Field(default_factory=list)
+
+
 @app.get("/health")
 def health():
     return {"status": "ok", "service": "voc-ingestion", "version": "0.1.0"}
+
+
+@app.post("/admin/reload-mapping", response_model=ReloadMappingResponse)
+def reload_mapping():
+    mapping = reload_field_mapping()
+    channels = sorted(mapping.get("channels", {}).keys())
+    return ReloadMappingResponse(
+        status="ok",
+        mapping_version=mapping.get("version"),
+        channels=channels,
+    )
 
 
 def _env_bool(name: str, default: bool) -> bool:
@@ -82,7 +105,7 @@ def _call_nlp_analyze(text: str, channel: str, customer_arr: float, timeout_seco
 def ingest_event(req: IngestRequest):
     normalizer = NORMALIZERS[req.source]
     raw_text = extract_text(req.source, req.payload)
-    customer_arr = extract_customer_arr(req.payload)
+    customer_arr = extract_customer_arr(req.source, req.payload)
     text_for_nlp = raw_text
     redaction_applied = False
     enable_enrichment = _env_bool("INGESTION_ENABLE_ENRICHMENT", True)
@@ -90,6 +113,8 @@ def ingest_event(req: IngestRequest):
     timeout_seconds = float(os.getenv("INGESTION_HTTP_TIMEOUT_SECONDS", "2.0"))
 
     try:
+        # Ensure mapping is loaded at request-time (cached after first call).
+        load_field_mapping()
         event = normalizer(req.payload)
 
         if enable_enrichment:
