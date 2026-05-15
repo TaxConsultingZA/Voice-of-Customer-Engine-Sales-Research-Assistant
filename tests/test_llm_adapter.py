@@ -6,8 +6,6 @@ suggested actions, and correct get_analyzer() behaviour. All tests run without
 any model weights (lexicon-backed mock only).
 """
 
-import os
-
 from services.nlp.app.llm_adapter import LLMAnalysis, MockLLMAnalyzer, get_analyzer
 
 # ---------------------------------------------------------------------------

@@ -20,7 +20,7 @@ from .models import DecisionRequest
 
 app = FastAPI(
     title="VoC Decision Intelligence Engine",
-    description="Governance layer — routes, blocks, or approves automated actions based on crisis score.",
+    description="Governance layer — routes, blocks, or approves automated actions based on crisis score.",  # noqa: E501
     version="1.0.0",
 )
 
