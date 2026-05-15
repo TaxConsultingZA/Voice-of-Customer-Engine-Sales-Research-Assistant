@@ -10,7 +10,6 @@ import os
 
 from services.nlp.app.llm_adapter import LLMAnalysis, MockLLMAnalyzer, get_analyzer
 
-
 # ---------------------------------------------------------------------------
 # Return type
 # ---------------------------------------------------------------------------
