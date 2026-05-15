@@ -148,7 +148,7 @@ services:
       target: production
     container_name: voc-ingestion
     ports:
-      - "8000:8000"
+      - "8003:8000"
     environment:
       INGESTION_DEAD_LETTER_PATH: "/app/data/ingestion_failed_events.jsonl"
       INGESTION_EVENT_LOG_PATH: "/app/data/processed/uec_events.jsonl"
