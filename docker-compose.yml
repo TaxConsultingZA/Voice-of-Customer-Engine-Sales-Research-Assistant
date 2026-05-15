@@ -14,6 +14,7 @@ version: "3.9"
 #   kafka       Single-broker dev Kafka (3-broker HA configured in prod)
 #   sa-redactor POPIA PII redaction service (must pass /health before pipeline runs)
 #   nlp         NLP intelligence layer — sentiment, taxonomy, intent, crisis scoring
+#   decision    Decision Intelligence Engine — governance gates, approval workflow, watchlist
 # ─────────────────────────────────────────────────────────────────────────────
 
 services:
@@ -169,6 +170,31 @@ services:
         - "python"
         - "-c"
         - "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"
+      interval: 10s
+      timeout: 5s
+      start_period: 15s
+      retries: 5
+    restart: unless-stopped
+
+  # ── Decision Intelligence Engine — governance, approval, watchlist ───────────
+  decision:
+    build:
+      context: ./services/decision
+      target: production
+    container_name: voc-decision
+    ports:
+      - "8082:8082"
+    environment:
+      NLP_URL: "http://nlp:8081"
+    depends_on:
+      nlp:
+        condition: service_healthy
+    healthcheck:
+      test:
+        - "CMD"
+        - "python"
+        - "-c"
+        - "import urllib.request; urllib.request.urlopen('http://localhost:8082/health')"
       interval: 10s
       timeout: 5s
       start_period: 15s
