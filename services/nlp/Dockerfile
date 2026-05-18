@@ -3,13 +3,14 @@ FROM python:3.11-slim AS base
 
 WORKDIR /app
 
-COPY requirements.txt .
+COPY services/nlp/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # ── Stage 2: production ─────────────────────────────────────────────────────
 FROM base AS production
 
-COPY app/ ./app/
+COPY services/nlp/app/ ./app/
+COPY schemas/ ./schemas/
 
 EXPOSE 8081
 

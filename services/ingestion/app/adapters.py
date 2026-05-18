@@ -6,9 +6,6 @@ from functools import lru_cache
 from pathlib import Path
 from uuid import uuid4
 
-_DEFAULT_FIELD_MAPPING_PATH = (
-    Path(__file__).resolve().parents[3] / "schemas" / "field_mapping_v1.json"
-)
 _SOURCE_TO_CHANNEL = {
     "email": "email",
     "whatsapp": "whatsapp",
@@ -38,7 +35,13 @@ def _default_taxonomy(text: str) -> str:
 
 
 def _mapping_path() -> Path:
-    return Path(os.getenv("FIELD_MAPPING_PATH", str(_DEFAULT_FIELD_MAPPING_PATH)))
+    env = os.getenv("FIELD_MAPPING_PATH")
+    if env:
+        return Path(env)
+    schemas_dir = os.getenv("SCHEMAS_PATH")
+    if schemas_dir:
+        return Path(schemas_dir) / "field_mapping_v1.json"
+    return Path(__file__).resolve().parents[3] / "schemas" / "field_mapping_v1.json"
 
 
 @lru_cache(maxsize=1)

@@ -1,20 +1,18 @@
 version: "3.9"
 
 # ─────────────────────────────────────────────────────────────────────────────
-# VoC Engine — Local Development Stack
+# VoC Engine — Staging Stack (Azure)
 # ─────────────────────────────────────────────────────────────────────────────
-# Start:   docker compose up -d
-# Stop:    docker compose down
-# Rebuild: docker compose up -d --build
+# Start:   docker compose -f docker-compose.staging.yml up -d --build
+# Stop:    docker compose -f docker-compose.staging.yml down
 #
-# Services:
-#   postgres    PostgreSQL 15 with ltree + uuid-ossp extensions
-#   redis       Redis 7.2 — Celery broker and cache
-#   zookeeper   Required by Kafka
-#   kafka       Single-broker dev Kafka (3-broker HA configured in prod)
-#   sa-redactor POPIA PII redaction service (must pass /health before pipeline runs)
-#   nlp         NLP intelligence layer — sentiment, taxonomy, intent, crisis scoring
-#   decision    Decision Intelligence Engine — governance gates, approval workflow, watchlist
+# Differences from dev:
+#   - Loads secrets from .env (never committed)
+#   - No source code volume mounts — code is baked into images
+#   - Resource limits set per container
+#   - Azure Blob Storage used for event log and dead-letter queue
+#   - spaCy model set to en_core_web_sm (faster, sufficient for staging)
+#   - Single Kafka broker (same as dev; 3-broker HA configured in prod)
 # ─────────────────────────────────────────────────────────────────────────────
 
 services:
@@ -22,27 +20,32 @@ services:
   # ── PostgreSQL 15 with ltree ───────────────────────────────────────────────
   postgres:
     image: postgres:15.4
-    container_name: voc-postgres
+    container_name: voc-postgres-staging
     environment:
-      POSTGRES_DB: voc_engine
-      POSTGRES_USER: voc
-      POSTGRES_PASSWORD: voc_dev_secret
+      POSTGRES_DB: ${POSTGRES_DB:-voc_engine}
+      POSTGRES_USER: ${POSTGRES_USER:-voc}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres_staging_data:/var/lib/postgresql/data
       - ./scripts/init-ltree.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
     ports:
       - "5432:5432"
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U voc -d voc_engine"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-voc} -d ${POSTGRES_DB:-voc_engine}"]
       interval: 10s
       timeout: 5s
       retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 512M
     restart: unless-stopped
 
   # ── Redis 7.2 ─────────────────────────────────────────────────────────────
   redis:
     image: redis:7.2.3-alpine
-    container_name: voc-redis
+    container_name: voc-redis-staging
     ports:
       - "6379:6379"
     healthcheck:
@@ -50,12 +53,17 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 256M
     restart: unless-stopped
 
-  # ── Zookeeper (Kafka dependency) ───────────────────────────────────────────
+  # ── Zookeeper ─────────────────────────────────────────────────────────────
   zookeeper:
     image: confluentinc/cp-zookeeper:7.5.3
-    container_name: voc-zookeeper
+    container_name: voc-zookeeper-staging
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
@@ -64,12 +72,17 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 256M
     restart: unless-stopped
 
-  # ── Kafka (single broker for dev; 3-broker HA in prod) ────────────────────
+  # ── Kafka ─────────────────────────────────────────────────────────────────
   kafka:
     image: confluentinc/cp-kafka:7.5.3
-    container_name: voc-kafka
+    container_name: voc-kafka-staging
     depends_on:
       zookeeper:
         condition: service_healthy
@@ -88,19 +101,24 @@ services:
       interval: 30s
       timeout: 10s
       retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 512M
     restart: unless-stopped
 
-  # ── SA Redactor — POPIA PII redaction service ─────────────────────────────
+  # ── SA Redactor — POPIA PII redaction ─────────────────────────────────────
   sa-redactor:
     build:
       context: ./services/sa_redactor
       target: production
-    container_name: voc-sa-redactor
+    container_name: voc-sa-redactor-staging
     ports:
-      - "8080:8080"
+      - "8085:8080"
     environment:
       PRESIDIO_THRESHOLD: "0.85"
-      SPACY_MODEL: "en_core_web_lg"  # switch to en_core_web_sm for faster local builds
+      SPACY_MODEL: "en_core_web_sm"
     healthcheck:
       test:
         - "CMD"
@@ -111,23 +129,31 @@ services:
       timeout: 5s
       start_period: 45s
       retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 1G
     restart: unless-stopped
 
-  # ── NLP Service — sentiment, taxonomy, intent, crisis scoring ────────────────
+  # ── NLP Service ───────────────────────────────────────────────────────────
   nlp:
     build:
       context: .
       dockerfile: services/nlp/Dockerfile
       target: production
-    container_name: voc-nlp
+    container_name: voc-nlp-staging
     ports:
-      - "8081:8081"
-    volumes:
-      - ./data/sa_slang.json:/app/data/sa_slang.json:ro
+      - "8086:8081"
     environment:
       SLANG_DICT_PATH: "/app/data/sa_slang.json"
       SLANG_FILE: "/app/data/sa_slang.json"
       SCHEMAS_PATH: "/app/schemas"
+      MODEL_PATH: ${MODEL_PATH:-mock}
+      AZURE_STORAGE_CONNECTION_STRING: ${AZURE_STORAGE_CONNECTION_STRING}
+      AZURE_STORAGE_CONTAINER_NAME: ${AZURE_STORAGE_CONTAINER_NAME:-voc-engine}
+    volumes:
+      - ./data/sa_slang.json:/app/data/sa_slang.json:ro
     depends_on:
       sa-redactor:
         condition: service_healthy
@@ -141,17 +167,22 @@ services:
       timeout: 5s
       start_period: 15s
       retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 512M
     restart: unless-stopped
 
-  # ── Ingestion Service — normalize channel payloads into UEC events ────────────
+  # ── Ingestion Service ─────────────────────────────────────────────────────
   ingestion:
     build:
       context: .
       dockerfile: services/ingestion/Dockerfile
       target: production
-    container_name: voc-ingestion
+    container_name: voc-ingestion-staging
     ports:
-      - "8003:8000"
+      - "8087:8000"
     environment:
       INGESTION_DEAD_LETTER_PATH: "/app/data/ingestion_failed_events.jsonl"
       INGESTION_EVENT_LOG_PATH: "/app/data/processed/uec_events.jsonl"
@@ -161,8 +192,8 @@ services:
       INGESTION_HTTP_TIMEOUT_SECONDS: "2.0"
       REDACTOR_URL: "http://sa-redactor:8080"
       NLP_URL: "http://nlp:8081"
-    volumes:
-      - ./data:/app/data
+      AZURE_STORAGE_CONNECTION_STRING: ${AZURE_STORAGE_CONNECTION_STRING}
+      AZURE_STORAGE_CONTAINER_NAME: ${AZURE_STORAGE_CONTAINER_NAME:-voc-engine}
     depends_on:
       nlp:
         condition: service_healthy
@@ -178,18 +209,25 @@ services:
       timeout: 5s
       start_period: 15s
       retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 512M
     restart: unless-stopped
 
-  # ── Decision Intelligence Engine — governance, approval, watchlist ───────────
+  # ── Decision Intelligence Engine ──────────────────────────────────────────
   decision:
     build:
       context: ./services/decision
       target: production
-    container_name: voc-decision
+    container_name: voc-decision-staging
     ports:
-      - "8082:8082"
+      - "8088:8082"
     environment:
       NLP_URL: "http://nlp:8081"
+      AZURE_STORAGE_CONNECTION_STRING: ${AZURE_STORAGE_CONNECTION_STRING}
+      AZURE_STORAGE_CONTAINER_NAME: ${AZURE_STORAGE_CONTAINER_NAME:-voc-engine}
     depends_on:
       nlp:
         condition: service_healthy
@@ -203,8 +241,13 @@ services:
       timeout: 5s
       start_period: 15s
       retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 512M
     restart: unless-stopped
 
 volumes:
-  postgres_data:
-    name: voc_postgres_data
+  postgres_staging_data:
+    name: voc_postgres_staging_data
