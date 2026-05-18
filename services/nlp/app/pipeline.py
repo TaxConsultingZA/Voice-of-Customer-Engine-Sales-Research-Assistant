@@ -8,9 +8,11 @@ Crisis Score governance:
 """
 
 import math
+import os
 from dataclasses import dataclass, field
 
 from .anomaly import AnomalyDetector
+from .llm_client import LLMClassifierError, classify_complaint_with_llm
 from .sentiment import SentimentAnalyzer
 from .slang import SlangPreprocessor
 from .taxonomy import classify as classify_taxonomy
@@ -82,6 +84,10 @@ class ComplaintResult:
     anomaly_sigma: float | None = None
     anomaly_is_detected: bool = False
     anomaly_recommended_action: str | None = None
+    llm_mode: str = "rules"
+    llm_fallback_used: bool = False
+    llm_shadow_label: str | None = None
+    llm_shadow_confidence: float | None = None
 
 
 def _detect_intent(text: str) -> str:
@@ -122,16 +128,50 @@ def _compute_crisis_score(polarity: float, customer_arr: float, intent: str) -> 
     return round(max(0.0, min(severity * arr_factor * intent_factor, 1.0)), 4)
 
 
+def _intent_from_taxonomy(label: str) -> str:
+    if label.startswith("Compliance.Popia.DataAccessRequest"):
+        return "data_access_request"
+    if label.startswith("Billing.Subscription.Cancellation"):
+        return "cancellation"
+    return "complaint"
+
+
 def process_complaint(complaint: dict) -> ComplaintResult:
     text = complaint.get("text", "")
     arr = float(complaint.get("customer_arr", 0))
+    llm_mode = str(os.getenv("NLP_CLASSIFIER_MODE", "rules")).lower()
+    llm_fallback_used = False
+    llm_shadow_label = None
+    llm_shadow_confidence = None
 
     sentiment = _sentiment.analyze(text)
     intent = _detect_intent(text)
     language_detected = _detect_language(text)
     taxonomy_path = classify_taxonomy(text, intent)
-    crisis_score = _compute_crisis_score(sentiment.polarity, arr, intent)
+    sentiment_polarity = sentiment.polarity
+    sentiment_confidence = sentiment.confidence
+    crisis_score = _compute_crisis_score(sentiment_polarity, arr, intent)
     anomaly_result = None
+
+    if llm_mode in {"shadow", "llm"}:
+        try:
+            llm_output = classify_complaint_with_llm(text)
+        except LLMClassifierError:
+            llm_output = None
+            llm_fallback_used = True
+
+        if llm_output is None and llm_mode == "llm":
+            llm_fallback_used = True
+        elif llm_output is not None and llm_mode == "llm":
+            taxonomy_path = llm_output.label
+            intent = _intent_from_taxonomy(taxonomy_path)
+            sentiment_polarity = llm_output.sentiment_polarity
+            sentiment_confidence = llm_output.confidence
+            language_detected = llm_output.language_detected
+            crisis_score = _compute_crisis_score(sentiment_polarity, arr, intent)
+        elif llm_output is not None and llm_mode == "shadow":
+            llm_shadow_label = llm_output.label
+            llm_shadow_confidence = llm_output.confidence
 
     anomaly_topic = complaint.get("anomaly_topic")
     anomaly_count = complaint.get("anomaly_count")
@@ -177,11 +217,15 @@ def process_complaint(complaint: dict) -> ComplaintResult:
         intent=intent,
         routing=routing,
         requires_approval=requires_approval,
-        sentiment_polarity=sentiment.polarity,
-        sentiment_confidence=sentiment.confidence,
+        sentiment_polarity=sentiment_polarity,
+        sentiment_confidence=sentiment_confidence,
         language_detected=language_detected,
         contains_slang=_slang.contains_slang(text),
         anomaly_sigma=anomaly_result.sigma if anomaly_result else None,
         anomaly_is_detected=anomaly_result.is_anomaly if anomaly_result else False,
         anomaly_recommended_action=(anomaly_result.recommended_action if anomaly_result else None),
+        llm_mode=llm_mode,
+        llm_fallback_used=llm_fallback_used,
+        llm_shadow_label=llm_shadow_label,
+        llm_shadow_confidence=llm_shadow_confidence,
     )
