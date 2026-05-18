@@ -1,9 +1,19 @@
 import json
+import os
 from functools import lru_cache
 from pathlib import Path
 
 _PROMPT_TEMPLATE_PATH = Path(__file__).resolve().parent / "prompts" / "taxonomy_classifier_v1.txt"
-_TAXONOMY_PATH = Path(__file__).resolve().parents[3] / "schemas" / "taxonomy_v1.json"
+
+
+def _resolve_taxonomy_path() -> Path:
+    env_dir = os.getenv("SCHEMAS_PATH")
+    if env_dir:
+        return Path(env_dir) / "taxonomy_v1.json"
+    return Path(__file__).resolve().parents[3] / "schemas" / "taxonomy_v1.json"
+
+
+_TAXONOMY_PATH = _resolve_taxonomy_path()
 
 
 @lru_cache(maxsize=1)

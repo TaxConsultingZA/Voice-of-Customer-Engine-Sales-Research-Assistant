@@ -3,13 +3,11 @@ import os
 from datetime import UTC, datetime
 from pathlib import Path
 
-_DEFAULT_DEAD_LETTER_PATH = (
-    Path(__file__).resolve().parents[3] / "data" / "dead_letter" / "ingestion_failed_events.jsonl"
-)
-
-
 def get_dead_letter_path() -> Path:
-    return Path(os.getenv("INGESTION_DEAD_LETTER_PATH", str(_DEFAULT_DEAD_LETTER_PATH)))
+    env = os.getenv("INGESTION_DEAD_LETTER_PATH")
+    if env:
+        return Path(env)
+    return Path(__file__).resolve().parents[3] / "data" / "dead_letter" / "ingestion_failed_events.jsonl"
 
 
 def write_dead_letter(source: str, payload: dict, reason: str) -> None:

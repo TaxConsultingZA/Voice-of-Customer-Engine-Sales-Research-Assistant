@@ -115,7 +115,7 @@ services:
       target: production
     container_name: voc-sa-redactor-staging
     ports:
-      - "8080:8080"
+      - "8085:8080"
     environment:
       PRESIDIO_THRESHOLD: "0.85"
       SPACY_MODEL: "en_core_web_sm"
@@ -139,14 +139,16 @@ services:
   # ── NLP Service ───────────────────────────────────────────────────────────
   nlp:
     build:
-      context: ./services/nlp
+      context: .
+      dockerfile: services/nlp/Dockerfile
       target: production
     container_name: voc-nlp-staging
     ports:
-      - "8081:8081"
+      - "8086:8081"
     environment:
       SLANG_DICT_PATH: "/app/data/sa_slang.json"
       SLANG_FILE: "/app/data/sa_slang.json"
+      SCHEMAS_PATH: "/app/schemas"
       MODEL_PATH: ${MODEL_PATH:-mock}
       AZURE_STORAGE_CONNECTION_STRING: ${AZURE_STORAGE_CONNECTION_STRING}
       AZURE_STORAGE_CONTAINER_NAME: ${AZURE_STORAGE_CONTAINER_NAME:-voc-engine}
@@ -175,14 +177,16 @@ services:
   # ── Ingestion Service ─────────────────────────────────────────────────────
   ingestion:
     build:
-      context: ./services/ingestion
+      context: .
+      dockerfile: services/ingestion/Dockerfile
       target: production
     container_name: voc-ingestion-staging
     ports:
-      - "8003:8000"
+      - "8087:8000"
     environment:
       INGESTION_DEAD_LETTER_PATH: "/app/data/ingestion_failed_events.jsonl"
       INGESTION_EVENT_LOG_PATH: "/app/data/processed/uec_events.jsonl"
+      SCHEMAS_PATH: "/app/schemas"
       INGESTION_ENABLE_ENRICHMENT: "true"
       INGESTION_FAIL_OPEN: "true"
       INGESTION_HTTP_TIMEOUT_SECONDS: "2.0"
@@ -219,7 +223,7 @@ services:
       target: production
     container_name: voc-decision-staging
     ports:
-      - "8082:8082"
+      - "8088:8082"
     environment:
       NLP_URL: "http://nlp:8081"
       AZURE_STORAGE_CONNECTION_STRING: ${AZURE_STORAGE_CONNECTION_STRING}

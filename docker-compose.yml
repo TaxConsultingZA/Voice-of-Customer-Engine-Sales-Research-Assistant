@@ -116,7 +116,8 @@ services:
   # ── NLP Service — sentiment, taxonomy, intent, crisis scoring ────────────────
   nlp:
     build:
-      context: ./services/nlp
+      context: .
+      dockerfile: services/nlp/Dockerfile
       target: production
     container_name: voc-nlp
     ports:
@@ -126,6 +127,7 @@ services:
     environment:
       SLANG_DICT_PATH: "/app/data/sa_slang.json"
       SLANG_FILE: "/app/data/sa_slang.json"
+      SCHEMAS_PATH: "/app/schemas"
     depends_on:
       sa-redactor:
         condition: service_healthy
@@ -144,7 +146,8 @@ services:
   # ── Ingestion Service — normalize channel payloads into UEC events ────────────
   ingestion:
     build:
-      context: ./services/ingestion
+      context: .
+      dockerfile: services/ingestion/Dockerfile
       target: production
     container_name: voc-ingestion
     ports:
@@ -152,6 +155,7 @@ services:
     environment:
       INGESTION_DEAD_LETTER_PATH: "/app/data/ingestion_failed_events.jsonl"
       INGESTION_EVENT_LOG_PATH: "/app/data/processed/uec_events.jsonl"
+      SCHEMAS_PATH: "/app/schemas"
       INGESTION_ENABLE_ENRICHMENT: "true"
       INGESTION_FAIL_OPEN: "true"
       INGESTION_HTTP_TIMEOUT_SECONDS: "2.0"

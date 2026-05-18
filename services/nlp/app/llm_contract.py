@@ -1,10 +1,20 @@
 import json
+import os
 from functools import lru_cache
 from pathlib import Path
 
 from pydantic import BaseModel, Field, ValidationError, field_validator
 
-_TAXONOMY_PATH = Path(__file__).resolve().parents[3] / "schemas" / "taxonomy_v1.json"
+
+def _resolve_taxonomy_path() -> Path:
+    env_dir = os.getenv("SCHEMAS_PATH")
+    if env_dir:
+        return Path(env_dir) / "taxonomy_v1.json"
+    # Local dev: llm_contract.py lives at services/nlp/app/ — three levels inside repo root
+    return Path(__file__).resolve().parents[3] / "schemas" / "taxonomy_v1.json"
+
+
+_TAXONOMY_PATH = _resolve_taxonomy_path()
 
 
 @lru_cache(maxsize=1)

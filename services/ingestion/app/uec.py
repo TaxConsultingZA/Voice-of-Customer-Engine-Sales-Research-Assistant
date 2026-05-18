@@ -1,13 +1,19 @@
 import json
+import os
 from pathlib import Path
 
 import jsonschema
 
-_SCHEMA_PATH = Path(__file__).resolve().parents[3] / "schemas" / "uec_v1.json"
+
+def _uec_schema_path() -> Path:
+    schemas_dir = os.getenv("SCHEMAS_PATH")
+    if schemas_dir:
+        return Path(schemas_dir) / "uec_v1.json"
+    return Path(__file__).resolve().parents[3] / "schemas" / "uec_v1.json"
 
 
 def load_uec_schema() -> dict:
-    with _SCHEMA_PATH.open(encoding="utf-8") as f:
+    with _uec_schema_path().open(encoding="utf-8") as f:
         return json.load(f)
 
 

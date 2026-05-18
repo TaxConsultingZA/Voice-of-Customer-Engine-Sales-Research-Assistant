@@ -3,13 +3,14 @@ FROM python:3.11-slim AS base
 
 WORKDIR /app
 
-COPY requirements.txt .
+COPY services/ingestion/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # ── Stage 2: production ─────────────────────────────────────────────────────
 FROM base AS production
 
-COPY app/ ./app/
+COPY services/ingestion/app/ ./app/
+COPY schemas/ ./schemas/
 
 EXPOSE 8000
 
