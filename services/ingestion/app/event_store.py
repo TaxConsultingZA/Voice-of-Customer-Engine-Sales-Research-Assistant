@@ -2,6 +2,7 @@ import json
 import os
 from pathlib import Path
 
+
 def get_event_log_path() -> Path:
     env = os.getenv("INGESTION_EVENT_LOG_PATH")
     if env:
