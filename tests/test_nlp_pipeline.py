@@ -5,6 +5,8 @@ Validates crisis score calculation, gate assignment, intent detection,
 and routing logic. Tests run without a trained model.
 """
 
+from services.nlp.app.llm_client import LLMClassifierError
+from services.nlp.app.llm_contract import TaxonomyLLMOutput
 from services.nlp.app.pipeline import (
     RED_THRESHOLD,
     YELLOW_THRESHOLD,
@@ -180,3 +182,36 @@ def test_anomaly_inputs_are_processed_when_provided():
     assert result.anomaly_sigma is not None
     assert result.anomaly_is_detected is True
     assert result.anomaly_recommended_action == "escalate_to_product"
+
+
+def test_shadow_mode_falls_back_to_rules_when_llm_fails(monkeypatch):
+    monkeypatch.setenv("NLP_CLASSIFIER_MODE", "shadow")
+
+    def broken_llm(_text: str):
+        raise LLMClassifierError("downstream timeout")
+
+    monkeypatch.setattr("services.nlp.app.pipeline.classify_complaint_with_llm", broken_llm)
+    result = process_complaint(_complaint("I cannot log in to my account.", arr=15_000))
+    assert result.taxonomy_path.startswith("Authentication.")
+    assert result.llm_mode == "shadow"
+    assert result.llm_fallback_used is True
+
+
+def test_llm_mode_uses_llm_output_when_available(monkeypatch):
+    monkeypatch.setenv("NLP_CLASSIFIER_MODE", "llm")
+
+    def fake_llm(_text: str):
+        return TaxonomyLLMOutput(
+            label="Billing.Subscription.Upgrade",
+            confidence=0.91,
+            sentiment_polarity=-0.2,
+            at_risk_flag=False,
+            reason_short="Customer requests moving to a higher tier plan.",
+            language_detected="en",
+        )
+
+    monkeypatch.setattr("services.nlp.app.pipeline.classify_complaint_with_llm", fake_llm)
+    result = process_complaint(_complaint("Please upgrade my subscription plan.", arr=120_000))
+    assert result.taxonomy_path == "Billing.Subscription.Upgrade"
+    assert result.sentiment_confidence == 0.91
+    assert result.llm_mode == "llm"
