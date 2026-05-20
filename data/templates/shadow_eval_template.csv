@@ -1,0 +1,6 @@
+id,text,customer_arr,expected_label,expected_high_risk
+case_001,"I cannot log in and this is completely unacceptable.",150000,Authentication.Login.Failure,true
+case_002,"Please cancel my subscription and refund me.",200000,Billing.Subscription.Cancellation,true
+case_003,"My payment keeps failing at checkout.",85000,Billing.Payment.Failure,true
+case_004,"I need a copy of all personal data you hold about me.",12000,Compliance.Popia.DataAccessRequest,false
+case_005,"Dashboard export failed and gave me an error.",15000,Reporting.Export.Failure,false

@@ -152,6 +152,7 @@ def process_complaint(complaint: dict) -> ComplaintResult:
     sentiment_confidence = sentiment.confidence
     crisis_score = _compute_crisis_score(sentiment_polarity, arr, intent)
     anomaly_result = None
+    llm_risk_override = False
 
     if llm_mode in {"shadow", "llm"}:
         try:
@@ -169,9 +170,11 @@ def process_complaint(complaint: dict) -> ComplaintResult:
             sentiment_confidence = llm_output.confidence
             language_detected = llm_output.language_detected
             crisis_score = _compute_crisis_score(sentiment_polarity, arr, intent)
+            llm_risk_override = bool(llm_output.at_risk_flag)
         elif llm_output is not None and llm_mode == "shadow":
             llm_shadow_label = llm_output.label
             llm_shadow_confidence = llm_output.confidence
+            llm_risk_override = bool(llm_output.at_risk_flag)
 
     anomaly_topic = complaint.get("anomaly_topic")
     anomaly_count = complaint.get("anomaly_count")
@@ -189,9 +192,11 @@ def process_complaint(complaint: dict) -> ComplaintResult:
             baseline_std=float(anomaly_baseline_std),
         )
 
-    escalation_triggered = crisis_score >= YELLOW_THRESHOLD
-    at_risk_flag = crisis_score >= YELLOW_THRESHOLD or intent == "cancellation"
-    requires_approval = crisis_score >= RED_THRESHOLD
+    escalation_triggered = crisis_score >= YELLOW_THRESHOLD or llm_risk_override
+    at_risk_flag = (
+        crisis_score >= YELLOW_THRESHOLD or intent == "cancellation" or llm_risk_override
+    )
+    requires_approval = crisis_score >= RED_THRESHOLD or llm_risk_override
 
     actions: list[str] = []
     routing: list[str] = []

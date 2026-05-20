@@ -34,8 +34,9 @@ models/*.pt
 .DS_Store
 Thumbs.db
 
-# Runtime artifacts
+# Runtime artifacts (regenerated locally; do not commit ad-hoc runs)
 data/processed/*.jsonl
+!data/processed/uec_events.jsonl
 data/reports/*.md
 data/dead_letter/*.jsonl
 

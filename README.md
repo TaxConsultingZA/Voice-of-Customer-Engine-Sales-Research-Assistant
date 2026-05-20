@@ -49,6 +49,22 @@ SA-aware NLP platform that ingests customer complaints, classifies them, scores 
 
 ---
 
+## LLM Primary Path
+
+- Primary LLM classification path: `services/nlp/app/llm_client.py` -> `services/nlp/app/pipeline.py`
+- Configure Claude credentials and model in `.env`:
+  - `CLAUDE_API_KEY`
+  - `CLAUDE_MODEL` (current validated default: `claude-sonnet-4-6`)
+  - `CLAUDE_TIMEOUT_SECONDS`
+  - `CLAUDE_API_BASE_URL` (optional, defaults to Anthropic API)
+- Runtime mode is controlled by `NLP_CLASSIFIER_MODE`:
+  - `rules` = rules only
+  - `shadow` = rules output + LLM shadow label for evaluation
+  - `llm` = LLM output as primary taxonomy label
+- Legacy module notice: `services/nlp/app/llm_adapter.py` is kept for older mock-based workflows and is not the active Claude production path.
+
+---
+
 ## Running locally
 
 ```bash
@@ -76,10 +92,42 @@ python scripts/verify_ingestion_fail_strategy.py
 # One-command verification: health + fail strategy + load test + markdown report
 python scripts/run_ingestion_verification.py --ingestion-url http://localhost:8000 --strict-health --output data/reports/ingestion_verification_report.md
 
+# Shadow evaluation: rules vs Claude (requires expected_label dataset)
+python scripts/eval_shadow_mode.py --input data/templates/shadow_eval_template.csv --output data/reports/shadow_eval_report.md
+
+# Build a stratified 50-case candidate file for manual golden-set review
+python scripts/generate_golden_candidates.py --count 50 --output data/templates/golden_50_candidates.csv
+
 # Lint
 black --check .
 isort --check .
 flake8 .
+```
+
+---
+
+## Weekly dashboard (Streamlit)
+
+```bash
+pip install -r requirements-dashboard.txt
+streamlit run streamlit_app.py
+```
+
+Open `http://localhost:8501`. The app reads `data/processed/uec_events.jsonl` (a committed demo snapshot is included for deploy).
+
+**Deploy to Streamlit Community Cloud** (public URL for stakeholders):
+
+1. Push this repo to GitHub (`dev` or `main`).
+2. Go to [share.streamlit.io](https://share.streamlit.io) → **New app** → select the repo.
+3. Main file: `streamlit_app.py`.
+4. Under **Advanced settings → Python dependencies**, point to `requirements-dashboard.txt` (avoids installing `torch` on Cloud).
+5. Deploy. Share the `https://<app-name>.streamlit.app` link.
+
+Re-populate events after a full corpus run:
+
+```bash
+python scripts/batch_classify_corpus.py
+git add -f data/processed/uec_events.jsonl
 ```
 
 ---

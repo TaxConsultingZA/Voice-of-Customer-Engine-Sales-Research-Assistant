@@ -215,3 +215,44 @@ def test_llm_mode_uses_llm_output_when_available(monkeypatch):
     assert result.taxonomy_path == "Billing.Subscription.Upgrade"
     assert result.sentiment_confidence == 0.91
     assert result.llm_mode == "llm"
+
+
+def test_llm_at_risk_flag_overrides_low_crisis_score(monkeypatch):
+    # Regression: LLM flagged high-risk message must surface as at_risk_flag=True
+    # even when ARR is zero and the rules-based crisis_score is sub-Yellow.
+    monkeypatch.setenv("NLP_CLASSIFIER_MODE", "llm")
+
+    def fake_llm(_text: str):
+        return TaxonomyLLMOutput(
+            label="Billing.Payment.DuplicateCharge",
+            confidence=0.92,
+            sentiment_polarity=-0.5,
+            at_risk_flag=True,
+            reason_short="Customer reports duplicate billing after cancellation.",
+            language_detected="en",
+        )
+
+    monkeypatch.setattr("services.nlp.app.pipeline.classify_complaint_with_llm", fake_llm)
+    result = process_complaint(_complaint("I was charged twice this month.", arr=0))
+    assert result.at_risk_flag is True
+    assert result.requires_approval is True
+
+
+def test_shadow_mode_carries_llm_risk_decision(monkeypatch):
+    # Shadow mode must still respect the LLM risk signal so digest data is correct.
+    monkeypatch.setenv("NLP_CLASSIFIER_MODE", "shadow")
+
+    def fake_llm(_text: str):
+        return TaxonomyLLMOutput(
+            label="Performance.Availability.Outage",
+            confidence=0.88,
+            sentiment_polarity=-0.7,
+            at_risk_flag=True,
+            reason_short="Customer reports service outage.",
+            language_detected="en",
+        )
+
+    monkeypatch.setattr("services.nlp.app.pipeline.classify_complaint_with_llm", fake_llm)
+    result = process_complaint(_complaint("The service is completely down.", arr=0))
+    assert result.at_risk_flag is True
+    assert result.llm_shadow_label == "Performance.Availability.Outage"

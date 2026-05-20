@@ -1,5 +1,6 @@
 import json
 import os
+import re
 from functools import lru_cache
 from pathlib import Path
 
@@ -51,7 +52,12 @@ def parse_llm_output(raw_json: str) -> TaxonomyLLMOutput:
     Parse and validate raw model JSON output into strict schema.
     Raises ValidationError when output is malformed.
     """
+    cleaned = raw_json.strip()
+    fenced = re.fullmatch(r"```(?:json)?\s*(.*?)\s*```", cleaned, flags=re.IGNORECASE | re.DOTALL)
+    if fenced:
+        cleaned = fenced.group(1).strip()
+
     try:
-        return TaxonomyLLMOutput.model_validate_json(raw_json)
+        return TaxonomyLLMOutput.model_validate_json(cleaned)
     except ValidationError:
         raise

@@ -1,0 +1,51 @@
+id,text,customer_arr,expected_label,expected_high_risk
+sample_329,"Ke a leboha, Verification email arrived immediately and registration was straightforward. Lekker experience!. Mosebetsi o motle!",0,Support.General.PositiveFeedback,false
+sample_217,"Good morning, What are the uptime SLAs for the Professional plan?",0,Billing.Invoice.Query,false
+sample_348,"Ke a nyorilwe, The 'Forgot Password' link does nothing when I click it. It just reloads the same page.",0,Authentication.Login.PasswordReset,true
+sample_140,Onboarding call with your team was very helpful. They walked us through everything patiently. Much appreciated.,0,Support.General.PositiveFeedback,false
+sample_439,I just signed up for a Team plan. What are the next steps to get started?. Groete.,0,Support.General.Inquiry,false
+sample_468,My export feature keeps showing data from 2 months ago instead of today's figures. Ke kgateletsegile thata.,0,Reporting.Export.Failure,true
+sample_404,Sharp sharp — the issue was fixed faster than expected. Baie dankie to the support team!,0,Support.General.PositiveFeedback,false
+sample_330,"Ndivuya ukuxelela, The getting-started guide is excellent. Clear, well-structured, and easy to follow. Nicanda umsebenzi omhle!",0,Support.General.PositiveFeedback,false
+sample_068,The support agent I spoke to said the issue was escalated but it's now been 12 days and nothing.,0,Support.Response.Delay,true
+sample_422,What are your support hours? I'm in Johannesburg (SAST) and need to know when I can reach someone.,0,Support.General.Inquiry,false
+sample_226,"Yebo, Just renewed our SMB plan for another year. Happy customers here!",0,Support.General.PositiveFeedback,false
+sample_288,"Ngikhatsatekile, Webhook notifications stopped firing 3 days ago. We're missing critical data in our system.",0,Integration.Webhook.Failure,true
+sample_293,"Goeie dag, Does your platform integrate with Salesforce or HubSpot?. Groete.",0,Support.General.Inquiry,false
+sample_255,Support resolved my issue within 34 minutes. Outstanding service — thank you!,0,Support.General.PositiveFeedback,false
+sample_341,I registered but my account is stuck on 'pending verification' and there's no way to contact anyone.,0,Onboarding.Registration.EmailVerification,true
+sample_338,Is there a sandbox environment we can use for testing before going live?,0,Support.General.Inquiry,false
+sample_015,Really impressed with how stable the system has been this quarter. Zero downtime for us.,0,Support.General.PositiveFeedback,false
+sample_236,"Ke batla thuso, How do I enable MFA for my account? I want to improve security. Ke emetse karabo ya lona.",0,Authentication.Login.MultiFactorAuth,false
+sample_056,Your API rate limits are too low for our volume. We're hitting limits within 5 minutes of opening.,0,Integration.API.Failure,true
+sample_053,The new data import tool is a massive improvement over the previous version. Well done!,0,Support.General.PositiveFeedback,false
+sample_149,Is it possible to schedule automated exports from the export feature?,0,Support.General.Inquiry,false
+sample_036,"Akukholeki lokhu, I cancelled my subscription 20 days ago and I'm still being billed. This needs to stop.",0,Billing.Payment.DuplicateCharge,true
+sample_395,The onboarding process was really smooth and easy to follow. Got set up in under 30 minutes. Ngiyabonga kakhulu!,0,Support.General.PositiveFeedback,false
+sample_279,Can you explain the difference between the Enterprise and Professional plans?,0,Billing.Invoice.Query,false
+sample_006,"I cannot believe this, Two-factor authentication codes are being sent to an old phone number I no longer use and I can't change it.",0,Authentication.Login.MultiFactorAuth,true
+sample_112,"The getting-started guide is excellent. Clear, well-structured, and easy to follow.",0,Support.General.PositiveFeedback,false
+sample_102,Where can I find the getting-started documentation for new users?. Thank you in advance.,0,Support.General.Inquiry,false
+sample_187,"I cannot believe this, Your live chat says agents are available but I've been waiting 33 minutes with no reply.",0,Support.Response.Delay,true
+sample_237,Webhook notifications stopped firing 7 days ago. We're missing critical data in our system. Ngikhatsateke kakhulu.,0,Integration.Webhook.Failure,true
+sample_126,Password reset worked flawlessly this time. The email arrived within 1 minutes. Baie dankie!,0,Authentication.Login.PasswordReset,false
+sample_201,What is the cancellation policy? How much notice do I need to give?. Ngicela ningithumele ulwazi.,0,Billing.Invoice.Query,false
+sample_276,"Hello, When is the new billing portal feature expected to be released?",0,Support.General.Inquiry,false
+sample_188,Baie dankie for the quick fix. The dashboard is working perfectly again. Sharp!,0,Support.General.PositiveFeedback,false
+sample_351,Ngiyakhala — Your login page gives me a blank white screen on Chrome. I've tried three different browsers and it's the same. Ngiyacela nisombulule lokhu.,0,Authentication.SSO.Failure,true
+sample_115,What is the typical response time for SMB plan support tickets?,0,Support.General.Inquiry,false
+sample_431,I'm genuinely impressed with the level of support. Best experience I've had with any SaaS platform. Nicanda umsebenzi omhle!,0,Support.General.PositiveFeedback,false
+sample_467,"Ngicela usizo, What file formats does the data import tool support for imports?",0,Support.General.Inquiry,false
+sample_081,I cancelled my subscription 19 days ago and I'm still being billed. This needs to stop.,0,Billing.Payment.DuplicateCharge,true
+sample_420,"Ke a leboga, The setup wizard is intuitive and clear. I appreciated the helpful tooltips at each step.",0,Support.General.PositiveFeedback,false
+sample_388,"Good morning, Can I downgrade my plan mid-cycle? Will I receive a prorated refund?",0,Billing.Subscription.Upgrade,false
+sample_297,"Ke a leboga, The platform has transformed how our team works. Can't imagine going back to spreadsheets. Ke a leboga kudu!",0,Support.General.PositiveFeedback,false
+sample_500,"Hi there, Is there a status page where I can check if there are any ongoing incidents?",0,Support.General.Inquiry,false
+sample_001,The MFA verification code keeps saying it's expired before I can even type it in. Authentication is completely broken.,0,Authentication.Login.MultiFactorAuth,true
+sample_366,The new dashboard layout is clean and intuitive. Our team picked it up without any training. Ndiyabulela!,0,Support.General.PositiveFeedback,false
+sample_205,"Howzit, just checking — is there scheduled maintenance planned for this weekend?",0,Support.General.Inquiry,false
+sample_009,"I am frustrated, Haibo, I've been paying for this service for 15 months and this is the third major outage. Very disappointed.",0,Performance.Availability.Outage,true
+sample_184,The mobile app export now includes all the fields we need. Sharp — great update.,0,Support.General.PositiveFeedback,false
+sample_260,When does my current billing cycle end? I'd like to know before making any changes.,0,Billing.Invoice.Query,false
+sample_034,The support agent I spoke to said the issue was escalated but it's now been 8 days and nothing. Please fix this urgently.,0,Support.Response.Delay,true
+sample_206,The new data import tool is a massive improvement over the previous version. Well done!. Well done!,0,Support.General.PositiveFeedback,false

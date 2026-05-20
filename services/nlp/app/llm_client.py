@@ -1,9 +1,14 @@
 import os
+from pathlib import Path
 
 import requests
+from dotenv import load_dotenv
 
 from .llm_contract import TaxonomyLLMOutput, parse_llm_output
 from .llm_prompt import build_taxonomy_system_prompt
+
+_ENV_PATH = Path(__file__).resolve().parents[3] / ".env"
+load_dotenv(_ENV_PATH)
 
 
 class LLMClassifierError(Exception):
@@ -15,7 +20,7 @@ def classify_complaint_with_llm(text: str) -> TaxonomyLLMOutput | None:
     if not api_key:
         return None
 
-    model = os.getenv("CLAUDE_MODEL", "claude-3-5-sonnet-latest")
+    model = os.getenv("CLAUDE_MODEL", "claude-sonnet-4-6")
     timeout_seconds = float(os.getenv("CLAUDE_TIMEOUT_SECONDS", "20"))
     endpoint = os.getenv("CLAUDE_API_BASE_URL", "https://api.anthropic.com") + "/v1/messages"
     system_prompt = build_taxonomy_system_prompt()

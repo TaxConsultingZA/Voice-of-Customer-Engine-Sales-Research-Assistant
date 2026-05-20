@@ -1,0 +1,4 @@
+# Slim deps for Streamlit Community Cloud (dashboard reads JSONL only).
+streamlit==1.40.2
+plotly==5.24.1
+pandas==2.2.3

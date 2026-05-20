@@ -47,6 +47,25 @@ def test_parse_llm_output_validates_json_contract():
     assert parsed.at_risk_flag is True
 
 
+def test_parse_llm_output_accepts_fenced_json_shell():
+    label = sorted(load_taxonomy_labels())[0]
+    raw = (
+        "```json\n"
+        "{"
+        f'"label":"{label}",'
+        '"confidence":0.84,'
+        '"sentiment_polarity":-0.15,'
+        '"at_risk_flag":false,'
+        '"reason_short":"Output is wrapped in a markdown fence but still valid JSON.",'
+        '"language_detected":"en"'
+        "}\n"
+        "```"
+    )
+    parsed = parse_llm_output(raw)
+    assert parsed.label == label
+    assert parsed.at_risk_flag is False
+
+
 def test_system_prompt_includes_label_list_and_contract():
     prompt = build_taxonomy_system_prompt()
     labels = load_taxonomy_labels()

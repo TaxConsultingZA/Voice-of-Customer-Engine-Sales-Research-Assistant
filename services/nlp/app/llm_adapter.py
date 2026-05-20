@@ -1,6 +1,11 @@
 """
 LLM Adapter — uniform interface for deep signal analysis.
 
+Legacy notice:
+This module is not the primary Claude path used by the live NLP pipeline.
+The active Claude integration is implemented in llm_client.py and consumed
+from pipeline.py via classify_complaint_with_llm().
+
 Toggle via MODEL_PATH environment variable:
     MODEL_PATH=mock  (default) → MockLLMAnalyzer backed by lexicon rules
     MODEL_PATH=/path/to/weights → real model loader (not yet implemented)
@@ -125,6 +130,7 @@ class MockLLMAnalyzer:
 def get_analyzer() -> MockLLMAnalyzer:
     """
     Return the appropriate analyzer based on MODEL_PATH.
+    Legacy path kept for backward compatibility with older tests and tooling.
     Extend this function when real model weights become available.
     """
     model_path = os.environ.get("MODEL_PATH", "mock")
