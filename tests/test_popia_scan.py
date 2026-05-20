@@ -1,6 +1,7 @@
 """Tests for processed-event POPIA scanning helpers."""
 
 import json
+import os
 from pathlib import Path
 
 import pytest
@@ -14,6 +15,12 @@ def test_scan_processed_dir_missing_returns_empty(tmp_path: Path) -> None:
 
 def test_scan_processed_dir_clean_jsonl_passes(tmp_path: Path) -> None:
     pytest.importorskip("presidio_analyzer")
+    spacy = pytest.importorskip("spacy")
+    model_name = os.getenv("SPACY_MODEL", "en_core_web_sm")
+    try:
+        spacy.load(model_name)
+    except OSError:
+        pytest.skip(f"spacy model {model_name!r} not installed (POPIA job installs it)")
     from services.ingestion.app.popia_scan import build_analyzer
 
     path = tmp_path / "events.jsonl"
