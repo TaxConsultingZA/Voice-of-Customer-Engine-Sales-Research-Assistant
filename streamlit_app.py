@@ -318,8 +318,7 @@ with left:
         unsafe_allow_html=True,
     )
     channel_counts = (
-        df.groupby("channel").size().reset_index(name="count")
-        .sort_values("count", ascending=False)
+        df.groupby("channel").size().reset_index(name="count").sort_values("count", ascending=False)
     )
     fig_pie = px.pie(
         channel_counts,
@@ -451,10 +450,7 @@ else:
         # Pull a short preview from the raw text for at-a-glance context.
         preview_raw = (row["text"] or "").strip().replace("\n", " ")
         preview = preview_raw[:60] + ("…" if len(preview_raw) > 60 else "")
-        header = (
-            f"{row['event_id']}  ·  {label}  ·  R{arr:,} ARR  ·  {ts}"
-            f"   —   \"{preview}\""
-        )
+        header = f"{row['event_id']}  ·  {label}  ·  R{arr:,} ARR  ·  {ts}" f'   —   "{preview}"'
         with st.expander(header, expanded=False):
             st.markdown(
                 f"<div class='risk-meta'>"
@@ -471,12 +467,10 @@ else:
             )
 
             action_chips = "".join(
-                f"<span class='action-chip'>{a}</span>"
-                for a in humanise_actions(row["actions"])
+                f"<span class='action-chip'>{a}</span>" for a in humanise_actions(row["actions"])
             )
             route_chips = "".join(
-                f"<span class='route-chip'>{r}</span>"
-                for r in humanise_routing(row["routing"])
+                f"<span class='route-chip'>{r}</span>" for r in humanise_routing(row["routing"])
             )
             if action_chips or route_chips:
                 st.markdown("<br/>", unsafe_allow_html=True)
@@ -491,6 +485,7 @@ else:
 st.markdown(
     "<div class='footer'>Source: services.nlp.app.pipeline → "
     "data/processed/uec_events.jsonl · Classifier: Claude (claude-sonnet-4-6) "
-    "shadow against rules baseline · Recommended actions emitted by the pipeline at classification time.</div>",
+    "shadow against rules baseline · Recommended actions emitted by the "
+    "pipeline at classification time.</div>",
     unsafe_allow_html=True,
 )

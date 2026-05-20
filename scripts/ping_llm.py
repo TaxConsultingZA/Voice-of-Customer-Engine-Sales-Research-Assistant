@@ -1,7 +1,7 @@
 import os
 import time
 
-from anthropic import APIConnectionError, Anthropic, AuthenticationError
+from anthropic import Anthropic, APIConnectionError, AuthenticationError
 from dotenv import load_dotenv
 
 # 强制加载 .env 文件

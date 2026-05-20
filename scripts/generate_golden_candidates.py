@@ -61,7 +61,9 @@ def _largest_remainder_quota(counts: Counter[str], total: int) -> dict[str, int]
     return quotas
 
 
-def _rank_rows(rows: list[CorpusRow], taxonomy_counts: Counter[str], language_counts: Counter[str]) -> list[CorpusRow]:
+def _rank_rows(
+    rows: list[CorpusRow], taxonomy_counts: Counter[str], language_counts: Counter[str]
+) -> list[CorpusRow]:
     return sorted(
         rows,
         key=lambda r: (
@@ -72,7 +74,9 @@ def _rank_rows(rows: list[CorpusRow], taxonomy_counts: Counter[str], language_co
     )
 
 
-def stratified_sample(rows: list[CorpusRow], target_n: int, seedless: bool = True) -> list[CorpusRow]:
+def stratified_sample(
+    rows: list[CorpusRow], target_n: int, seedless: bool = True
+) -> list[CorpusRow]:
     del seedless  # Deterministic by sorted order; no RNG used.
     if target_n <= 0:
         return []
@@ -138,7 +142,9 @@ def stratified_sample(rows: list[CorpusRow], target_n: int, seedless: bool = Tru
     if len(selected) < target_n:
         selected_set = {row.case_id for row in selected}
         leftovers = [
-            row for row in _rank_rows(rows, taxonomy_counts, language_counts) if row.case_id not in selected_set
+            row
+            for row in _rank_rows(rows, taxonomy_counts, language_counts)
+            if row.case_id not in selected_set
         ]
         selected.extend(leftovers[: target_n - len(selected)])
 
@@ -210,7 +216,10 @@ def write_candidates(output_path: Path, selected: list[CorpusRow]) -> None:
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Generate a stratified 50-case candidate list for human-reviewed golden set creation."
+        description=(
+            "Generate a stratified 50-case candidate list for "
+            "human-reviewed golden set creation."
+        )
     )
     parser.add_argument(
         "--corpus-dir",

@@ -193,9 +193,7 @@ def process_complaint(complaint: dict) -> ComplaintResult:
         )
 
     escalation_triggered = crisis_score >= YELLOW_THRESHOLD or llm_risk_override
-    at_risk_flag = (
-        crisis_score >= YELLOW_THRESHOLD or intent == "cancellation" or llm_risk_override
-    )
+    at_risk_flag = crisis_score >= YELLOW_THRESHOLD or intent == "cancellation" or llm_risk_override
     requires_approval = crisis_score >= RED_THRESHOLD or llm_risk_override
 
     actions: list[str] = []
