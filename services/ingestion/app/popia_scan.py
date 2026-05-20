@@ -22,7 +22,6 @@ PII_ENTITY_TYPES = frozenset(
         "US_DRIVER_LICENSE",
         "US_PASSPORT",
         "UK_NHS",
-        "NRP",
     }
 )
 
