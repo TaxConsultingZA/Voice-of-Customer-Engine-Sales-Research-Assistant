@@ -33,6 +33,9 @@ omit = [
     "venv/*",
     ".venv/*",
     "*/site-packages/*",
+    # Streamlit dashboard is a UI surface validated visually + by Streamlit's own
+    # AppTest harness; it does not belong in the backend unit-coverage gate.
+    "streamlit_app.py",
 ]
 
 [tool.coverage.report]
