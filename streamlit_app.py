@@ -224,10 +224,25 @@ prev = previous_window(df_all, days or 7, now) if days else df_all.iloc[0:0]
 prev_total = len(prev)
 delta_volume = total - prev_total
 
-avg_sent = round(float(df["polarity"].mean()), 3)
-sentiment_label = (
-    "Positive" if avg_sent >= 0.1 else "Negative" if avg_sent <= -0.1 else "Neutral"
-)
+# Sentiment polarisation — averages hide bimodal distributions, so we bucket
+# every event and report the NPS-style net score plus the raw breakdown.
+NEG_THRESHOLD = -0.3
+POS_THRESHOLD = 0.3
+angry_n = int((df["polarity"] <= NEG_THRESHOLD).sum())
+positive_n = int((df["polarity"] >= POS_THRESHOLD).sum())
+neutral_n = total - angry_n - positive_n
+angry_pct = angry_n / total * 100 if total else 0.0
+positive_pct = positive_n / total * 100 if total else 0.0
+neutral_pct = neutral_n / total * 100 if total else 0.0
+net_sentiment = round(positive_pct - angry_pct, 1)
+if net_sentiment >= 20:
+    net_label = "Healthy"
+elif net_sentiment >= 0:
+    net_label = "Mixed"
+elif net_sentiment >= -20:
+    net_label = "Strained"
+else:
+    net_label = "Critical"
 
 high_risk_count = int(df["at_risk"].sum())
 high_risk_pct = round(high_risk_count / total * 100, 1) if total else 0.0
@@ -238,10 +253,15 @@ with k1:
     st.metric("Events in view", f"{total:,}", delta=delta_str)
 with k2:
     st.metric(
-        "Average sentiment",
-        sentiment_label,
-        delta=f"Score {avg_sent:+.3f}",
-        delta_color="off",
+        "Net sentiment",
+        f"{net_sentiment:+.1f}",
+        delta=f"{net_label} · Angry {angry_pct:.0f}% / Positive {positive_pct:.0f}%",
+        delta_color="inverse",
+        help=(
+            "Net sentiment = % positive (polarity ≥ +0.3) − % angry (polarity ≤ −0.3). "
+            "Range −100 to +100. Bimodal distributions stay visible — a result that "
+            "would average to ‘neutral’ will read as Strained or Critical here."
+        ),
     )
 with k3:
     st.metric(
@@ -250,6 +270,41 @@ with k3:
         delta=f"{high_risk_pct}% of total",
         delta_color="inverse",
     )
+
+# Sentiment distribution — stacked bar so the polarisation is impossible to miss.
+sentiment_dist = pd.DataFrame(
+    {
+        "bucket": ["Angry (≤ −0.3)", "Neutral", "Positive (≥ +0.3)"],
+        "count": [angry_n, neutral_n, positive_n],
+        "pct": [angry_pct, neutral_pct, positive_pct],
+    }
+)
+fig_dist = px.bar(
+    sentiment_dist,
+    x="pct",
+    y=["Sentiment mix"] * 3,
+    color="bucket",
+    orientation="h",
+    text=sentiment_dist["count"].apply(
+        lambda n: f"{n:,} ({n / total * 100:.0f}%)" if total else ""
+    ),
+    color_discrete_map={
+        "Angry (≤ −0.3)": "#dc2626",
+        "Neutral": "#475569",
+        "Positive (≥ +0.3)": "#16a34a",
+    },
+)
+fig_dist.update_layout(
+    barmode="stack",
+    showlegend=True,
+    height=110,
+    margin=dict(l=8, r=8, t=8, b=8),
+    xaxis=dict(range=[0, 100], showticklabels=False, title=None),
+    yaxis=dict(title=None, showticklabels=False),
+    legend=dict(orientation="h", yanchor="bottom", y=-0.6, xanchor="center", x=0.5),
+)
+fig_dist.update_traces(textposition="inside", insidetextanchor="middle")
+st.plotly_chart(fig_dist, use_container_width=True)
 
 st.divider()
 
