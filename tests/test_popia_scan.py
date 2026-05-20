@@ -13,10 +13,8 @@ def test_scan_processed_dir_missing_returns_empty(tmp_path: Path) -> None:
 
 
 def test_scan_processed_dir_clean_jsonl_passes(tmp_path: Path) -> None:
-    try:
-        from services.ingestion.app.popia_scan import build_analyzer
-    except ModuleNotFoundError:
-        pytest.skip("presidio-analyzer not installed")
+    pytest.importorskip("presidio_analyzer")
+    from services.ingestion.app.popia_scan import build_analyzer
 
     path = tmp_path / "events.jsonl"
     path.write_text(
