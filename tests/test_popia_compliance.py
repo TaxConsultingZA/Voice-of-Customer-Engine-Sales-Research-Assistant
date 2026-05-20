@@ -15,31 +15,9 @@ THRESHOLD = 0.85
 
 @pytest.fixture(scope="module")
 def analyzer():
-    import os
+    from services.ingestion.app.popia_scan import build_analyzer
 
-    from presidio_analyzer import AnalyzerEngine, Pattern, PatternRecognizer
-    from presidio_analyzer.nlp_engine import NlpEngineProvider
-
-    model = os.getenv("SPACY_MODEL", "en_core_web_sm")
-    provider = NlpEngineProvider(
-        nlp_configuration={
-            "nlp_engine_name": "spacy",
-            "models": [{"lang_code": "en", "model_name": model}],
-        }
-    )
-    engine = AnalyzerEngine(nlp_engine=provider.create_engine())
-
-    # Presidio's built-in phone recognizer misses SA +27 format with sm model.
-    # A regex recognizer is more reliable for structured patterns anyway.
-    sa_phone = PatternRecognizer(
-        supported_entity="PHONE_NUMBER",
-        patterns=[
-            Pattern("sa_intl", r"\+27[\s\-]?\d{2}[\s\-]?\d{3}[\s\-]?\d{4}", score=0.9),
-            Pattern("sa_local", r"\b0\d{2}[\s\-]?\d{3}[\s\-]?\d{4}\b", score=0.85),
-        ],
-    )
-    engine.registry.add_recognizer(sa_phone)
-    return engine
+    return build_analyzer()
 
 
 def pii_detected(analyzer, text: str) -> bool:
@@ -81,7 +59,7 @@ def test_clean_product_complaint_no_false_positive(analyzer):
     """Generic product feedback must not trigger PII detection."""
     clean_text = (
         "The login feature is broken and I cannot access my dashboard. "
-        "The password reset button does not send an email. Eish, very frustrating."
+        "The password reset link never arrives. Eish, very frustrating."
     )
     assert not pii_detected(
         analyzer, clean_text

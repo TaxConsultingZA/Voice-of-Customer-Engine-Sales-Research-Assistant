@@ -128,40 +128,9 @@ jobs:
           SPACY_MODEL: en_core_web_sm
 
       - name: Scan processed data directory for PII leaks
-        run: |
-          python - <<'EOF'
-          import os
-          import json
-          from pathlib import Path
-          from presidio_analyzer import AnalyzerEngine
-
-          threshold = 0.85
-          scan_dirs = ["data/processed"] if Path("data/processed").exists() else []
-
-          if not scan_dirs:
-              print("No processed data directory found — skipping file scan.")
-              exit(0)
-
-          analyzer = AnalyzerEngine()
-          violations = []
-
-          for scan_dir in scan_dirs:
-              for path in Path(scan_dir).rglob("*.json"):
-                  content = path.read_text(encoding="utf-8")
-                  results = analyzer.analyze(text=content, language="en", score_threshold=threshold)
-                  if results:
-                      violations.append({
-                          "file": str(path),
-                          "entities": [{"type": r.entity_type, "score": r.score} for r in results],
-                      })
-
-          if violations:
-              print("POPIA VIOLATION — PII detected in processed output:")
-              print(json.dumps(violations, indent=2))
-              exit(1)
-
-          print("POPIA scan passed — no PII detected above threshold.")
-          EOF
+        run: python scripts/popia_scan_processed.py --threshold 0.85
+        env:
+          SPACY_MODEL: en_core_web_sm
 
 # ─────────────────────────────────────────────────────────────────────────────
 # STAGE 5 — Critical Scenario Suite
