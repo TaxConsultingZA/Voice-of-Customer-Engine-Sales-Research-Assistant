@@ -126,6 +126,76 @@ def test_split_event_windows_separates_current_and_previous():
     assert len(previous) == 1
 
 
+def test_sentiment_health_section_exposes_polarisation():
+    # Classic average-trap: 5 angry + 5 happy + 0 neutral averages to ~0,
+    # which would read as "Neutral" but the bucketed view must call it out.
+    angry_events = [
+        _event(
+            timestamp=f"2026-05-13T1{i}:00:00Z",
+            channel="email",
+            taxonomy_path="Authentication.Login.Failure",
+            customer_id=f"angry-{i}",
+            polarity=-0.9,
+            intent="complaint",
+            at_risk=True,
+        )
+        for i in range(5)
+    ]
+    happy_events = [
+        _event(
+            timestamp=f"2026-05-13T2{i}:00:00Z",
+            channel="email",
+            taxonomy_path="Support.General.PositiveFeedback",
+            customer_id=f"happy-{i}",
+            polarity=0.9,
+            intent="praise",
+            at_risk=False,
+        )
+        for i in range(5)
+    ]
+
+    digest = build_weekly_digest(
+        angry_events + happy_events,
+        generated_at=datetime(2026, 5, 14, tzinfo=UTC),
+    )
+
+    assert "## Sentiment Health" in digest
+    assert "Net sentiment: +0.0" in digest
+    assert "(Mixed)" in digest
+    assert "Angry (polarity <= -0.3): 5 (50.0%)" in digest
+    assert "Positive (polarity >= +0.3): 5 (50.0%)" in digest
+
+
+def test_sentiment_health_flags_critical_when_mostly_angry():
+    events = [
+        _event(
+            timestamp=f"2026-05-13T0{i}:00:00Z",
+            channel="email",
+            taxonomy_path="Billing.Refund.Failure",
+            customer_id=f"angry-{i}",
+            polarity=-0.8,
+            intent="complaint",
+            at_risk=True,
+        )
+        for i in range(8)
+    ] + [
+        _event(
+            timestamp=f"2026-05-13T1{i}:00:00Z",
+            channel="email",
+            taxonomy_path="Support.General.PositiveFeedback",
+            customer_id=f"happy-{i}",
+            polarity=0.7,
+            intent="praise",
+            at_risk=False,
+        )
+        for i in range(2)
+    ]
+
+    digest = build_weekly_digest(events, generated_at=datetime(2026, 5, 14, tzinfo=UTC))
+    assert "(Critical)" in digest
+    assert "Net sentiment: -60.0" in digest
+
+
 def test_digest_shows_theme_delta_and_high_arr_accounts():
     current_events = [
         _event(

@@ -55,6 +55,70 @@ def split_event_windows(
     return current, previous
 
 
+# Sentiment polarisation thresholds — same buckets the Streamlit dashboard uses.
+# A simple mean polarity hides bimodal distributions; bucket counts surface them.
+SENTIMENT_ANGRY_THRESHOLD = -0.3
+SENTIMENT_POSITIVE_THRESHOLD = 0.3
+
+
+def _sentiment_breakdown(events: list[dict]) -> dict:
+    total = len(events)
+    angry = neutral = positive = 0
+    for event in events:
+        sentiment = event.get("sentiment")
+        if not isinstance(sentiment, dict):
+            neutral += 1
+            continue
+        polarity = float(sentiment.get("polarity", 0.0))
+        if polarity <= SENTIMENT_ANGRY_THRESHOLD:
+            angry += 1
+        elif polarity >= SENTIMENT_POSITIVE_THRESHOLD:
+            positive += 1
+        else:
+            neutral += 1
+
+    angry_pct = angry / total * 100 if total else 0.0
+    positive_pct = positive / total * 100 if total else 0.0
+    neutral_pct = neutral / total * 100 if total else 0.0
+    net = positive_pct - angry_pct
+
+    if not total:
+        label = "No data"
+    elif net >= 20:
+        label = "Healthy"
+    elif net >= 0:
+        label = "Mixed"
+    elif net >= -20:
+        label = "Strained"
+    else:
+        label = "Critical"
+
+    return {
+        "total": total,
+        "angry": angry,
+        "neutral": neutral,
+        "positive": positive,
+        "angry_pct": angry_pct,
+        "neutral_pct": neutral_pct,
+        "positive_pct": positive_pct,
+        "net": net,
+        "label": label,
+    }
+
+
+def _format_sentiment_health(breakdown: dict) -> str:
+    if not breakdown["total"]:
+        return "- No events in window."
+    return (
+        f"- Net sentiment: {breakdown['net']:+.1f}  ({breakdown['label']})\n"
+        f"- Angry (polarity <= -0.3): {breakdown['angry']} "
+        f"({breakdown['angry_pct']:.1f}%)\n"
+        f"- Neutral: {breakdown['neutral']} ({breakdown['neutral_pct']:.1f}%)\n"
+        f"- Positive (polarity >= +0.3): {breakdown['positive']} "
+        f"({breakdown['positive_pct']:.1f}%)"
+    )
+
+
 def _top_anomaly_deltas(current_events: list[dict], previous_events: list[dict]) -> str:
     current_counter = Counter(
         str(e.get("taxonomy_path", "Support.General.Unknown")) for e in current_events
@@ -159,6 +223,7 @@ def build_weekly_digest(
     )
     anomaly_deltas = _top_anomaly_deltas(events, previous_events or [])
     high_arr_accounts = _high_arr_risk_accounts(events)
+    sentiment_health = _format_sentiment_health(_sentiment_breakdown(events))
 
     return (
         "# Weekly VoC Digest\n\n"
@@ -168,6 +233,8 @@ def build_weekly_digest(
         f"- Unique customers: {unique_customers}\n"
         f"- At-risk flagged events: {at_risk}\n"
         f"- Negative sentiment events: {negative}\n\n"
+        "## Sentiment Health\n"
+        f"{sentiment_health}\n\n"
         "## Top Channels\n"
         f"{top_channels}\n\n"
         "## Top Taxonomy Themes\n"
