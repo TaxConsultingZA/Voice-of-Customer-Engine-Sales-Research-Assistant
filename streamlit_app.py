@@ -22,6 +22,7 @@ import plotly.express as px
 import streamlit as st
 
 EVENT_LOG = Path("data/processed/uec_events.jsonl")
+DECISION_LOG = Path("data/reports/decision_log.md")
 
 # Friendly labels for action codes emitted by services/nlp/app/pipeline.py
 ACTION_LABELS = {
@@ -104,6 +105,39 @@ def humanise_actions(actions: list[str]) -> list[str]:
 
 def humanise_routing(routing: list[str]) -> list[str]:
     return [ROUTING_LABELS.get(r, r.replace("_", " ").title()) for r in routing]
+
+
+@st.cache_data(ttl=120)
+def load_decision_log(path: Path) -> pd.DataFrame:
+    """Parse decision_log.md table rows into a dataframe."""
+    columns = ["id", "date", "decision", "evidence", "owner", "outcome"]
+    if not path.exists():
+        return pd.DataFrame(columns=columns)
+
+    rows: list[dict] = []
+    for raw in path.read_text(encoding="utf-8").splitlines():
+        line = raw.strip()
+        if not line.startswith("|"):
+            continue
+        parts = [part.strip() for part in line.strip("|").split("|")]
+        if len(parts) != 6:
+            continue
+        if not parts[0].isdigit():
+            continue
+        rows.append(
+            {
+                "id": int(parts[0]),
+                "date": parts[1],
+                "decision": parts[2],
+                "evidence": parts[3],
+                "owner": parts[4],
+                "outcome": parts[5],
+            }
+        )
+
+    if not rows:
+        return pd.DataFrame(columns=columns)
+    return pd.DataFrame(rows).sort_values("id", ascending=False)
 
 
 # ─── Page config & style ──────────────────────────────────────────────
@@ -481,6 +515,70 @@ else:
                     f"<div>{route_chips or '<i>Unassigned</i>'}</div>",
                     unsafe_allow_html=True,
                 )
+
+st.divider()
+
+# ─── Decision traceability table ───────────────────────────────────────
+st.markdown("##### Business decisions traced to VoC insights")
+st.markdown(
+    "<div class='section-sub'>Leadership decisions linked to VoC evidence. "
+    "Target: at least 2 decisions per quarter.</div>",
+    unsafe_allow_html=True,
+)
+
+decision_df = load_decision_log(DECISION_LOG)
+target_count = 2
+logged_count = len(decision_df)
+remaining = max(target_count - logged_count, 0)
+
+d1, d2, d3 = st.columns([1.2, 1.2, 2.2])
+with d1:
+    st.metric(
+        "Decisions logged",
+        f"{logged_count}",
+        delta=(f"{remaining} to target" if remaining else "Target achieved"),
+        delta_color="normal",
+    )
+with d2:
+    if DECISION_LOG.exists():
+        st.download_button(
+            "Download decision log (.md)",
+            data=DECISION_LOG.read_text(encoding="utf-8"),
+            file_name="decision_log.md",
+            mime="text/markdown",
+            use_container_width=True,
+        )
+with d3:
+    with st.expander("How to add a new decision entry", expanded=False):
+        st.code(
+            "python scripts/log_decision.py \\\n"
+            '  --decision "Your decision" \\\n'
+            '  --evidence "VoC signal that triggered it" \\\n'
+            '  --owner "Name (Role)" \\\n'
+            '  --outcome "How success will be tracked"',
+            language="bash",
+        )
+
+if decision_df.empty:
+    st.info(
+        "No decision entries yet. Use scripts/log_decision.py, then refresh this page "
+        "to see the table."
+    )
+else:
+    st.dataframe(
+        decision_df.rename(
+            columns={
+                "id": "#",
+                "date": "Date",
+                "decision": "Decision",
+                "evidence": "VoC Evidence",
+                "owner": "Owner",
+                "outcome": "Outcome / Tracking",
+            }
+        ),
+        hide_index=True,
+        use_container_width=True,
+    )
 
 st.markdown(
     "<div class='footer'>Source: services.nlp.app.pipeline → "
