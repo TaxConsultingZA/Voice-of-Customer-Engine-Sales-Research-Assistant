@@ -7,7 +7,6 @@ import requests
 from fastapi import Depends, FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
-from .auth import require_api_key
 from .adapters import (
     NORMALIZERS,
     extract_customer_arr,
@@ -15,6 +14,7 @@ from .adapters import (
     load_field_mapping,
     reload_field_mapping,
 )
+from .auth import require_api_key
 from .dead_letter import write_dead_letter
 from .event_store import persist_event
 from .uec import validate_uec_event
