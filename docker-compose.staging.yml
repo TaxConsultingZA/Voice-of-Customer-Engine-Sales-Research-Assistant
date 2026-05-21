@@ -28,6 +28,7 @@ services:
     volumes:
       - postgres_staging_data:/var/lib/postgresql/data
       - ./scripts/init-ltree.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+      - ./scripts/init-schema.sql:/docker-entrypoint-initdb.d/02-schema.sql:ro
     ports:
       - "5432:5432"
     healthcheck:
@@ -119,6 +120,7 @@ services:
     environment:
       PRESIDIO_THRESHOLD: "0.85"
       SPACY_MODEL: "en_core_web_sm"
+      VOC_API_KEY: ${VOC_API_KEY}
     healthcheck:
       test:
         - "CMD"
@@ -150,6 +152,11 @@ services:
       SLANG_FILE: "/app/data/sa_slang.json"
       SCHEMAS_PATH: "/app/schemas"
       MODEL_PATH: ${MODEL_PATH:-mock}
+      NLP_CLASSIFIER_MODE: ${NLP_CLASSIFIER_MODE:-llm}
+      CLAUDE_API_KEY: ${CLAUDE_API_KEY}
+      CLAUDE_MODEL: ${CLAUDE_MODEL:-claude-sonnet-4-6}
+      CLAUDE_TIMEOUT_SECONDS: ${CLAUDE_TIMEOUT_SECONDS:-20}
+      VOC_API_KEY: ${VOC_API_KEY}
       AZURE_STORAGE_CONNECTION_STRING: ${AZURE_STORAGE_CONNECTION_STRING}
       AZURE_STORAGE_CONTAINER_NAME: ${AZURE_STORAGE_CONTAINER_NAME:-voc-engine}
     volumes:
@@ -184,6 +191,7 @@ services:
     ports:
       - "8087:8000"
     environment:
+      VOC_API_KEY: ${VOC_API_KEY}
       INGESTION_DEAD_LETTER_PATH: "/app/data/ingestion_failed_events.jsonl"
       INGESTION_EVENT_LOG_PATH: "/app/data/processed/uec_events.jsonl"
       SCHEMAS_PATH: "/app/schemas"
@@ -192,12 +200,15 @@ services:
       INGESTION_HTTP_TIMEOUT_SECONDS: "2.0"
       REDACTOR_URL: "http://sa-redactor:8080"
       NLP_URL: "http://nlp:8081"
+      DATABASE_URL: "postgresql://${POSTGRES_USER:-voc}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-voc_engine}"
       AZURE_STORAGE_CONNECTION_STRING: ${AZURE_STORAGE_CONNECTION_STRING}
       AZURE_STORAGE_CONTAINER_NAME: ${AZURE_STORAGE_CONTAINER_NAME:-voc-engine}
     depends_on:
       nlp:
         condition: service_healthy
       sa-redactor:
+        condition: service_healthy
+      postgres:
         condition: service_healthy
     healthcheck:
       test:
@@ -226,10 +237,14 @@ services:
       - "8088:8082"
     environment:
       NLP_URL: "http://nlp:8081"
+      VOC_API_KEY: ${VOC_API_KEY}
+      DATABASE_URL: "postgresql://${POSTGRES_USER:-voc}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-voc_engine}"
       AZURE_STORAGE_CONNECTION_STRING: ${AZURE_STORAGE_CONNECTION_STRING}
       AZURE_STORAGE_CONTAINER_NAME: ${AZURE_STORAGE_CONTAINER_NAME:-voc-engine}
     depends_on:
       nlp:
+        condition: service_healthy
+      postgres:
         condition: service_healthy
     healthcheck:
       test:

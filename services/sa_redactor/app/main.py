@@ -1,11 +1,13 @@
 import os
 from functools import lru_cache
 
-from fastapi import FastAPI
+from fastapi import Depends, FastAPI
 from presidio_analyzer import AnalyzerEngine, Pattern, PatternRecognizer
 from presidio_analyzer.nlp_engine import NlpEngineProvider
 from presidio_anonymizer import AnonymizerEngine
 from pydantic import BaseModel, Field
+
+from .auth import require_api_key
 
 app = FastAPI(
     title="SA Redactor",
@@ -89,7 +91,7 @@ def health():
     return {"status": "ok", "service": "sa-redactor", "threshold": THRESHOLD}
 
 
-@app.post("/redact", response_model=RedactResponse)
+@app.post("/redact", response_model=RedactResponse, dependencies=[Depends(require_api_key)])
 def redact(req: RedactRequest):
     """Redact PII from text. Returns anonymised text with entity count."""
     results = get_analyzer().analyze(
@@ -103,7 +105,7 @@ def redact(req: RedactRequest):
     )
 
 
-@app.post("/scan", response_model=ScanResponse)
+@app.post("/scan", response_model=ScanResponse, dependencies=[Depends(require_api_key)])
 def scan(req: ScanRequest):
     """Scan text for PII without redacting. Used by the CI/CD POPIA gate."""
     results = get_analyzer().analyze(text=req.text, language="en", score_threshold=req.threshold)
