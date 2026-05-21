@@ -1,6 +1,7 @@
-from fastapi import FastAPI
+from fastapi import Depends, FastAPI
 from pydantic import BaseModel, Field
 
+from .auth import require_api_key
 from .pipeline import process_complaint
 
 app = FastAPI(
@@ -41,7 +42,7 @@ def health():
     return {"status": "ok", "service": "voc-nlp", "version": "1.0.0"}
 
 
-@app.post("/analyze", response_model=AnalyzeResponse)
+@app.post("/analyze", response_model=AnalyzeResponse, dependencies=[Depends(require_api_key)])
 def analyze(req: AnalyzeRequest):
     result = process_complaint(req.model_dump())
     return AnalyzeResponse(

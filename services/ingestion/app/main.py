@@ -4,7 +4,7 @@ from typing import Literal
 
 import jsonschema
 import requests
-from fastapi import FastAPI, HTTPException
+from fastapi import Depends, FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
 from .adapters import (
@@ -14,6 +14,7 @@ from .adapters import (
     load_field_mapping,
     reload_field_mapping,
 )
+from .auth import require_api_key
 from .dead_letter import write_dead_letter
 from .event_store import persist_event
 from .uec import validate_uec_event
@@ -50,7 +51,11 @@ def health():
     return {"status": "ok", "service": "voc-ingestion", "version": "0.1.0"}
 
 
-@app.post("/admin/reload-mapping", response_model=ReloadMappingResponse)
+@app.post(
+    "/admin/reload-mapping",
+    response_model=ReloadMappingResponse,
+    dependencies=[Depends(require_api_key)],
+)
 def reload_mapping():
     mapping = reload_field_mapping()
     channels = sorted(mapping.get("channels", {}).keys())
@@ -59,6 +64,14 @@ def reload_mapping():
         mapping_version=mapping.get("version"),
         channels=channels,
     )
+
+
+def _internal_headers() -> dict[str, str]:
+    headers: dict[str, str] = {}
+    key = os.getenv("VOC_API_KEY")
+    if key:
+        headers["X-Api-Key"] = key
+    return headers
 
 
 def _env_bool(name: str, default: bool) -> bool:
@@ -72,6 +85,7 @@ def _call_redactor_scan(text: str, timeout_seconds: float) -> dict:
     redactor_url = os.getenv("REDACTOR_URL", "http://sa-redactor:8080")
     response = requests.post(
         f"{redactor_url.rstrip('/')}/scan",
+        headers=_internal_headers(),
         json={"text": text},
         timeout=timeout_seconds,
     )
@@ -83,6 +97,7 @@ def _call_redactor_redact(text: str, timeout_seconds: float) -> dict:
     redactor_url = os.getenv("REDACTOR_URL", "http://sa-redactor:8080")
     response = requests.post(
         f"{redactor_url.rstrip('/')}/redact",
+        headers=_internal_headers(),
         json={"text": text},
         timeout=timeout_seconds,
     )
@@ -94,6 +109,7 @@ def _call_nlp_analyze(text: str, channel: str, customer_arr: float, timeout_seco
     nlp_url = os.getenv("NLP_URL", "http://nlp:8081")
     response = requests.post(
         f"{nlp_url.rstrip('/')}/analyze",
+        headers=_internal_headers(),
         json={"text": text, "channel": channel, "customer_arr": customer_arr},
         timeout=timeout_seconds,
     )
@@ -101,7 +117,12 @@ def _call_nlp_analyze(text: str, channel: str, customer_arr: float, timeout_seco
     return response.json()
 
 
-@app.post("/api/events", response_model=IngestResponse, status_code=201)
+@app.post(
+    "/api/events",
+    response_model=IngestResponse,
+    status_code=201,
+    dependencies=[Depends(require_api_key)],
+)
 def ingest_event(req: IngestRequest):
     normalizer = NORMALIZERS[req.source]
     raw_text = extract_text(req.source, req.payload)
