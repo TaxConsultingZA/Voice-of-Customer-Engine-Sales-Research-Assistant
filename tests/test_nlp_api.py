@@ -6,7 +6,6 @@ The pipeline itself is exercised by test_nlp_pipeline.py; these tests focus
 on the HTTP layer: routing, request/response shapes, and auth enforcement.
 """
 
-import pytest
 from fastapi.testclient import TestClient
 
 from services.nlp.app.main import app
