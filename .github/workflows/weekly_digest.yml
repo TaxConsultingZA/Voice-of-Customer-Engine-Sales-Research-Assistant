@@ -1,0 +1,43 @@
+name: Weekly VoC Digest Distribution
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Runs every Monday at 09:00 SAST (07:00 UTC).
+# Also available via workflow_dispatch for on-demand testing.
+#
+# Required GitHub Secrets (Settings → Secrets and variables → Actions):
+#   SENDGRID_API_KEY    SendGrid v3 API key
+#   DIGEST_FROM_EMAIL   Sender address verified in SendGrid
+#   DIGEST_TO_EMAILS    Comma-separated recipient list
+#                       e.g. "ceo@company.com,pm@company.com,cs@company.com"
+# ─────────────────────────────────────────────────────────────────────────────
+
+on:
+  schedule:
+    - cron: "0 7 * * 1" # 07:00 UTC = 09:00 SAST every Monday
+  workflow_dispatch: # Manual trigger for testing
+
+jobs:
+  send-digest:
+    name: "Generate and email weekly VoC digest"
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install python-dotenv==1.0.0
+
+      - name: Dry-run check (print digest to logs)
+        run: python scripts/send_weekly_digest.py --dry-run
+
+      - name: Send digest via SendGrid
+        run: python scripts/send_weekly_digest.py
+        env:
+          SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+          DIGEST_FROM_EMAIL: ${{ secrets.DIGEST_FROM_EMAIL }}
+          DIGEST_TO_EMAILS: ${{ secrets.DIGEST_TO_EMAILS }}
