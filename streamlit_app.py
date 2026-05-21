@@ -68,7 +68,12 @@ def load_events(path: Path) -> pd.DataFrame:
         return pd.DataFrame()
 
     df = pd.DataFrame(rows)
-    df["timestamp"] = pd.to_datetime(df["timestamp"], format="mixed", utc=True)
+    df["timestamp"] = pd.to_datetime(
+        df["timestamp"],
+        format="ISO8601",
+        utc=True,
+        errors="coerce",
+    )
     df["polarity"] = df["sentiment"].apply(
         lambda s: float(s.get("polarity", 0.0)) if isinstance(s, dict) else 0.0
     )
