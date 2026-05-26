@@ -36,8 +36,18 @@ omit = [
     # Streamlit dashboard is a UI surface validated visually + by Streamlit's own
     # AppTest harness; it does not belong in the backend unit-coverage gate.
     "streamlit_app.py",
+    "pages/*",
     # CI-only POPIA file scanner — exercised in the popia-scan job, not unit-tests.
     "services/ingestion/app/popia_scan.py",
+    # Sales Research Assistant stubs — raise NotImplementedError until Tasks 1-3 land.
+    # contracts.py stays covered (it's the project spine).
+    "services/sales_research/app/web_intel.py",
+    "services/sales_research/app/case_retriever.py",
+    "services/sales_research/app/synthesizer.py",
+    "services/sales_research/app/cache.py",
+    "services/sales_research/app/pipeline.py",
+    "services/sales_research/app/main.py",
+    "services/sales_research/app/prompt_builder.py",
 ]
 
 [tool.coverage.report]
