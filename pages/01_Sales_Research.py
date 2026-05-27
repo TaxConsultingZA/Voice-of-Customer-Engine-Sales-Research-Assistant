@@ -4,18 +4,26 @@ Sales Research Assistant — Streamlit page.
 Sits alongside streamlit_app.py via Streamlit's native multi-page convention:
     streamlit_app.py            -> "Home" (VoC Dashboard)
     pages/01_Sales_Research.py  -> "Sales Research" (this page)
-
-While the pipeline backend is being implemented (Tasks 1-3), this page renders
-a single read-only example brief so the team can review layout and copy
-without depending on Claude/Tavily being wired up.
 """
 
 from __future__ import annotations
 
 import json
+import sys
 from datetime import UTC, datetime
+from pathlib import Path
 
 import streamlit as st
+
+# Ensure the project root is on sys.path so `services.*` imports resolve
+# regardless of which directory Streamlit was launched from.
+_ROOT = Path(__file__).resolve().parents[1]
+if str(_ROOT) not in sys.path:
+    sys.path.insert(0, str(_ROOT))
+
+from services.sales_research.app.contracts import BriefRequest  # noqa: E402
+from services.sales_research.app.pipeline import PipelineError, run_pipeline  # noqa: E402
+from services.sales_research.app.synthesizer import SynthesizerError  # noqa: E402
 
 st.set_page_config(
     page_title="Sales Research - Pre-call Brief",
@@ -42,9 +50,7 @@ def _render_brief(brief: dict, force_refresh: bool, ae_email: str) -> None:
         bar = "Healthy" if confidence >= 0.7 else ("Mixed" if confidence >= 0.4 else "Thin")
         st.metric("Confidence", f"{confidence_pct}%", delta=bar)
         st.caption(
-            "Skeleton: live pipeline pending."
-            if force_refresh
-            else f"AE: {ae_email or 'anonymous'}"
+            f"AE: {ae_email or 'anonymous'}" + (" · force-refreshed" if force_refresh else "")
         )
 
     st.divider()
@@ -96,16 +102,11 @@ def _render_brief(brief: dict, force_refresh: bool, ae_email: str) -> None:
         mime="application/json",
     )
 
-    st.caption(
-        "Skeleton view. Real pipeline will replace this static brief with "
-        "services.sales_research.app.pipeline.run_pipeline output."
-    )
-
 
 st.markdown("### Sales Research - Pre-call Brief")
 st.caption(
     "Generate a one-page brief from public web + internal case studies. "
-    "Skeleton page - pipeline backend is in development."
+    "Requires CLAUDE_API_KEY and TAVILY_API_KEY in .env."
 )
 st.divider()
 
@@ -136,59 +137,20 @@ if submitted:
         st.error("Please enter a target company.")
         st.stop()
 
-    st.info(
-        "Backend not wired yet. Showing a static example so layout can be reviewed. "
-        "Replace this branch with a call to services.sales_research.app.pipeline."
-    )
-
-    example_brief = {
-        "company_name": company_name,
-        "snapshot": (
-            "Example FinTech subsidiary, ~1,200 staff, Cape Town HQ. "
-            "Replace with real pipeline output once Tasks 1-3 are complete."
-        ),
-        "snapshot_citations": [
-            {
-                "text": "ACME Group HQ in Cape Town",
-                "source_url": "https://example.com/about",
-            }
-        ],
-        "recent_signals": [
-            {
-                "text": "Announced FedNow integration in May 2026",
-                "source_url": "https://example.com/news/fednow",
-            }
-        ],
-        "pain_points": [
-            {
-                "title": "ComplianceReportingBurden",
-                "description": "New SARB rules tightening compliance windows.",
-                "severity": "high",
-                "citations": [
-                    {
-                        "text": "CEO interview citing compliance pressure",
-                        "source_url": "https://example.com/news/ceo",
-                    }
-                ],
-            }
-        ],
-        "case_studies": [
-            {
-                "case_id": "case_fnb_compliance_001",
-                "title": "FNB: compliance reporting cut from 9 days to 4 hours",
-                "relevance_score": 0.82,
-                "why_relevant": "Same SARB regime, similar scale.",
-            }
-        ],
-        "discovery_questions": [
-            {
-                "question": "How is your team handling the new SARB compliance window?",
-                "rationale": "Anchored in the CEO interview signal.",
-                "linked_pain_point": "ComplianceReportingBurden",
-            }
-        ],
-        "confidence": 0.35,
-    }
-    _render_brief(example_brief, force_refresh=force_refresh, ae_email=ae_email)
+    with st.spinner(f"Researching {company_name.strip()}… (may take up to 30s)"):
+        try:
+            req = BriefRequest(
+                company_name=company_name.strip(),
+                ae_email=ae_email.strip() or None,
+                industry_hint=industry_hint.strip() or None,
+            )
+            record = run_pipeline(req, force_refresh=force_refresh)
+            _render_brief(record.brief_payload.model_dump(), force_refresh, ae_email)
+        except SynthesizerError as exc:
+            st.error(f"Claude synthesis failed: {exc}")
+        except PipelineError as exc:
+            st.error(f"Pipeline error: {exc}")
+        except Exception as exc:
+            st.error(f"Unexpected error: {exc}")
 else:
     st.caption("Fill the form above and click Generate brief.")
