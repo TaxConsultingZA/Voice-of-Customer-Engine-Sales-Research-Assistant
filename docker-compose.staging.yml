@@ -17,9 +17,9 @@ version: "3.9"
 
 services:
 
-  # ── PostgreSQL 15 with ltree ───────────────────────────────────────────────
+  # ── PostgreSQL 15 with ltree + pgvector ───────────────────────────────────
   postgres:
-    image: postgres:15.4
+    image: pgvector/pgvector:pg15
     container_name: voc-postgres-staging
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-voc_engine}
@@ -29,6 +29,7 @@ services:
       - postgres_staging_data:/var/lib/postgresql/data
       - ./scripts/init-ltree.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
       - ./scripts/init-schema.sql:/docker-entrypoint-initdb.d/02-schema.sql:ro
+      - ./scripts/init-sales-schema.sql:/docker-entrypoint-initdb.d/03-sales-schema.sql:ro
     ports:
       - "5432:5432"
     healthcheck:
@@ -261,6 +262,46 @@ services:
         limits:
           cpus: "1.0"
           memory: 512M
+    restart: unless-stopped
+
+  # ── Sales Research Assistant ───────────────────────────────────────────────
+  sales-research:
+    build:
+      context: .
+      dockerfile: services/sales_research/Dockerfile
+      target: production
+    container_name: voc-sales-research-staging
+    ports:
+      - "8084:8083"
+    environment:
+      VOC_API_KEY: ${VOC_API_KEY}
+      CLAUDE_API_KEY: ${CLAUDE_API_KEY}
+      CLAUDE_MODEL: ${CLAUDE_MODEL:-claude-sonnet-4-6}
+      CLAUDE_TIMEOUT_SECONDS: ${CLAUDE_TIMEOUT_SECONDS:-30}
+      TAVILY_API_KEY: ${TAVILY_API_KEY}
+      TAVILY_TIMEOUT_SECONDS: ${TAVILY_TIMEOUT_SECONDS:-15}
+      DATABASE_URL: "postgresql://${POSTGRES_USER:-voc}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-voc_engine}"
+      SCHEMAS_PATH: "/app/schemas"
+      SALES_BRIEF_CACHE_DAYS: ${SALES_BRIEF_CACHE_DAYS:-7}
+      SALES_EMBEDDING_MODEL: ${SALES_EMBEDDING_MODEL:-sentence-transformers/all-MiniLM-L6-v2}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test:
+        - "CMD"
+        - "python"
+        - "-c"
+        - "import urllib.request; urllib.request.urlopen('http://localhost:8083/health')"
+      interval: 10s
+      timeout: 5s
+      start_period: 30s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 1G
     restart: unless-stopped
 
 volumes:

@@ -19,3 +19,5 @@ python scripts/log_decision.py \
 | # | Date | Decision | VoC Evidence | Owner | Outcome / Tracking |
 |---|------|----------|--------------|-------|--------------------|
 <!-- ROWS -->
+| 1 | 2026-05-26 | redesign checkout page | Billing.Payment.DuplicateCharge+12 this week | Stanley (System Design) | Monitor code progress for two weeks |
+
