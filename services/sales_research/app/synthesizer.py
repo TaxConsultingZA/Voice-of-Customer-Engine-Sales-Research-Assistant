@@ -133,7 +133,8 @@ def _post_filter(
 
     if allowed_case_ids:
         raw["case_studies"] = [
-            cs for cs in (raw.get("case_studies") or [])
+            cs
+            for cs in (raw.get("case_studies") or [])
             if cs.get("case_id", "").strip() in allowed_case_ids
         ]
 

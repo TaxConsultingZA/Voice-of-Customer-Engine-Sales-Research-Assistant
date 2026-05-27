@@ -44,13 +44,14 @@ def _render_brief(brief: dict, force_refresh: bool, ae_email: str) -> None:
             st.markdown(brief["snapshot"])
         for citation in brief.get("snapshot_citations", []):
             st.caption(
-                f"-> {citation['text']} - "
-                f"[{citation['source_url']}]({citation['source_url']})"
+                f"-> {citation['text']} - " f"[{citation['source_url']}]({citation['source_url']})"
             )
     with top_right:
         bar = "Healthy" if confidence >= 0.7 else ("Mixed" if confidence >= 0.4 else "Thin")
         st.metric("Confidence", f"{confidence_pct}%", delta=bar)
-        st.caption(f"AE: {ae_email or 'anonymous'}" + (" · force-refreshed" if force_refresh else ""))
+        st.caption(
+            f"AE: {ae_email or 'anonymous'}" + (" · force-refreshed" if force_refresh else "")
+        )
 
     st.divider()
 

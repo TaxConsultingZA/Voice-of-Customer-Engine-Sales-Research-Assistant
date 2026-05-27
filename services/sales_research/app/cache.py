@@ -37,6 +37,7 @@ def _get_conn():
         return None
     try:
         import psycopg2
+
         return psycopg2.connect(db_url)
     except Exception:
         return None
@@ -71,10 +72,21 @@ def lookup_cached_brief(company_name: str) -> BriefRecord | None:
     if row is None:
         return None
 
-    row_id, co_name, ae_email, generated_at, cached_until, confidence, brief_payload_raw, source_urls = row
+    (
+        row_id,
+        co_name,
+        ae_email,
+        generated_at,
+        cached_until,
+        confidence,
+        brief_payload_raw,
+        source_urls,
+    ) = row
     try:
         brief = SalesBrief.model_validate(
-            brief_payload_raw if isinstance(brief_payload_raw, dict) else json.loads(brief_payload_raw)
+            brief_payload_raw
+            if isinstance(brief_payload_raw, dict)
+            else json.loads(brief_payload_raw)
         )
         return BriefRecord(
             id=str(row_id),

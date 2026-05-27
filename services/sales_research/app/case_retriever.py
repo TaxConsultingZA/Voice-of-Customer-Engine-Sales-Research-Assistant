@@ -37,6 +37,7 @@ def _get_model():
     """Load and cache SentenceTransformer in-process. Returns None if unavailable."""
     try:
         from sentence_transformers import SentenceTransformer  # type: ignore
+
         # Module-level singleton — first call is slow (~2s), subsequent calls are instant.
         if not hasattr(_get_model, "_model"):
             _get_model._model = SentenceTransformer(EMBEDDING_MODEL)
