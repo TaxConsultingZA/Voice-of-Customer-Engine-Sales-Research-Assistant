@@ -1,0 +1,103 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Sales Brief — Schema v1.0",
+  "description": "Single source of truth for the structure of a one-page pre-call sales brief.",
+  "version": "1.0.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "company_name",
+    "snapshot",
+    "snapshot_citations",
+    "recent_signals",
+    "pain_points",
+    "case_studies",
+    "discovery_questions",
+    "confidence"
+  ],
+  "definitions": {
+    "Citation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["text", "source_url"],
+      "properties": {
+        "text": { "type": "string", "minLength": 3, "maxLength": 400 },
+        "source_url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https?://",
+          "description": "Mandatory — protects the AE from hallucinated facts."
+        }
+      }
+    }
+  },
+  "properties": {
+    "company_name": { "type": "string", "minLength": 1, "maxLength": 200 },
+    "snapshot": { "type": "string", "maxLength": 1200 },
+    "snapshot_citations": {
+      "type": "array",
+      "maxItems": 6,
+      "items": { "$ref": "#/definitions/Citation" }
+    },
+    "recent_signals": {
+      "type": "array",
+      "maxItems": 8,
+      "items": { "$ref": "#/definitions/Citation" }
+    },
+    "pain_points": {
+      "type": "array",
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["title", "description", "severity", "citations"],
+        "properties": {
+          "title": { "type": "string", "minLength": 3, "maxLength": 120 },
+          "description": { "type": "string", "minLength": 10, "maxLength": 600 },
+          "severity": { "type": "string", "enum": ["high", "medium", "low"] },
+          "citations": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 4,
+            "items": { "$ref": "#/definitions/Citation" }
+          }
+        }
+      }
+    },
+    "case_studies": {
+      "type": "array",
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["case_id", "title", "relevance_score", "why_relevant"],
+        "properties": {
+          "case_id": { "type": "string", "minLength": 1, "maxLength": 64 },
+          "title": { "type": "string", "minLength": 3, "maxLength": 200 },
+          "relevance_score": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+          "why_relevant": { "type": "string", "minLength": 10, "maxLength": 400 }
+        }
+      }
+    },
+    "discovery_questions": {
+      "type": "array",
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["question", "rationale"],
+        "properties": {
+          "question": { "type": "string", "minLength": 10, "maxLength": 300 },
+          "rationale": { "type": "string", "minLength": 5, "maxLength": 240 },
+          "linked_pain_point": { "type": ["string", "null"], "maxLength": 120 }
+        }
+      }
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "description": "Capped at 0.4 when fewer than 2 distinct credible sources support the brief."
+    }
+  }
+}

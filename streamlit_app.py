@@ -112,6 +112,20 @@ def humanise_routing(routing: list[str]) -> list[str]:
     return [ROUTING_LABELS.get(r, r.replace("_", " ").title()) for r in routing]
 
 
+DECISION_LOG_TEMPLATE = """\
+# VoC Decision Log
+
+This file tracks every business decision that was directly influenced by the
+weekly VoC digest or dashboard.
+
+## Decision Table
+
+| # | Date | Decision | VoC Evidence | Owner | Outcome / Tracking |
+|---|------|----------|--------------|-------|--------------------|
+<!-- ROWS -->
+"""
+
+
 @st.cache_data(ttl=120)
 def load_decision_log(path: Path) -> pd.DataFrame:
     """Parse decision_log.md table rows into a dataframe."""
@@ -143,6 +157,37 @@ def load_decision_log(path: Path) -> pd.DataFrame:
     if not rows:
         return pd.DataFrame(columns=columns)
     return pd.DataFrame(rows).sort_values("id", ascending=False)
+
+
+def append_decision_entry(
+    path: Path,
+    decision: str,
+    evidence: str,
+    owner: str,
+    outcome: str,
+) -> int:
+    """Append a new row to decision_log.md. Returns the new row id."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    if not path.exists():
+        path.write_text(DECISION_LOG_TEMPLATE, encoding="utf-8")
+
+    log_text = path.read_text(encoding="utf-8")
+    existing = sum(
+        1
+        for line in log_text.splitlines()
+        if line.startswith("| ") and len(line) > 2 and line[2].isdigit()
+    )
+    row_id = existing + 1
+    date_str = datetime.now(UTC).date().isoformat()
+
+    new_row = f"| {row_id} | {date_str} | {decision} | {evidence} | {owner} | {outcome} |\n"
+    marker = "<!-- ROWS -->"
+    if marker in log_text:
+        updated = log_text.replace(marker, marker + "\n" + new_row, 1)
+    else:
+        updated = log_text.rstrip() + "\n" + new_row
+    path.write_text(updated, encoding="utf-8")
+    return row_id
 
 
 # ─── Page config & style ──────────────────────────────────────────────
@@ -523,67 +568,110 @@ else:
 
 st.divider()
 
-# ─── Decision traceability table ───────────────────────────────────────
+# ─── Decision traceability (no-code form + history) ────────────────────
 st.markdown("##### Business decisions traced to VoC insights")
 st.markdown(
-    "<div class='section-sub'>Leadership decisions linked to VoC evidence. "
-    "Target: at least 2 decisions per quarter.</div>",
+    "<div class='section-sub'>Log every leadership decision driven by VoC "
+    "evidence. Target: 2+ per quarter.</div>",
     unsafe_allow_html=True,
 )
 
-decision_df = load_decision_log(DECISION_LOG)
-target_count = 2
-logged_count = len(decision_df)
-remaining = max(target_count - logged_count, 0)
+if "decision_panel" not in st.session_state:
+    st.session_state.decision_panel = "history"
 
-d1, d2, d3 = st.columns([1.2, 1.2, 2.2])
-with d1:
-    st.metric(
-        "Decisions logged",
-        f"{logged_count}",
-        delta=(f"{remaining} to target" if remaining else "Target achieved"),
-        delta_color="normal",
-    )
-with d2:
-    if DECISION_LOG.exists():
-        st.download_button(
-            "Download decision log (.md)",
-            data=DECISION_LOG.read_text(encoding="utf-8"),
-            file_name="decision_log.md",
-            mime="text/markdown",
+decision_df = load_decision_log(DECISION_LOG)
+logged_count = len(decision_df)
+
+# Two-button toggle row. Keep it intentionally minimal.
+bcol1, bcol2, bcol3 = st.columns([1, 1, 3])
+with bcol1:
+    if st.button(
+        "+ Add new decision",
+        use_container_width=True,
+        type=("primary" if st.session_state.decision_panel == "add" else "secondary"),
+    ):
+        st.session_state.decision_panel = "add"
+with bcol2:
+    if st.button(
+        f"View history ({logged_count})",
+        use_container_width=True,
+        type=("primary" if st.session_state.decision_panel == "history" else "secondary"),
+    ):
+        st.session_state.decision_panel = "history"
+
+if st.session_state.decision_panel == "add":
+    with st.form("decision_form", clear_on_submit=True):
+        st.markdown(
+            "Fill in what was decided. The entry will be saved to "
+            "`data/reports/decision_log.md`."
+        )
+        decision_text = st.text_input(
+            "Decision taken *",
+            placeholder="e.g. Redesign the checkout page",
+        )
+        evidence_text = st.text_input(
+            "VoC evidence *",
+            placeholder="e.g. Billing.Payment.DuplicateCharge +12 this week",
+        )
+        owner_text = st.text_input(
+            "Owner (Name + Role) *",
+            placeholder="e.g. Jane (Product Manager)",
+        )
+        outcome_text = st.text_input(
+            "Outcome / how will success be tracked *",
+            placeholder="e.g. Monitor weekly duplicate-charge count for 4 weeks",
+        )
+        submitted = st.form_submit_button("Save decision", type="primary")
+        if submitted:
+            fields = [
+                ("Decision", decision_text),
+                ("Evidence", evidence_text),
+                ("Owner", owner_text),
+                ("Outcome", outcome_text),
+            ]
+            empty = [name for name, value in fields if not value.strip()]
+            blocked = [name for name, value in fields if "|" in value or "\n" in value]
+            if empty:
+                st.error("Please fill in: " + ", ".join(empty))
+            elif blocked:
+                st.error("These fields can't contain '|' or line breaks: " + ", ".join(blocked))
+            else:
+                new_id = append_decision_entry(
+                    DECISION_LOG,
+                    decision_text.strip(),
+                    evidence_text.strip(),
+                    owner_text.strip(),
+                    outcome_text.strip(),
+                )
+                load_decision_log.clear()
+                st.success(f"Decision #{new_id} saved.")
+                st.session_state.decision_panel = "history"
+                st.rerun()
+else:
+    if decision_df.empty:
+        st.info("No decisions logged yet. Click '+ Add new decision' to record the first one.")
+    else:
+        st.dataframe(
+            decision_df.rename(
+                columns={
+                    "id": "#",
+                    "date": "Date",
+                    "decision": "Decision",
+                    "evidence": "VoC Evidence",
+                    "owner": "Owner",
+                    "outcome": "Outcome / Tracking",
+                }
+            ),
+            hide_index=True,
             use_container_width=True,
         )
-with d3:
-    with st.expander("How to add a new decision entry", expanded=False):
-        st.code(
-            "python scripts/log_decision.py \\\n"
-            '  --decision "Your decision" \\\n'
-            '  --evidence "VoC signal that triggered it" \\\n'
-            '  --owner "Name (Role)" \\\n'
-            '  --outcome "How success will be tracked"',
-            language="bash",
-        )
-
-if decision_df.empty:
-    st.info(
-        "No decision entries yet. Use scripts/log_decision.py, then refresh this page "
-        "to see the table."
-    )
-else:
-    st.dataframe(
-        decision_df.rename(
-            columns={
-                "id": "#",
-                "date": "Date",
-                "decision": "Decision",
-                "evidence": "VoC Evidence",
-                "owner": "Owner",
-                "outcome": "Outcome / Tracking",
-            }
-        ),
-        hide_index=True,
-        use_container_width=True,
-    )
+        if DECISION_LOG.exists():
+            st.download_button(
+                "Download as decision_log.md",
+                data=DECISION_LOG.read_text(encoding="utf-8"),
+                file_name="decision_log.md",
+                mime="text/markdown",
+            )
 
 st.markdown(
     "<div class='footer'>Source: services.nlp.app.pipeline → "
