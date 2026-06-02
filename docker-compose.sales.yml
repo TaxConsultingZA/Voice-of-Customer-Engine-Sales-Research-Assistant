@@ -1,0 +1,43 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Sales Research Assistant — standalone local pgvector database.
+# ─────────────────────────────────────────────────────────────────────────────
+# This is intentionally SEPARATE from the main docker-compose.yml (the heavy VoC
+# stack with Kafka/Redis/NLP). It starts ONE thing: a Postgres with the pgvector
+# extension, so you can test the ingest -> retrieve RAG pipeline locally with
+# zero external dependencies and no real data.
+#
+# Start:   docker compose -f docker-compose.sales.yml up -d
+# Stop:    docker compose -f docker-compose.sales.yml down
+# Wipe:    docker compose -f docker-compose.sales.yml down -v   (deletes data)
+#
+# Host port is 5433 to avoid clashing with the VoC postgres on 5432.
+# Connection string for scripts/ingest_case_studies.py:
+#   export DATABASE_URL=postgresql://sales:sales_dev_secret@localhost:5433/sales_research
+#
+# init-sales-schema.sql runs automatically on first boot, so the
+# case_study_chunks + sales_briefs tables (and the vector extension) are ready.
+# ─────────────────────────────────────────────────────────────────────────────
+
+services:
+  sales-postgres:
+    image: pgvector/pgvector:pg16
+    container_name: sales-pgvector
+    environment:
+      POSTGRES_DB: sales_research
+      POSTGRES_USER: sales
+      POSTGRES_PASSWORD: sales_dev_secret
+    ports:
+      - "5433:5432"
+    volumes:
+      - sales_pgvector_data:/var/lib/postgresql/data
+      - ./scripts/init-sales-schema.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sales -d sales_research"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  sales_pgvector_data:
+    name: sales_pgvector_data

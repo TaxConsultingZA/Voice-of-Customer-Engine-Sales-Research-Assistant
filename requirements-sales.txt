@@ -1,0 +1,8 @@
+# Sales Research Assistant — extra deps for case-study ingestion + retrieval.
+# Install on the machine that runs scripts/ingest_case_studies.py and the
+# sales_research service (NOT needed by the Streamlit dashboard cloud build).
+pypdf==4.3.1
+sentence-transformers==2.7.0
+psycopg2-binary==2.9.9
+requests==2.31.0
+fpdf2==2.7.9  # only used by scripts/smoke_test_rag.py to generate fake test PDFs
